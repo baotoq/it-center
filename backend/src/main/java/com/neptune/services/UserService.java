@@ -2,6 +2,6 @@ package com.neptune.services;
 
 public class UserService {
     public String getAll() {
-        return "Hellsosd";
+        return "Hellsosddsađâsd";
     }
 }
