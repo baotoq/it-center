@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row mt-3 justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card card-outline-primary">
+        <mat-toolbar color="primary">
+          <h2 class="m-auto">Login</h2>
+        </mat-toolbar>
+        <div class="card-body">
+          <form [formGroup]="loginForm" (keyup.enter)="onSubmit()">
+            <div class="row">
+              <mat-form-field class="col-md-12">
+                <input matInput placeholder="Email" formControlName="email" required>
+                <mat-error *ngIf="email.errors | hasError: 'required'">
+                  Email is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="email.errors | hasError: 'email'">
+                  Please enter a valid email address
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col-md-12">
+                <input matInput placeholder="Password" formControlName="password" type="password" required>
+                <mat-error *ngIf="password.errors | hasError: 'required'">
+                  Password is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button mat-raised-button color="primary" class="float-right"
+                  (click)="onSubmit()"
+                  [disabled]="loginForm.invalid || loading">
+            <app-fa-spinner *ngIf="loading"></app-fa-spinner>
+            <span *ngIf="!loading">Login</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

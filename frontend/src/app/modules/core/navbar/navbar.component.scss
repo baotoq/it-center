@@ -1,0 +1,20 @@
+a {
+  color: #E0E0E0;
+  text-decoration: none;
+
+  &.active {
+    color: white;
+  }
+}
+
+//.mat-menu-item {
+//  &:hover {
+//    color: white;
+//    background-color: #0D47A1 !important;
+//    opacity: 0.8;
+//
+//    mat-icon {
+//      color: white;
+//    }
+//  }
+//}

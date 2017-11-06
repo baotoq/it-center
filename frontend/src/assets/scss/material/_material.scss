@@ -1,0 +1,19 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~ng-snotify/styles/material";
+@import "mat-icon";
+@import "mat-table";
+@import "mat-toolbar";
+@import "mat-button";
+@import "mat-tabs";
+@import "mat-card";
+
+.snotify-icon {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-position: center;
+}
+
+.cdk-overlay-container {
+  z-index: 999999;
+}

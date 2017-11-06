@@ -1,0 +1,21 @@
+@import "variables";
+@import "~bootstrap/scss/bootstrap.scss";
+@import "material/material";
+
+mat-sidenav-content {
+  background-color: $app-back-ground-color;
+}
+
+.ng-invalid.ng-touched {
+  @extend .is-invalid;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: #e0e0e0;
+}
+
+.shadow {
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

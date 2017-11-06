@@ -19,9 +19,12 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss"
+        "assets/scss/styles.scss",
+        "../node_modules/font-awesome/scss/font-awesome.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/hammerjs/hammer.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -55,6 +58,10 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {}
+    "component": {},
+    "serve": {
+      "host": "0.0.0.0",
+      "port": 4500
+    }
   }
 }

@@ -1,0 +1,38 @@
+<mat-toolbar color="primary" class="shadow" style="background-color: #24292e">
+  <button mat-icon-button (click)="sidenavToggle.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <a mat-button [routerLink]="['/']" routerLinkActive="active">
+    <h1>IT CENTER</h1>
+  </a>
+
+  <div class="ml-auto">
+    <ng-container *ngIf="!authenticated">
+      <a mat-raised-button color="primary" [routerLink]="['auth/register']" routerLinkActive="active"
+         class="d-none d-sm-inline-block">
+        Register
+      </a>
+      <a mat-raised-button color="primary" [routerLink]="['auth/login']"
+         [queryParams]="{returnUrl: route.snapshot.queryParams['returnUrl'] ? route.snapshot.queryParams['returnUrl'] : router.routerState.snapshot.url}"
+         routerLinkActive="active"
+         class="d-none d-sm-inline-block">
+        Login
+      </a>
+    </ng-container>
+
+    <button *ngIf="authenticated" mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #appMenu y-position="below">
+      <button mat-menu-item class="px-4" style="min-width: 200px">
+        <mat-icon class="mr-2">account_circle</mat-icon>
+        Profile
+      </button>
+      <div class="divider"></div>
+      <button mat-menu-item class="px-4" (click)="logout()">
+        <mat-icon class="mr-2">exit_to_app</mat-icon>
+        Log out
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

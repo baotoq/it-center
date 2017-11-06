@@ -1,0 +1,25 @@
+<mat-nav-list class="p-0">
+  <mat-list-item *ngFor="let navLink of navLinks"
+                 [routerLink]="[navLink.link]" routerLinkActive="active" (click)="selectChange.emit()">
+    <a matLine class="px-1">
+      <i class="fa fa-fw mr-3" [ngClass]="'fa-' + navLink.icon"></i>{{navLink.label}}
+    </a>
+  </mat-list-item>
+  <ng-container *ngIf="!authenticated">
+    <mat-list-item class="d-block d-sm-none" [routerLink]="['auth/login']"
+                   [queryParams]="{returnUrl: router.routerState.snapshot.url}"
+                   routerLinkActive="active"
+                   (click)="selectChange.emit()">
+      <a matLine class="px-1">
+        <i class="fa fa-sign-in fa-fw mr-3"></i>Login
+      </a>
+    </mat-list-item>
+    <mat-list-item class="d-block d-sm-none" [routerLink]="['auth/register']"
+                   routerLinkActive="active"
+                   (click)="selectChange.emit()">
+      <a matLine class="px-1">
+        <i class="fa fa-user-plus fa-fw mr-3"></i>Register
+      </a>
+    </mat-list-item>
+  </ng-container>
+</mat-nav-list>
