@@ -1,8 +1,8 @@
-package com.concretepage.service;
+package com.neptune.services;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
-import com.concretepage.entity.Article;
+import com.neptune.entities.Article;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -20,10 +20,8 @@ public class ArticleService {
         return entityManager.find(Article.class, articleId);
     }
 
-    @SuppressWarnings("unchecked")
-
     public List<Article> getAllArticles() {
-        String sql = "FROM Article as atcl ORDER BY atcl.articleId DESC";
+        String sql = "FROM Article as atcl ORDER BY atcl.id DESC";
         return (List<Article>) entityManager.createQuery(sql).getResultList();
     }
 
@@ -32,7 +30,7 @@ public class ArticleService {
     }
 
     public void updateArticle(Article article) {
-        Article artcl = getArticleById(article.getArticleId());
+        Article artcl = getArticleById(article.getId());
         artcl.setTitle(article.getTitle());
         artcl.setCategory(article.getCategory());
         entityManager.flush();

@@ -1,4 +1,4 @@
-package com.concretepage;
+package com.neptune;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

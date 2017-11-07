@@ -1,4 +1,4 @@
-package com.concretepage.controller;
+package com.neptune.controllers;
 
 import java.util.List;
 
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.concretepage.entity.Article;
-import com.concretepage.service.ArticleService;
+import com.neptune.entities.Article;
+import com.neptune.services.ArticleService;
 
 @Controller
 @RequestMapping("user")
@@ -47,7 +47,7 @@ public class ArticleController {
         } else {
             articleService.createArticle(article);
             HttpHeaders headers = new HttpHeaders();
-            headers.setLocation(builder.path("/article?id={id}").buildAndExpand(article.getArticleId()).toUri());
+            headers.setLocation(builder.path("/article?id={id}").buildAndExpand(article.getId()).toUri());
             return new ResponseEntity(headers, HttpStatus.CREATED);
         }
     }
