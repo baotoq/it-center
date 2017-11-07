@@ -4,6 +4,7 @@ import com.neptune.itcenter.entities.GenericEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,47 +12,63 @@ public abstract class GenericService<E extends GenericEntity, B> {
 
     private final Class<E> entityClass;
 
-    @PersistenceContext(name = "todoPU")
-    EntityManager em;
+    @PersistenceContext(name = "itcenterPU")
+    private EntityManager entityManager;
 
     public GenericService(Class<E> entityClass) {
         this.entityClass = entityClass;
     }
 
-    public abstract E toEntity(B bom);
-
-    public abstract B toBom(E entity);
-
-    public EntityManager getEm() {
-        return em;
+    public EntityManager getEntityManager() {
+        return entityManager;
     }
 
-    public void setEm(EntityManager em) {
-        this.em = em;
+    public E findById(Integer id) {
+        return entityManager.find(entityClass, id);
     }
 
-    public E save(E entity) {
-        if (entity.getId() != null) {
-            this.em.merge(entity);
-        } else {
-            this.em.persist(entity);
+    public E add(E entity) {
+        entity.setCreatedAt(LocalDateTime.now());
+        entity.setUpdatedAt(LocalDateTime.now());
+        this.entityManager.persist(entity);
+        this.entityManager.flush();
+        return entity;
+    }
+
+    public void add(List<E> entities) {
+        for (E entity : entities) {
+            add(entity);
         }
-        this.em.flush();
+    }
+
+    public E update(E entity) {
+        if (entity.getId() != null) {
+            //throw new Exception();
+        }
+        entity.setUpdatedAt(LocalDateTime.now());
+        this.entityManager.merge(entity);
+        this.entityManager.flush();
         return entity;
     }
 
     public void delete(E entity) {
-        this.em.remove(entity);
+        entity.setDeleteAt(LocalDateTime.now());
+        this.entityManager.remove(entity);
     }
 
-    public E findById(Integer id) {
-        return em.find(entityClass, id);
+    public void delete(List<E> entities) {
+        for (E entity : entities) {
+            delete(entity);
+        }
     }
 
-    public void removeById(Integer id) {
-        em.remove(findById(id));
+    public void delete(Integer id) {
+        entityManager.remove(findById(id));
     }
 
+    public abstract E toEntity(B bom);
+
+    public abstract B toBom(E entity);
 
     public List<E> toEntities(List<B> boms) {
         if (boms == null) {

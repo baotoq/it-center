@@ -1,4 +1,4 @@
-package com.neptune.itcenter.rest;
+package com.neptune.itcenter.resources;
 
 import com.neptune.itcenter.boms.Todo;
 import com.neptune.itcenter.entities.TodoEntity;
@@ -26,10 +26,17 @@ public class TodoResource {
     @Context
     private UriInfo uriInfo;
 
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Todo> read() {
+        List<TodoEntity> todoEntities = todoService.findAll();
+        return todoService.toBoms(todoEntities);
+    }
+
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public Response save(@Valid Todo todo) {
-        TodoEntity todoEntity = todoService.save(todo);
+    public Response add(@Valid Todo todo) {
+        TodoEntity todoEntity = todoService.add(todo);
         URI createdUri = appendCurrentUriWith(String.valueOf(todoEntity.getId()));
         return Response.created(createdUri).type(MediaType.APPLICATION_JSON).location(createdUri).build();
     }
@@ -48,13 +55,6 @@ public class TodoResource {
     public Response delete(@PathParam("id") Integer id) {
         todoService.delete(id);
         return Response.ok().build();
-    }
-
-    @GET
-    @Produces({MediaType.APPLICATION_JSON})
-    public List<Todo> read() {
-        List<TodoEntity> todoEntities = todoService.findAll();
-        return todoService.toBoms(todoEntities);
     }
 
     private URI appendCurrentUriWith(String fragment) {

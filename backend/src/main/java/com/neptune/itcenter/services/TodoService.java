@@ -5,7 +5,6 @@ import com.neptune.itcenter.entities.TodoEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Stateless
@@ -16,28 +15,19 @@ public class TodoService extends GenericService<TodoEntity, Todo> {
     }
 
     public List<TodoEntity> findAll() {
-        TypedQuery<TodoEntity> query = getEm().createNamedQuery(TodoEntity.FIND_ALL, TodoEntity.class);
+        TypedQuery<TodoEntity> query = getEntityManager().createNamedQuery(TodoEntity.FIND_ALL, TodoEntity.class);
         return query.getResultList();
     }
 
-    public TodoEntity save(Todo todo) {
-        todo.setCreatedAt(LocalDateTime.now());
-        todo.setUpdatedAt(LocalDateTime.now());
-        TodoEntity toBeSavedTodo = toEntity(todo);
-        return super.save(toBeSavedTodo);
+    public TodoEntity add(Todo todo) {
+        return super.add(toEntity(todo));
     }
 
     public void update(Todo todo) {
         TodoEntity entity = findById(todo.getId());
         entity.setContent(todo.getContent());
         entity.setCompleted(todo.isCompleted());
-        entity.setUpdatedAt(LocalDateTime.now());
-        super.save(entity);
-    }
-
-    public void delete(Integer id) {
-        TodoEntity entity = findById(id);
-        super.delete(entity);
+        super.update(entity);
     }
 
     @Override

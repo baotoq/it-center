@@ -1,32 +1,16 @@
-package com.neptune.itcenter.entities;
+package com.neptune.itcenter.boms;
 
-import com.neptune.itcenter.boms.Role;
+public class User extends GenericBom {
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "users")
-@NamedQueries({
-        @NamedQuery(name = UserEntity.FIND_ALL, query = "SELECT t FROM UserEntity t"),
-})
-public class UserEntity extends GenericEntity {
-
-    public static final String FIND_ALL = "UserEntity.findAll";
-
-    @Column
     private String name;
-    @Enumerated(EnumType.STRING)
-    @Column
     private Role role;
-    @Column
     private String username;
-    @Column
     private String password;
 
-    public UserEntity() {
+    public User() {
     }
 
-    public UserEntity(String name, Role role, String username, String password) {
+    public User(String name, Role role, String username, String password) {
         this.name = name;
         this.role = role;
         this.username = username;
@@ -63,5 +47,15 @@ public class UserEntity extends GenericEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                ", name='" + name + '\'' +
+                ", role=" + role +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

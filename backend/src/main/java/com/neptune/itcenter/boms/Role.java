@@ -1,6 +1,7 @@
 package com.neptune.itcenter.boms;
 
 public enum Role {
-    Administrator,
-    User
+    ADMIN,
+    STAFF,
+    USER
 }

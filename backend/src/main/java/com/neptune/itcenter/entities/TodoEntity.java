@@ -2,7 +2,6 @@ package com.neptune.itcenter.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -14,17 +13,11 @@ public class TodoEntity extends GenericEntity implements Serializable {
 
     public static final String FIND_ALL = "TodoEntity.findAll";
 
-    @Column(name = "content", length = 50, nullable = false)
+    @Column(length = 50, nullable = false)
     private String content;
 
-    @Column(name = "completed", nullable = false)
+    @Column(nullable = false)
     private boolean completed;
-
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updatedAt;
 
     public String getContent() {
         return content;
@@ -42,22 +35,6 @@ public class TodoEntity extends GenericEntity implements Serializable {
         this.completed = completed;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime created_at) {
-        this.createdAt = created_at;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,13 +42,12 @@ public class TodoEntity extends GenericEntity implements Serializable {
         if (!super.equals(o)) return false;
         TodoEntity that = (TodoEntity) o;
         return completed == that.completed &&
-                Objects.equals(content, that.content) &&
-                Objects.equals(createdAt, that.createdAt);
+                Objects.equals(content, that.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), content, completed, createdAt);
+        return Objects.hash(super.hashCode(), content, completed);
     }
 
     @Override
@@ -80,8 +56,6 @@ public class TodoEntity extends GenericEntity implements Serializable {
                 "id='" + getId() + '\'' +
                 ", content='" + content +
                 ", completed=" + completed +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
                 '}';
     }
 

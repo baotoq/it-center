@@ -1,10 +1,7 @@
 package com.neptune.itcenter.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import java.util.Objects;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public abstract class GenericEntity {
@@ -12,6 +9,12 @@ public abstract class GenericEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
+    @Column
+    private LocalDateTime deleteAt;
 
     public Integer getId() {
         return id;
@@ -21,16 +24,59 @@ public abstract class GenericEntity {
         this.id = id;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public LocalDateTime getDeleteAt() {
+        return deleteAt;
+    }
+
+    public void setDeleteAt(LocalDateTime deleteAt) {
+        this.deleteAt = deleteAt;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof GenericEntity)) return false;
+
         GenericEntity that = (GenericEntity) o;
-        return Objects.equals(id, that.id);
+
+        if (!getId().equals(that.getId())) return false;
+        if (!getCreatedAt().equals(that.getCreatedAt())) return false;
+        if (!getUpdatedAt().equals(that.getUpdatedAt())) return false;
+        return getDeleteAt().equals(that.getDeleteAt());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        int result = getId().hashCode();
+        result = 31 * result + getCreatedAt().hashCode();
+        result = 31 * result + getUpdatedAt().hashCode();
+        result = 31 * result + getDeleteAt().hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "GenericEntity{" +
+                "id=" + id +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", deleteAt=" + deleteAt +
+                '}';
     }
 }
