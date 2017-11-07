@@ -22,9 +22,9 @@ import javax.persistence.NamedQuery;
 })
 public class User extends GenericEntity {
 
-    public static final String GET_BY_USER_NAME = "User.findByUsername";
+    public static final String GET_BY_USER_NAME = "User.getByUsername";
 
-    public static final String GET_ALL = "User.findAll";
+    public static final String GET_ALL = "User.getAll";
 
     private String name;
     private String username;
