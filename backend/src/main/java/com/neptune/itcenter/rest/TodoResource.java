@@ -1,10 +1,8 @@
-package com.vunguyenhung.todo.rest;
+package com.neptune.itcenter.rest;
 
-import com.vunguyenhung.todo.boms.Todo;
-import com.vunguyenhung.todo.entities.TodoEntity;
-import com.vunguyenhung.todo.services.TodoService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.neptune.itcenter.boms.Todo;
+import com.neptune.itcenter.entities.TodoEntity;
+import com.neptune.itcenter.services.TodoService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -17,27 +15,17 @@ import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.List;
 
-/**
- * Created by vunguyenhung on 7/14/17.
- */
+
 @Stateless
 @Path("todos")
 public class TodoResource {
 
-    private static final Logger logger = LoggerFactory.getLogger(TodoResource.class);
-
     @EJB
-    TodoService todoService;
+    private TodoService todoService;
 
     @Context
-    UriInfo uriInfo;
+    private UriInfo uriInfo;
 
-    /**
-     * Save a valid todo into database
-     *
-     * @param todo is pollutant object in JSON format.
-     * @return 201 - CREATED if todo is saved successfully.
-     */
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
     public Response save(@Valid Todo todo) {
@@ -54,7 +42,6 @@ public class TodoResource {
         todoService.update(todo);
         return Response.ok().build();
     }
-
 
     @DELETE
     @Path("{id}")

@@ -1,4 +1,4 @@
-package com.vunguyenhung.todo.entities;
+package com.neptune.itcenter.entities;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -6,9 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.util.Objects;
 
-/**
- * Created by vunguyenhung on 7/14/17.
- */
 @MappedSuperclass
 public abstract class GenericEntity {
 

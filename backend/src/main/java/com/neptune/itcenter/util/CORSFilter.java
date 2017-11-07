@@ -1,4 +1,4 @@
-package com.vunguyenhung.todo.util;
+package com.neptune.itcenter.util;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;

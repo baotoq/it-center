@@ -1,6 +1,6 @@
-package com.vunguyenhung.todo.exceptions.mapper;
+package com.neptune.itcenter.exceptions.mapper;
 
-import com.vunguyenhung.todo.exceptions.IllegalDataException;
+import com.neptune.itcenter.exceptions.IllegalDataException;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

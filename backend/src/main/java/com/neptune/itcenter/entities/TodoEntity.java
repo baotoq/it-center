@@ -1,8 +1,4 @@
-package com.vunguyenhung.todo.entities;
-
-/**
- * Created by vunguyenhung on 7/14/17.
- */
+package com.neptune.itcenter.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;

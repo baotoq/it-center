@@ -1,4 +1,4 @@
-package com.vunguyenhung.todo.exceptions;
+package com.neptune.itcenter.exceptions;
 
 import javax.ejb.ApplicationException;
 

@@ -2,11 +2,11 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.vunguyenhung</groupId>
-    <artifactId>todo</artifactId>
+    <groupId>com.neptune</groupId>
+    <artifactId>itcenter</artifactId>
     <packaging>war</packaging>
     <version>1.0.0</version>
-    <name>Todo Webapp</name>
+    <name>It Center</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
@@ -48,7 +48,7 @@
 
     </dependencies>
     <build>
-        <finalName>todo</finalName>
+        <finalName>itcenter</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>

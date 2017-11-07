@@ -1,13 +1,10 @@
-package com.vunguyenhung.todo.boms;
+package com.neptune.itcenter.boms;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-/**
- * Created by vunguyenhung on 7/14/17.
- */
 public class Todo {
 
     private Integer id;

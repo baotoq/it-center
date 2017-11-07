@@ -1,16 +1,13 @@
-package com.vunguyenhung.todo.services;
+package com.neptune.itcenter.services;
 
-import com.vunguyenhung.todo.boms.Todo;
-import com.vunguyenhung.todo.entities.TodoEntity;
+import com.neptune.itcenter.boms.Todo;
+import com.neptune.itcenter.entities.TodoEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * Created by vunguyenhung on 7/14/17.
- */
 @Stateless
 public class TodoService extends GenericService<TodoEntity, Todo> {
 

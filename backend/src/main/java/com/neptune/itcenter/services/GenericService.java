@@ -1,12 +1,6 @@
-package com.vunguyenhung.todo.services;
+package com.neptune.itcenter.services;
 
-/**
- * Created by vunguyenhung on 7/14/17.
- */
-
-import com.vunguyenhung.todo.entities.GenericEntity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.neptune.itcenter.entities.GenericEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GenericService<E extends GenericEntity, B> {
-
-    private static final Logger logger = LoggerFactory.getLogger(GenericService.class);
 
     private final Class<E> entityClass;
 
