@@ -6,6 +6,7 @@
 package com.neptune.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -15,15 +16,15 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = UserEntity.FIND_BY_USER_NAME, query = "SELECT u FROM UserEntity u WHERE u.username = :username")
+    @NamedQuery(name = User.GET_BY_USER_NAME, query = "SELECT u FROM User u WHERE u.username = :username")
     ,
-    @NamedQuery(name = UserEntity.FIND_ALL, query = "SELECT u FROM UserEntity u")
+    @NamedQuery(name = User.GET_ALL, query = "SELECT u FROM User u")
 })
-public class UserEntity extends GenericEntity {
+public class User extends GenericEntity {
 
-    public static final String FIND_ALL = "UserEntity.findAll";
+    public static final String GET_BY_USER_NAME = "User.findByUsername";
 
-    public static final String FIND_BY_USER_NAME = "UserEntity.findByUsername";
+    public static final String GET_ALL = "User.findAll";
 
     private String name;
     private String username;

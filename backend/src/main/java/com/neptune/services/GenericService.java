@@ -16,10 +16,33 @@ import javax.persistence.PersistenceContext;
  */
 public abstract class GenericService<E extends GenericEntity> {
 
+    private final Class<E> entityClass;
+
     @PersistenceContext
     EntityManager entityManager;
 
-    public GenericService() {
+    public GenericService(Class<E> entityClass) {
+        this.entityClass = entityClass;
+    }
+
+    public E get(int id) {
+        return entityManager.find(entityClass, id);
+    }
+
+    public void create(E entity) {
+        entityManager.persist(entity);
+    }
+
+    public void update(E entity) {
+        entityManager.merge(entity);
+    }
+
+    public void remove(E entity) {
+        entityManager.remove(entity);
+    }
+
+    public void remove(int id) {
+        entityManager.remove(get(id));
     }
 
     public EntityManager getEntityManager() {
@@ -28,13 +51,5 @@ public abstract class GenericService<E extends GenericEntity> {
 
     public void setEntityManager(EntityManager em) {
         this.entityManager = em;
-    }
-
-    public void create(E entity) {
-        entityManager.persist(entity);
-    }
-
-    public void remove(E entity) {
-        entityManager.remove(entity);
     }
 }

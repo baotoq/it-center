@@ -5,9 +5,7 @@
  */
 package com.neptune.services;
 
-import com.neptune.entities.Article;
-import com.neptune.entities.GenericEntity;
-import com.neptune.entities.UserEntity;
+import com.neptune.entities.User;
 import java.util.List;
 import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Service;
@@ -19,14 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class UserService extends GenericService<GenericEntity> {
+public class UserService extends GenericService<User> {
 
-    public UserEntity get(int id) {
-        return entityManager.find(UserEntity.class, id);
+    public UserService() {
+        super(User.class);
     }
 
-    public List<UserEntity> getAll() {
-        TypedQuery<UserEntity> query = entityManager.createNamedQuery(UserEntity.FIND_ALL, UserEntity.class);
+    public List<User> getAll() {
+        TypedQuery<User> query = entityManager.createNamedQuery(User.GET_ALL, User.class);
         return query.getResultList();
     }
 }
