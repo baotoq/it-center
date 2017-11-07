@@ -6,6 +6,7 @@
 package com.neptune.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,8 +23,8 @@ public class GenericEntity implements Serializable {
     protected static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     /**
@@ -38,5 +39,29 @@ public class GenericEntity implements Serializable {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof GenericEntity)) {
+            return false;
+        }
+        GenericEntity that = (GenericEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "GenericEntity{"
+                + "id=" + id
+                + '}';
     }
 }

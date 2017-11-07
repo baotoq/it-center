@@ -21,7 +21,7 @@ import com.neptune.entities.Article;
 import com.neptune.services.ArticleService;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("article")
 @CrossOrigin(origins = {"http://localhost:4200"})
 public class ArticleController {
 
