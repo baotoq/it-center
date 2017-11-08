@@ -1,24 +1,12 @@
-package com.neptune.itcenter.entities;
+package com.neptune.itcenter.boms;
 
-import javax.persistence.*;
+public class Class extends Bom {
 
-@Entity
-@Table(name = "subjects")
-@NamedQueries({
-        @NamedQuery(name = SubjectEntity.FIND_ALL, query = "SELECT t FROM SubjectEntity t"),
-})
-public class SubjectEntity extends GenericEntity {
-    public static final String FIND_ALL = "SubjectEntity.findAll";
-
-    @Column
     private String name;
-    @Column
+    private String lecturer;
+    private int capacity;
     private int price;
-    @Column
     private boolean active;
-
-    public SubjectEntity() {
-    }
 
     public String getName() {
         return name;
@@ -26,6 +14,22 @@ public class SubjectEntity extends GenericEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLecturer() {
+        return lecturer;
+    }
+
+    public void setLecturer(String lecturer) {
+        this.lecturer = lecturer;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public int getPrice() {

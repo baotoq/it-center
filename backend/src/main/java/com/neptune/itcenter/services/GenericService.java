@@ -1,5 +1,6 @@
 package com.neptune.itcenter.services;
 
+import com.neptune.itcenter.boms.Bom;
 import com.neptune.itcenter.entities.GenericEntity;
 
 import javax.persistence.EntityManager;
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class GenericService<E extends GenericEntity, B> {
+public abstract class GenericService<E extends GenericEntity, B extends Bom> {
 
     private final Class<E> entityClass;
 

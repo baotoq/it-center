@@ -23,11 +23,11 @@ public class TodoService extends GenericService<TodoEntity, Todo> {
         return super.add(toEntity(todo));
     }
 
-    public void update(Todo todo) {
+    public TodoEntity update(Todo todo) {
         TodoEntity entity = findById(todo.getId());
         entity.setContent(todo.getContent());
         entity.setCompleted(todo.isCompleted());
-        super.update(entity);
+        return super.update(entity);
     }
 
     @Override

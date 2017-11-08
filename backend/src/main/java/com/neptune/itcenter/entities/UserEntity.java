@@ -22,6 +22,8 @@ public class UserEntity extends GenericEntity {
     private String username;
     @Column
     private String password;
+    @Column
+    private boolean active;
 
     public UserEntity() {
     }

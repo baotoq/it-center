@@ -1,7 +1,6 @@
 package com.neptune.itcenter.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
@@ -9,7 +8,7 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = TodoEntity.FIND_ALL, query = "SELECT t FROM TodoEntity t"),
 })
-public class TodoEntity extends GenericEntity implements Serializable {
+public class TodoEntity extends GenericEntity {
 
     public static final String FIND_ALL = "TodoEntity.findAll";
 

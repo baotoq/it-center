@@ -479,7 +479,7 @@
 									"containerChangeable": false,
 									"containerExtending": false,
 									"left": 400,
-									"top": 397,
+									"top": 389,
 									"width": 178.103515625,
 									"height": 13,
 									"autoResize": false,
@@ -518,7 +518,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 405,
-											"top": 420,
+											"top": 412,
 											"width": 168.103515625,
 											"height": 13,
 											"autoResize": false
@@ -542,7 +542,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 405,
-											"top": 435,
+											"top": 427,
 											"width": 168.103515625,
 											"height": 13,
 											"autoResize": false
@@ -566,7 +566,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 405,
-											"top": 450,
+											"top": 442,
 											"width": 168.103515625,
 											"height": 13,
 											"autoResize": false
@@ -590,7 +590,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 405,
-											"top": 465,
+											"top": 457,
 											"width": 168.103515625,
 											"height": 13,
 											"autoResize": false
@@ -614,7 +614,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 405,
-											"top": 480,
+											"top": 472,
 											"width": 168.103515625,
 											"height": 13,
 											"autoResize": false
@@ -638,7 +638,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 405,
-											"top": 495,
+											"top": 487,
 											"width": 168.103515625,
 											"height": 13,
 											"autoResize": false
@@ -662,7 +662,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 405,
-											"top": 510,
+											"top": 502,
 											"width": 168.103515625,
 											"height": 13,
 											"autoResize": false
@@ -686,7 +686,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 405,
-											"top": 525,
+											"top": 517,
 											"width": 168.103515625,
 											"height": 13,
 											"autoResize": false
@@ -710,7 +710,7 @@
 											"containerChangeable": false,
 											"containerExtending": false,
 											"left": 405,
-											"top": 540,
+											"top": 532,
 											"width": 168.103515625,
 											"height": 13,
 											"autoResize": false
@@ -726,7 +726,7 @@
 									"containerChangeable": false,
 									"containerExtending": false,
 									"left": 400,
-									"top": 415,
+									"top": 407,
 									"width": 178.103515625,
 									"height": 143,
 									"autoResize": false
@@ -742,7 +742,7 @@
 							"containerChangeable": false,
 							"containerExtending": false,
 							"left": 400,
-							"top": 392,
+							"top": 384,
 							"width": 178.103515625,
 							"height": 166,
 							"autoResize": false,
@@ -1150,7 +1150,7 @@
 									"containerChangeable": false,
 									"containerExtending": false,
 									"left": 521,
-									"top": 345,
+									"top": 341,
 									"width": 0,
 									"height": 13,
 									"autoResize": false,
@@ -1212,7 +1212,7 @@
 									"containerChangeable": false,
 									"containerExtending": false,
 									"left": 522,
-									"top": 360,
+									"top": 352,
 									"width": 0,
 									"height": 13,
 									"autoResize": false,
@@ -1244,7 +1244,7 @@
 								"$ref": "AAAAAAFfkZ7ui+oXNMw="
 							},
 							"lineStyle": 2,
-							"points": "507:313;507:392",
+							"points": "507:313;507:384",
 							"nameLabel": {
 								"$ref": "AAAAAAFfkab57usLphk="
 							},
@@ -2359,7 +2359,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFfkZ+yf+pEuAo="
 							},
-							"name": "teacher",
+							"name": "lecturer",
 							"type": "string",
 							"length": 0,
 							"primaryKey": false,

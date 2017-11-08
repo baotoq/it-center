@@ -1,18 +1,19 @@
 package com.neptune.itcenter.boms;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public abstract class GenericBom {
+public abstract class Bom implements Serializable {
 
     private Integer id;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime deleteAt;
 
-    public GenericBom() {
+    public Bom() {
     }
 
-    public GenericBom(Integer id, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime deleteAt) {
+    public Bom(Integer id, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime deleteAt) {
         this.id = id;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;

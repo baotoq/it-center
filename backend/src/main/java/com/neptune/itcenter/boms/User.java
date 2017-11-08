@@ -1,6 +1,6 @@
 package com.neptune.itcenter.boms;
 
-public class User extends GenericBom {
+public class User extends Bom {
 
     private String name;
     private Role role;

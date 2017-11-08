@@ -24,14 +24,14 @@ public class UserService extends GenericService<UserEntity, User> {
         return super.add(toEntity(user));
     }
 
-    public void update(User user) {
+    public UserEntity update(User user) {
         UserEntity entity = findById(user.getId());
         entity.setId(user.getId());
         entity.setName(user.getName());
         entity.setRole(user.getRole());
         entity.setUsername(user.getUsername());
         entity.setPassword(user.getPassword());
-        super.update(entity);
+        return super.update(entity);
     }
 
     @Override

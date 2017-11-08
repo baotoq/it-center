@@ -2,10 +2,9 @@ package com.neptune.itcenter.boms;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Todo {
+public class Todo extends Bom {
 
     private Integer id;
 
@@ -15,10 +14,6 @@ public class Todo {
 
     @NotNull
     private boolean completed;
-
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
 
     public Integer getId() {
         return id;
@@ -44,22 +39,6 @@ public class Todo {
         this.completed = completed;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,14 +46,12 @@ public class Todo {
         Todo todo = (Todo) o;
         return completed == todo.completed &&
                 Objects.equals(id, todo.id) &&
-                Objects.equals(content, todo.content) &&
-                Objects.equals(createdAt, todo.createdAt) &&
-                Objects.equals(updatedAt, todo.updatedAt);
+                Objects.equals(content, todo.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, content, completed, createdAt, updatedAt);
+        return Objects.hash(id, content, completed);
     }
 
     @Override
@@ -83,8 +60,6 @@ public class Todo {
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", completed=" + completed +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
                 '}';
     }
 
