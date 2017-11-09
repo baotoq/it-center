@@ -19,13 +19,13 @@ public class UserService extends GenericService<UserEntity, User> {
         return query.getResultList();
     }
 
-    public UserEntity update(User user) {
-        UserEntity entity = findById(user.getId());
-        entity.setId(user.getId());
-        entity.setName(user.getName());
-        entity.setRole(user.getRole());
-        entity.setUsername(user.getUsername());
-        entity.setPassword(user.getPassword());
+    public UserEntity update(User bom) {
+        UserEntity entity = findById(bom.getId());
+        entity.setId(bom.getId());
+        entity.setName(bom.getName());
+        entity.setRole(bom.getRole());
+        entity.setUsername(bom.getUsername());
+        entity.setPassword(bom.getPassword());
         return super.update(entity);
     }
 

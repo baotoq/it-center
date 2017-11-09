@@ -7,12 +7,10 @@ import java.util.List;
 
 public abstract class GenericFactory<E extends GenericEntity> {
     protected Faker faker;
-    protected int amount;
 
-    public GenericFactory(int amount) {
-        this.amount = amount;
+    public GenericFactory() {
         faker = new Faker();
     }
 
-    public abstract List<E> createEntities();
+    public abstract List<E> createEntities(int amount);
 }

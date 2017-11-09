@@ -8,12 +8,8 @@ import java.util.List;
 
 public class UserFactory extends GenericFactory<UserEntity> {
 
-    public UserFactory() {
-        super(FactoryConstants.USER_AMOUNT);
-    }
-
     @Override
-    public List<UserEntity> createEntities() {
+    public List<UserEntity> createEntities(int amount) {
         List<UserEntity> entities = new ArrayList<>();
 
         for (int i = 0; i < amount; i++) {

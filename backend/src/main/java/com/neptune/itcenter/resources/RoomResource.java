@@ -8,21 +8,16 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.validation.Valid;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.List;
 
 @Stateless
 @Path("rooms")
-public class RoomResource {
+public class RoomResource extends GenericResource {
     @EJB
     private RoomService roomService;
-
-    @Context
-    private UriInfo uriInfo;
 
     @GET
     @Path("{id}")
@@ -62,9 +57,5 @@ public class RoomResource {
         RoomEntity roomEntity = roomService.findById(id);
         roomService.delete(roomEntity);
         return Response.noContent().build();
-    }
-
-    private URI appendCurrentUriWith(String fragment) {
-        return uriInfo.getAbsolutePathBuilder().path(fragment).build();
     }
 }

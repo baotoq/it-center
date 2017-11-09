@@ -8,22 +8,17 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.validation.Valid;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.List;
 
 @Stateless
 @Path("users")
-public class UserResource {
+public class UserResource extends GenericResource {
 
     @EJB
     private UserService userService;
-
-    @Context
-    private UriInfo uriInfo;
 
     @GET
     @Path("{id}")
@@ -63,9 +58,5 @@ public class UserResource {
         UserEntity userEntity = userService.findById(id);
         userService.delete(userEntity);
         return Response.noContent().build();
-    }
-
-    private URI appendCurrentUriWith(String fragment) {
-        return uriInfo.getAbsolutePathBuilder().path(fragment).build();
     }
 }

@@ -19,8 +19,9 @@ public class RoomService extends GenericService<RoomEntity, Room> {
         return query.getResultList();
     }
 
-    public RoomEntity update(Room room) {
-        RoomEntity entity = findById(room.getId());
+    public RoomEntity update(Room bom) {
+        RoomEntity entity = findById(bom.getId());
+        entity.setActive(bom.isActive());
         return super.update(entity);
     }
 
@@ -30,6 +31,7 @@ public class RoomService extends GenericService<RoomEntity, Room> {
             return null;
         RoomEntity entity = new RoomEntity();
         entity.setId(bom.getId());
+        entity.setActive(bom.isActive());
         entity.setCreatedAt(bom.getCreatedAt());
         entity.setUpdatedAt(bom.getUpdatedAt());
         entity.setDeleteAt(bom.getDeleteAt());
@@ -42,6 +44,7 @@ public class RoomService extends GenericService<RoomEntity, Room> {
             return null;
         Room bom = new Room();
         bom.setId(entity.getId());
+        bom.setActive(entity.isActive());
         bom.setCreatedAt(entity.getCreatedAt());
         bom.setUpdatedAt(entity.getUpdatedAt());
         bom.setDeleteAt(entity.getDeleteAt());
