@@ -28,6 +28,10 @@ public class ClassEntity extends GenericEntity {
     @JoinColumn(name = "subject_id")
     private SubjectEntity subject;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "room_id")
+    private RoomEntity room;
+
     public String getLecturer() {
         return lecturer;
     }
@@ -82,5 +86,13 @@ public class ClassEntity extends GenericEntity {
 
     public void setSubject(SubjectEntity subject) {
         this.subject = subject;
+    }
+
+    public RoomEntity getRoom() {
+        return room;
+    }
+
+    public void setRoom(RoomEntity room) {
+        this.room = room;
     }
 }

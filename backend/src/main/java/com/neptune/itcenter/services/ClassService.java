@@ -13,6 +13,8 @@ public class ClassService extends GenericService<ClassEntity, Class> {
 
     @EJB
     SubjectService subjectService;
+    @EJB
+    RoomService roomService;
 
     public ClassService() {
         super(ClassEntity.class);
@@ -75,6 +77,7 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         bom.setUpdatedAt(entity.getUpdatedAt());
         bom.setDeleteAt(entity.getDeletedAt());
         bom.setSubject(subjectService.toBom(entity.getSubject()));
+        bom.setRoom(roomService.toBom(entity.getRoom()));
         return bom;
     }
 }
