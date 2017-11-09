@@ -3,10 +3,16 @@ package com.neptune.itcenter.services;
 import com.neptune.itcenter.boms.Class;
 import com.neptune.itcenter.entities.ClassEntity;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Stateless
 public class ClassService extends GenericService<ClassEntity, Class> {
+
+    @EJB
+    SubjectService subjectService;
 
     public ClassService() {
         super(ClassEntity.class);
@@ -68,6 +74,7 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         bom.setCreatedAt(entity.getCreatedAt());
         bom.setUpdatedAt(entity.getUpdatedAt());
         bom.setDeleteAt(entity.getDeletedAt());
+        bom.setSubject(subjectService.toBom(entity.getSubject()));
         return bom;
     }
 }

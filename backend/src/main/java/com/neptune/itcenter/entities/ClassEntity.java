@@ -24,6 +24,10 @@ public class ClassEntity extends GenericEntity {
     @Column
     private LocalDateTime endedAt;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "subject_id")
+    private SubjectEntity subject;
+
     public String getLecturer() {
         return lecturer;
     }
@@ -70,5 +74,13 @@ public class ClassEntity extends GenericEntity {
 
     public void setEndedAt(LocalDateTime endedAt) {
         this.endedAt = endedAt;
+    }
+
+    public SubjectEntity getSubject() {
+        return subject;
+    }
+
+    public void setSubject(SubjectEntity subject) {
+        this.subject = subject;
     }
 }

@@ -17,6 +17,7 @@ public class ClassFactory extends GenericFactory<ClassEntity> {
             entity.setLecturer(faker.name().fullName());
             entity.setPrice(faker.number().numberBetween(50000, 100000));
             entity.setActive(faker.bool().bool());
+            entity.setSubject(new SubjectFactory().createEntities(1).get(0));
             entities.add(entity);
         }
         return entities;

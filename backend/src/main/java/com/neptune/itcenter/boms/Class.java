@@ -10,6 +10,7 @@ public class Class extends Bom {
     private boolean active;
     private LocalDateTime startedAt;
     private LocalDateTime endedAt;
+    private Subject subject;
 
     public String getLecturer() {
         return lecturer;
@@ -57,5 +58,13 @@ public class Class extends Bom {
 
     public void setEndedAt(LocalDateTime endedAt) {
         this.endedAt = endedAt;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 }
