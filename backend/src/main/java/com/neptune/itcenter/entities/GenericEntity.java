@@ -17,6 +17,22 @@ public abstract class GenericEntity implements Serializable {
     @Column
     private LocalDateTime deleteAt;
 
+    @PrePersist
+    protected void onAdd() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreRemove
+    protected void onDelete() {
+        deleteAt = LocalDateTime.now();
+    }
+
     public Integer getId() {
         return id;
     }

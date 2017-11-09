@@ -53,7 +53,8 @@ public class TodoResource {
     @DELETE
     @Path("{id}")
     public Response delete(@PathParam("id") Integer id) {
-        todoService.delete(id);
+        TodoEntity todoEntity = todoService.findById(id);
+        todoService.delete(todoEntity);
         return Response.ok().build();
     }
 

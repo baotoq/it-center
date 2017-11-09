@@ -3,9 +3,11 @@ package com.neptune.itcenter.services;
 import com.neptune.itcenter.boms.Room;
 import com.neptune.itcenter.entities.RoomEntity;
 
+import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Stateless
 public class RoomService extends GenericService<RoomEntity, Room> {
 
     public RoomService() {
@@ -17,10 +19,6 @@ public class RoomService extends GenericService<RoomEntity, Room> {
         return query.getResultList();
     }
 
-    public RoomEntity add(Room room) {
-        return super.add(toEntity(room));
-    }
-
     public RoomEntity update(Room room) {
         RoomEntity entity = findById(room.getId());
         return super.update(entity);
@@ -28,11 +26,25 @@ public class RoomService extends GenericService<RoomEntity, Room> {
 
     @Override
     public RoomEntity toEntity(Room bom) {
-        return null;
+        if (bom == null)
+            return null;
+        RoomEntity entity = new RoomEntity();
+        entity.setId(bom.getId());
+        entity.setCreatedAt(bom.getCreatedAt());
+        entity.setUpdatedAt(bom.getUpdatedAt());
+        entity.setDeleteAt(bom.getDeleteAt());
+        return entity;
     }
 
     @Override
     public Room toBom(RoomEntity entity) {
-        return null;
+        if (entity == null)
+            return null;
+        Room bom = new Room();
+        bom.setId(entity.getId());
+        bom.setCreatedAt(entity.getCreatedAt());
+        bom.setUpdatedAt(entity.getUpdatedAt());
+        bom.setDeleteAt(entity.getDeleteAt());
+        return bom;
     }
 }

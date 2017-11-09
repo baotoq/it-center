@@ -1,7 +1,10 @@
 package com.neptune.itcenter.resources;
 
+import com.neptune.itcenter.entities.RoomEntity;
 import com.neptune.itcenter.entities.UserEntity;
+import com.neptune.itcenter.services.RoomService;
 import com.neptune.itcenter.services.UserService;
+import com.neptune.itcenter.util.factories.RoomFactory;
 import com.neptune.itcenter.util.factories.UserFactory;
 
 import javax.ejb.EJB;
@@ -21,10 +24,17 @@ public class SeedResource {
     @EJB
     private UserService userService;
 
+    @Inject
+    private RoomFactory roomFactory;
+    @EJB
+    private RoomService roomService;
+
     @GET
     public Response init() {
         List<UserEntity> userEntities = userFactory.createEntities();
         userService.add(userEntities);
+        List<RoomEntity> roomEntities = roomFactory.createEntities();
+        roomService.add(roomEntities);
         return Response.ok().build();
     }
 }

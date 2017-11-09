@@ -60,7 +60,8 @@ public class UserResource {
     @DELETE
     @Path("{id}")
     public Response delete(@PathParam("id") Integer id) {
-        userService.delete(id);
+        UserEntity userEntity = userService.findById(id);
+        userService.delete(userEntity);
         return Response.noContent().build();
     }
 

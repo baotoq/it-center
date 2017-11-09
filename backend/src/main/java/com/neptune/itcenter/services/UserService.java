@@ -5,7 +5,6 @@ import com.neptune.itcenter.entities.UserEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Stateless
@@ -18,10 +17,6 @@ public class UserService extends GenericService<UserEntity, User> {
     public List<UserEntity> findAll() {
         TypedQuery<UserEntity> query = getEntityManager().createNamedQuery(UserEntity.FIND_ALL, UserEntity.class);
         return query.getResultList();
-    }
-
-    public UserEntity add(User user) {
-        return super.add(toEntity(user));
     }
 
     public UserEntity update(User user) {
@@ -44,8 +39,9 @@ public class UserService extends GenericService<UserEntity, User> {
         entity.setRole(bom.getRole());
         entity.setUsername(bom.getUsername());
         entity.setPassword(bom.getPassword());
-        entity.setCreatedAt(LocalDateTime.now());
-        entity.setUpdatedAt(LocalDateTime.now());
+        entity.setCreatedAt(bom.getCreatedAt());
+        entity.setUpdatedAt(bom.getUpdatedAt());
+        entity.setDeleteAt(bom.getDeleteAt());
         return entity;
     }
 
@@ -59,8 +55,9 @@ public class UserService extends GenericService<UserEntity, User> {
         bom.setRole(entity.getRole());
         bom.setUsername(entity.getUsername());
         bom.setPassword(entity.getPassword());
-        bom.setCreatedAt(LocalDateTime.now());
-        bom.setUpdatedAt(LocalDateTime.now());
+        bom.setCreatedAt(entity.getCreatedAt());
+        bom.setUpdatedAt(entity.getUpdatedAt());
+        bom.setDeleteAt(entity.getDeleteAt());
         return bom;
     }
 }

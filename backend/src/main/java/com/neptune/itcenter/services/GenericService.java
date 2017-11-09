@@ -29,11 +29,13 @@ public abstract class GenericService<E extends GenericEntity, B extends Bom> {
     }
 
     public E add(E entity) {
-        entity.setCreatedAt(LocalDateTime.now());
-        entity.setUpdatedAt(LocalDateTime.now());
         this.entityManager.persist(entity);
         this.entityManager.flush();
         return entity;
+    }
+
+    public E add(B bom) {
+        return add(toEntity(bom));
     }
 
     public void add(List<E> entities) {
@@ -43,10 +45,9 @@ public abstract class GenericService<E extends GenericEntity, B extends Bom> {
     }
 
     public E update(E entity) {
-        if (entity.getId() != null) {
+        if (entity.getId() == null) {
             //throw new Exception();
         }
-        entity.setUpdatedAt(LocalDateTime.now());
         this.entityManager.merge(entity);
         this.entityManager.flush();
         return entity;
@@ -54,17 +55,14 @@ public abstract class GenericService<E extends GenericEntity, B extends Bom> {
 
     public void delete(E entity) {
         entity.setDeleteAt(LocalDateTime.now());
-        this.entityManager.remove(entity);
+        update(entity);
+        //this.entityManager.remove(entity);
     }
 
     public void delete(List<E> entities) {
         for (E entity : entities) {
             delete(entity);
         }
-    }
-
-    public void delete(Integer id) {
-        entityManager.remove(findById(id));
     }
 
     public abstract E toEntity(B bom);

@@ -59,7 +59,8 @@ public class RoomResource {
     @DELETE
     @Path("{id}")
     public Response delete(@PathParam("id") Integer id) {
-        roomService.delete(id);
+        RoomEntity roomEntity = roomService.findById(id);
+        roomService.delete(roomEntity);
         return Response.noContent().build();
     }
 
