@@ -7,11 +7,13 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 @NamedQueries({
-        @NamedQuery(name = UserEntity.FIND_ALL, query = "SELECT t FROM UserEntity t"),
+        @NamedQuery(name = UserEntity.FIND_ALL, query = "SELECT u FROM UserEntity u"),
+        @NamedQuery(name = UserEntity.FIND_BY_USER_NAME, query = "SELECT u FROM UserEntity u WHERE u.username = :username"),
 })
 public class UserEntity extends GenericEntity {
 
     public static final String FIND_ALL = "UserEntity.findAll";
+    public static final String FIND_BY_USER_NAME = "UserEntity.findByUsername";
 
     @Column
     private String name;

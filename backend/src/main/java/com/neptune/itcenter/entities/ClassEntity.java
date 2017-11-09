@@ -6,10 +6,12 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "classes")
 @NamedQueries({
-        @NamedQuery(name = ClassEntity.FIND_ALL, query = "SELECT t FROM ClassEntity t"),
+        @NamedQuery(name = ClassEntity.FIND_ALL, query = "SELECT c FROM ClassEntity c"),
+        @NamedQuery(name = ClassEntity.FIND_BY_SUBJECT_NAME, query = "SELECT c FROM ClassEntity c WHERE c.subject.name = :subjectName")
 })
 public class ClassEntity extends GenericEntity {
     public static final String FIND_ALL = "ClassEntity.findAll";
+    public static final String FIND_BY_SUBJECT_NAME = "ClassEntity.findBySubjectName";
 
     @Column
     private String lecturer;

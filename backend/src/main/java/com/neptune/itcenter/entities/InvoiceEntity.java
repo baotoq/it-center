@@ -1,9 +1,6 @@
 package com.neptune.itcenter.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "classes")
@@ -12,4 +9,12 @@ import javax.persistence.Table;
 })
 public class InvoiceEntity extends GenericEntity {
     public static final String FIND_ALL = "InvoiceEntity.findAll";
+
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
+    private UserEntity staff;
+
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private UserEntity student;
 }
