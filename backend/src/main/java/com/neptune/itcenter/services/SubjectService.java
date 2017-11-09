@@ -3,12 +3,16 @@ package com.neptune.itcenter.services;
 import com.neptune.itcenter.boms.Subject;
 import com.neptune.itcenter.entities.SubjectEntity;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Stateless
 public class SubjectService extends GenericService<SubjectEntity, Subject> {
+
+    @EJB
+    private ClassService classService;
 
     public SubjectService() {
         super(SubjectEntity.class);

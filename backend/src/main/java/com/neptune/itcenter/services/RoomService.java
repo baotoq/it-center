@@ -3,12 +3,16 @@ package com.neptune.itcenter.services;
 import com.neptune.itcenter.boms.Room;
 import com.neptune.itcenter.entities.RoomEntity;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Stateless
 public class RoomService extends GenericService<RoomEntity, Room> {
+
+    @EJB
+    private ClassService classService;
 
     public RoomService() {
         super(RoomEntity.class);
