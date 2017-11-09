@@ -1,20 +1,15 @@
 package com.neptune.itcenter.boms;
 
+import java.time.LocalDateTime;
+
 public class Class extends Bom {
 
-    private String name;
     private String lecturer;
     private int capacity;
     private int price;
     private boolean active;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    private LocalDateTime startedAt;
+    private LocalDateTime endedAt;
 
     public String getLecturer() {
         return lecturer;
@@ -46,5 +41,21 @@ public class Class extends Bom {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public LocalDateTime getStartedAt() {
+        return startedAt;
+    }
+
+    public void setStartedAt(LocalDateTime startedAt) {
+        this.startedAt = startedAt;
+    }
+
+    public LocalDateTime getEndedAt() {
+        return endedAt;
+    }
+
+    public void setEndedAt(LocalDateTime endedAt) {
+        this.endedAt = endedAt;
     }
 }

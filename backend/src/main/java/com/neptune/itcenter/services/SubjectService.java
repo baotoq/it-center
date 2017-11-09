@@ -22,7 +22,6 @@ public class SubjectService extends GenericService<SubjectEntity, Subject> {
     public SubjectEntity update(Subject bom) {
         SubjectEntity entity = findById(bom.getId());
         entity.setName(bom.getName());
-        entity.setPrice(bom.getPrice());
         entity.setActive(bom.isActive());
         return super.update(entity);
     }
@@ -37,7 +36,7 @@ public class SubjectService extends GenericService<SubjectEntity, Subject> {
         entity.setActive(bom.isActive());
         entity.setCreatedAt(bom.getCreatedAt());
         entity.setUpdatedAt(bom.getUpdatedAt());
-        entity.setDeleteAt(bom.getDeleteAt());
+        entity.setDeletedAt(bom.getDeleteAt());
         return entity;
     }
 
@@ -48,11 +47,10 @@ public class SubjectService extends GenericService<SubjectEntity, Subject> {
         Subject bom = new Subject();
         bom.setId(entity.getId());
         bom.setName(entity.getName());
-        bom.setPrice(entity.getPrice());
         bom.setActive(entity.isActive());
         bom.setCreatedAt(entity.getCreatedAt());
         bom.setUpdatedAt(entity.getUpdatedAt());
-        bom.setDeleteAt(entity.getDeleteAt());
+        bom.setDeleteAt(entity.getDeletedAt());
         return bom;
     }
 }

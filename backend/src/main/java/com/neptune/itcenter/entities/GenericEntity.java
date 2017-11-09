@@ -15,7 +15,7 @@ public abstract class GenericEntity implements Serializable {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
     @Column
-    private LocalDateTime deleteAt;
+    private LocalDateTime deletedAt;
 
     @PrePersist
     protected void onAdd() {
@@ -30,7 +30,7 @@ public abstract class GenericEntity implements Serializable {
 
     @PreRemove
     protected void onDelete() {
-        deleteAt = LocalDateTime.now();
+        deletedAt = LocalDateTime.now();
     }
 
     public Integer getId() {
@@ -57,12 +57,12 @@ public abstract class GenericEntity implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public LocalDateTime getDeleteAt() {
-        return deleteAt;
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleteAt(LocalDateTime deleteAt) {
-        this.deleteAt = deleteAt;
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
     }
 
     @Override
@@ -75,7 +75,7 @@ public abstract class GenericEntity implements Serializable {
         if (!getId().equals(that.getId())) return false;
         if (!getCreatedAt().equals(that.getCreatedAt())) return false;
         if (!getUpdatedAt().equals(that.getUpdatedAt())) return false;
-        return getDeleteAt().equals(that.getDeleteAt());
+        return getDeletedAt().equals(that.getDeletedAt());
     }
 
     @Override
@@ -83,7 +83,7 @@ public abstract class GenericEntity implements Serializable {
         int result = getId().hashCode();
         result = 31 * result + getCreatedAt().hashCode();
         result = 31 * result + getUpdatedAt().hashCode();
-        result = 31 * result + getDeleteAt().hashCode();
+        result = 31 * result + getDeletedAt().hashCode();
         return result;
     }
 
@@ -93,7 +93,7 @@ public abstract class GenericEntity implements Serializable {
                 "id=" + id +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
-                ", deleteAt=" + deleteAt +
+                ", deleteAt=" + deletedAt +
                 '}';
     }
 }

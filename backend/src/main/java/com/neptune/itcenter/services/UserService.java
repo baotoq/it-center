@@ -41,7 +41,7 @@ public class UserService extends GenericService<UserEntity, User> {
         entity.setPassword(bom.getPassword());
         entity.setCreatedAt(bom.getCreatedAt());
         entity.setUpdatedAt(bom.getUpdatedAt());
-        entity.setDeleteAt(bom.getDeleteAt());
+        entity.setDeletedAt(bom.getDeleteAt());
         return entity;
     }
 
@@ -57,7 +57,7 @@ public class UserService extends GenericService<UserEntity, User> {
         bom.setPassword(entity.getPassword());
         bom.setCreatedAt(entity.getCreatedAt());
         bom.setUpdatedAt(entity.getUpdatedAt());
-        bom.setDeleteAt(entity.getDeleteAt());
+        bom.setDeleteAt(entity.getDeletedAt());
         return bom;
     }
 }

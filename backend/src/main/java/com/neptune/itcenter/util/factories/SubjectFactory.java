@@ -14,7 +14,6 @@ public class SubjectFactory extends GenericFactory<SubjectEntity> {
         for (int i = 0; i < amount; i++) {
             SubjectEntity entity = new SubjectEntity();
             entity.setName(faker.educator().course());
-            entity.setPrice(faker.number().numberBetween(500000, 1000000));
             entity.setActive(faker.bool().bool());
             entities.add(entity);
         }

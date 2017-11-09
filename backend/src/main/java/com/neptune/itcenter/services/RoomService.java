@@ -34,7 +34,7 @@ public class RoomService extends GenericService<RoomEntity, Room> {
         entity.setActive(bom.isActive());
         entity.setCreatedAt(bom.getCreatedAt());
         entity.setUpdatedAt(bom.getUpdatedAt());
-        entity.setDeleteAt(bom.getDeleteAt());
+        entity.setDeletedAt(bom.getDeleteAt());
         return entity;
     }
 
@@ -47,7 +47,7 @@ public class RoomService extends GenericService<RoomEntity, Room> {
         bom.setActive(entity.isActive());
         bom.setCreatedAt(entity.getCreatedAt());
         bom.setUpdatedAt(entity.getUpdatedAt());
-        bom.setDeleteAt(entity.getDeleteAt());
+        bom.setDeleteAt(entity.getDeletedAt());
         return bom;
     }
 }

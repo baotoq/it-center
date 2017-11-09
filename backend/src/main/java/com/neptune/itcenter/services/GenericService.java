@@ -54,7 +54,7 @@ public abstract class GenericService<E extends GenericEntity, B extends Bom> {
     }
 
     public void delete(E entity) {
-        entity.setDeleteAt(LocalDateTime.now());
+        entity.setDeletedAt(LocalDateTime.now());
         update(entity);
         //this.entityManager.remove(entity);
     }

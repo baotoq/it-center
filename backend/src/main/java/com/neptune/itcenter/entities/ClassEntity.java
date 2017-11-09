@@ -1,6 +1,7 @@
 package com.neptune.itcenter.entities;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "classes")
@@ -11,8 +12,6 @@ public class ClassEntity extends GenericEntity {
     public static final String FIND_ALL = "ClassEntity.findAll";
 
     @Column
-    private String name;
-    @Column
     private String lecturer;
     @Column
     private int capacity;
@@ -20,14 +19,10 @@ public class ClassEntity extends GenericEntity {
     private int price;
     @Column
     private boolean active;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    @Column
+    private LocalDateTime startedAt;
+    @Column
+    private LocalDateTime endedAt;
 
     public String getLecturer() {
         return lecturer;
@@ -59,5 +54,21 @@ public class ClassEntity extends GenericEntity {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public LocalDateTime getStartedAt() {
+        return startedAt;
+    }
+
+    public void setStartedAt(LocalDateTime startedAt) {
+        this.startedAt = startedAt;
+    }
+
+    public LocalDateTime getEndedAt() {
+        return endedAt;
+    }
+
+    public void setEndedAt(LocalDateTime endedAt) {
+        this.endedAt = endedAt;
     }
 }

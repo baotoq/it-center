@@ -13,8 +13,6 @@ public class SubjectEntity extends GenericEntity {
     @Column
     private String name;
     @Column
-    private int price;
-    @Column
     private boolean active;
 
     public SubjectEntity() {
@@ -26,14 +24,6 @@ public class SubjectEntity extends GenericEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public boolean isActive() {
