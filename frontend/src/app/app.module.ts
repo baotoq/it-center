@@ -7,8 +7,7 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { AppRoutingModule } from './app-routing.module';
 import { LoadingService } from './components/loading/loading.service';
 import { AuthConfig, AuthHttp } from 'angular2-jwt';
-import { Http, RequestOptions } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { Http, HttpModule, RequestOptions } from '@angular/http';
 import { AuthModule } from './modules/auth/auth.module';
 import { CoreModule } from './modules/core/core.module';
 import { SharedModule } from './modules/shared/shared.module';
@@ -30,7 +29,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
+    HttpModule,
     SnotifyModule.forRoot(),
     AppRoutingModule,
     AuthModule,

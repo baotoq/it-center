@@ -6,6 +6,7 @@ import { HasErrorPipe } from './pipes/has-error.pipe';
 import { FilterByPipe, OrderByPipe } from 'ngx-pipes/esm';
 import { ClickStopPropagationDirective } from './directives/click-stop-propagation/click-stop-propagation.directive';
 import { MaterialSpinnerComponent } from './components/material-spinner/material-spinner.component';
+import { RequestService } from './services/request.sevice';
 
 const COMPONENTS = [
   FontAwesomeSpinnerComponent,
@@ -31,6 +32,7 @@ const DIRECTIVES = [
     PIPES,
     OrderByPipe,
     FilterByPipe,
+    RequestService,
   ],
 })
 export class SharedModule {

@@ -19,6 +19,15 @@ public class UserService extends GenericService<UserEntity, User> {
         return query.getResultList();
     }
 
+    public UserEntity findByUsername(String username) {
+        TypedQuery<UserEntity> query = getEntityManager().createNamedQuery(UserEntity.FIND_BY_USER_NAME, UserEntity.class)
+                .setParameter("username", username);
+        List<UserEntity> results = query.getResultList();
+        if (results.isEmpty())
+            return null;
+        else return results.get(0);
+    }
+
     public UserEntity update(User bom) {
         UserEntity entity = findById(bom.getId());
         entity.setId(bom.getId());
@@ -27,6 +36,15 @@ public class UserService extends GenericService<UserEntity, User> {
         entity.setUsername(bom.getUsername());
         entity.setPassword(bom.getPassword());
         return super.update(entity);
+    }
+
+    public boolean isExistingUsername(String username) {
+        return findByUsername(username) != null;
+    }
+
+    public boolean authenticate(String username, String password) {
+        UserEntity entity = findByUsername(username);
+        return entity != null && password.equals(entity.getPassword());
     }
 
     @Override

@@ -59,4 +59,13 @@ public class UserResource extends GenericResource {
         userService.delete(userEntity);
         return Response.noContent().build();
     }
+
+    @POST
+    @Path("auth")
+    public Response auth(User user) {
+        if (userService.authenticate(user.getUsername(), user.getPassword())) {
+            return Response.ok().build();
+        }
+        return Response.status(Response.Status.UNAUTHORIZED).build();
+    }
 }

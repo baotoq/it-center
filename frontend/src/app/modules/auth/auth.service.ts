@@ -5,26 +5,26 @@ import { API } from '../shared/common/api';
 import { User } from '../../models/user';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/finally';
-import { HttpClient } from '@angular/common/http';
+import { RequestService } from '../shared/services/request.sevice';
 
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient) {
+  constructor(private requestService: RequestService) {
   }
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(API.USER.LOGIN, {
-      email: email,
+  login(username: string, password: string): Observable<any> {
+    return this.requestService.post(API.USER.LOGIN, {
+      username: username,
       password: password,
     });
   }
 
   create(user: User): Observable<any> {
-    return this.http.post(API.USER.CREATE, user);
+    return this.requestService.post(API.USER.CREATE, user);
   }
 
-  hasEmail(email: string): Observable<boolean> {
-    return this.http.post<boolean>(API.USER.HAS_EMAIL + `?email=${email}`, {});
+  isExistingUsername(username: string): Observable<any> {
+    return this.requestService.post(API.USER.EXIST_USERNAME + `?username=${username}`, {});
   }
 
   setToken(token: string) {

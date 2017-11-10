@@ -4,26 +4,18 @@ import { Timestamp } from './timestamp';
 export class User extends Timestamp {
   id: number;
   name: string;
-  phone: string;
-  birthday: Date;
-  avatar: string;
-  email: string;
+  username: string;
   password: string;
   role: Role;
-  confirmedBy: User;
 
   constructor(obj?: User) {
     super(obj);
     if (obj) {
       this.id = obj.id;
       this.name = obj.name;
-      this.phone = obj.phone;
-      this.birthday = obj.birthday;
-      this.avatar = obj.avatar;
-      this.email = obj.email;
+      this.username = obj.username;
       this.password = obj.password;
       this.role = obj.role;
-      this.confirmedBy = obj.confirmedBy;
     }
   }
 }

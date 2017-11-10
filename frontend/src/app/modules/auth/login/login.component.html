@@ -9,12 +9,9 @@
           <form [formGroup]="loginForm" (keyup.enter)="onSubmit()">
             <div class="row">
               <mat-form-field class="col-md-12">
-                <input matInput placeholder="Email" formControlName="email" required>
-                <mat-error *ngIf="email.errors | hasError: 'required'">
-                  Email is <strong>required</strong>
-                </mat-error>
-                <mat-error *ngIf="email.errors | hasError: 'email'">
-                  Please enter a valid email address
+                <input matInput placeholder="Username" formControlName="username" required>
+                <mat-error *ngIf="username.errors | hasError: 'required'">
+                  Username is <strong>required</strong>
                 </mat-error>
               </mat-form-field>
             </div>

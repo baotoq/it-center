@@ -23,13 +23,13 @@ export class LoginComponent implements OnInit {
 
   private createForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['admin@gmail.com', [Validators.required, Validators.email]],
-      password: ['123', Validators.required],
+      username: ['admin', [Validators.required]],
+      password: ['1', Validators.required],
     });
   }
 
-  get email() {
-    return this.loginForm.get('email');
+  get username() {
+    return this.loginForm.get('username');
   }
 
   get password() {
@@ -41,17 +41,15 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-    this.authService.login(this.email.value, this.password.value)
+    this.authService.login(this.username.value, this.password.value)
       .finally(() => this.loading = false)
       .subscribe(resp => {
-        if (resp.token) {
-          this.authService.setToken(resp.token);
-          this.coreService.notifySuccess('Login successful!');
-          this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl'] || '/');
-        }
+        //this.authService.setToken(resp.token);
+        this.coreService.notifySuccess('Login successful!');
+        this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl'] || '/');
       }, error => {
         if (error.status === 401) {
-          this.coreService.notifyError(error.json());
+          this.coreService.notifyError('Invalid email or password!');
         }
       });
   }
