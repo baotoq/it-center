@@ -26,11 +26,11 @@ public class ClassEntity extends GenericEntity {
     @Column
     private LocalDateTime endedAt;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "subject_id")
     private SubjectEntity subject;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "room_id")
     private RoomEntity room;
 

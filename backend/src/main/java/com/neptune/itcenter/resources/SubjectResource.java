@@ -30,8 +30,8 @@ public class SubjectResource extends GenericResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public List<Subject> getAll() {
-        List<SubjectEntity> roomEntities = subjectService.findAll();
-        return subjectService.toBoms(roomEntities);
+        List<SubjectEntity> subjectEntities = subjectService.findAll();
+        return subjectService.toBoms(subjectEntities);
     }
 
     @POST

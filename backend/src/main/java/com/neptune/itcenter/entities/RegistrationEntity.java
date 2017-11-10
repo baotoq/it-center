@@ -1,6 +1,7 @@
 package com.neptune.itcenter.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "registration")
@@ -8,7 +9,7 @@ import javax.persistence.*;
         @NamedQuery(name = RegistrationEntity.FIND_ALL_BY_USERNAME, query = "SELECT r FROM RegistrationEntity r WHERE r.student.username = :username"),
         @NamedQuery(name = RegistrationEntity.FIND_ALL, query = "SELECT r FROM RegistrationEntity r"),
 })
-public class RegistrationEntity extends GenericEntity {
+public class RegistrationEntity extends GenericEntity implements Serializable {
 
     public static final String FIND_ALL_BY_USERNAME = "RegistrationEntity.findAllByUsername";
     public static final String FIND_ALL = "RegistrationEntity.findAll";

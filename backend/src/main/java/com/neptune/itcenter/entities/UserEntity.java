@@ -3,6 +3,7 @@ package com.neptune.itcenter.entities;
 import com.neptune.itcenter.boms.Role;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
@@ -10,7 +11,7 @@ import javax.persistence.*;
         @NamedQuery(name = UserEntity.FIND_ALL, query = "SELECT u FROM UserEntity u"),
         @NamedQuery(name = UserEntity.FIND_BY_USER_NAME, query = "SELECT u FROM UserEntity u WHERE u.username = :username"),
 })
-public class UserEntity extends GenericEntity {
+public class UserEntity extends GenericEntity implements Serializable {
 
     public static final String FIND_ALL = "UserEntity.findAll";
     public static final String FIND_BY_USER_NAME = "UserEntity.findByUsername";
