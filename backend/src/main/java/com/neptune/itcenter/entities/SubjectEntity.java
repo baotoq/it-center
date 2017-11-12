@@ -1,5 +1,7 @@
 package com.neptune.itcenter.entities;
 
+import com.neptune.itcenter.boms.Level;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -15,6 +17,11 @@ public class SubjectEntity extends GenericEntity implements Serializable {
     private String name;
     @Column
     private boolean active;
+    @Column
+    private int price;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Level level;
 
     public SubjectEntity() {
     }
@@ -33,5 +40,21 @@ public class SubjectEntity extends GenericEntity implements Serializable {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 }

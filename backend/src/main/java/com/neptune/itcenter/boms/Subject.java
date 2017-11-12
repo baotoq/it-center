@@ -5,6 +5,7 @@ public class Subject extends Bom {
     private String name;
     private int price;
     private boolean active;
+    private Level level;
 
     public String getName() {
         return name;
@@ -28,5 +29,13 @@ public class Subject extends Bom {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 }

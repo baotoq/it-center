@@ -19,10 +19,6 @@ export class AuthService {
     });
   }
 
-  create(user: User): Observable<any> {
-    return this.requestService.post(API.USER.CREATE, user);
-  }
-
   isExistingUsername(username: string): Observable<any> {
     return this.requestService.post(API.USER.EXIST_USERNAME + `?username=${username}`, {});
   }

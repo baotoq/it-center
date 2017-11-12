@@ -15,6 +15,7 @@ import { SpinnerComponent } from './components/loading/spinner/spinner.component
 import { ProgressBarComponent } from './components/loading/progress-bar/progress-bar.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { ClassModule } from './modules/class/class.module';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig(), http, options);
@@ -34,6 +35,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AppRoutingModule,
     AuthModule,
     CoreModule,
+    ClassModule,
     SharedModule,
   ],
   providers: [
