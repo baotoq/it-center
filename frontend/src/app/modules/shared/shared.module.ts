@@ -7,6 +7,8 @@ import { FilterByPipe, OrderByPipe } from 'ngx-pipes/esm';
 import { ClickStopPropagationDirective } from './directives/click-stop-propagation/click-stop-propagation.directive';
 import { MaterialSpinnerComponent } from './components/material-spinner/material-spinner.component';
 import { RequestService } from './services/request.sevice';
+import { PeriodOrderPipe } from './pipes/period-order.pipe';
+import { SequenceTypePipe } from './pipes/sequence-type.pipe';
 
 const COMPONENTS = [
   FontAwesomeSpinnerComponent,
@@ -15,6 +17,8 @@ const COMPONENTS = [
 
 const PIPES = [
   HasErrorPipe,
+  PeriodOrderPipe,
+  SequenceTypePipe,
 ];
 
 const DIRECTIVES = [

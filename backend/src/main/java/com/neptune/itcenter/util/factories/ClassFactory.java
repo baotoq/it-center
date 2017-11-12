@@ -5,6 +5,7 @@ import com.neptune.itcenter.entities.PeriodEntity;
 import com.neptune.itcenter.entities.RoomEntity;
 import com.neptune.itcenter.entities.SubjectEntity;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class ClassFactory extends GenericFactory<ClassEntity> {
         List<ClassEntity> entities = new ArrayList<>();
         for (int i = 0; i < getAmount(); i++) {
             ClassEntity entity = new ClassEntity();
+            entity.setName(faker.educator().course());
             entity.setLecturer(faker.name().fullName());
             entity.setCapacity(faker.number().numberBetween(20, 40));
             entity.setLecturer(faker.name().fullName());
@@ -33,6 +35,8 @@ public class ClassFactory extends GenericFactory<ClassEntity> {
             entity.setSubject(subjects.get(faker.random().nextInt(subjects.size())));
             entity.setRoom(rooms.get(faker.random().nextInt(rooms.size())));
             entity.setPeriod(periods.get(faker.random().nextInt(periods.size())));
+            entity.setStartedAt(LocalDateTime.of(2018, faker.number().numberBetween(1, 6), faker.number().numberBetween(1, 28), 0, 0));
+            entity.setEndedAt(LocalDateTime.of(2018, faker.number().numberBetween(7, 12), faker.number().numberBetween(1, 30), 0, 0));
             entities.add(entity);
         }
         return entities;

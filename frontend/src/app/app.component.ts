@@ -6,7 +6,7 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
     <app-progress-bar></app-progress-bar>
     <app-navbar (sidenavToggle)="sidenav.toggle()" class="fixed-top"></app-navbar>
     <mat-sidenav-container fullscreen>
-      <mat-sidenav #sidenav [mode]="smallScreen ? 'over' : 'side'" [opened]="!smallScreen">
+      <mat-sidenav #sidenav [mode]="smallScreen ? 'over' : 'side'" [opened]="false">
         <app-sidenav (selectChange)="sidenavSelectChange()"></app-sidenav>
       </mat-sidenav>
       <app-spinner></app-spinner>

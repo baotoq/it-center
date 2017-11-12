@@ -37,9 +37,6 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         entity.setActive(bom.isActive());
         entity.setStartedAt(bom.getStartedAt());
         entity.setEndedAt(bom.getEndedAt());
-        entity.setCreatedAt(bom.getCreatedAt());
-        entity.setUpdatedAt(bom.getUpdatedAt());
-        entity.setDeletedAt(bom.getDeletedAt());
         return super.update(entity);
     }
 
@@ -48,6 +45,7 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         if (bom == null)
             return null;
         ClassEntity entity = super.toEntity(bom);
+        entity.setName(bom.getName());
         entity.setCapacity(bom.getCapacity());
         entity.setActive(bom.isActive());
         entity.setLecturer(bom.getLecturer());
@@ -63,6 +61,7 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         if (entity == null)
             return null;
         Class bom = super.toBom(entity);
+        bom.setName(entity.getName());
         bom.setCapacity(entity.getCapacity());
         bom.setActive(entity.isActive());
         bom.setLecturer(entity.getLecturer());

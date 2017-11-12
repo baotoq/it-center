@@ -16,6 +16,8 @@ public class ClassEntity extends GenericEntity {
     public static final String FIND_BY_SUBJECT_NAME = "ClassEntity.findBySubjectName";
 
     @Column
+    private String name;
+    @Column
     private String lecturer;
     @Column
     private int capacity;
@@ -39,6 +41,14 @@ public class ClassEntity extends GenericEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "period_id")
     private PeriodEntity period;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getLecturer() {
         return lecturer;

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class Class extends Bom {
 
+    private String name;
     private String lecturer;
     private int capacity;
     private int price;
@@ -13,6 +14,14 @@ public class Class extends Bom {
     private Subject subject;
     private Room room;
     private Period period;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getLecturer() {
         return lecturer;

@@ -1,3 +1,53 @@
-<div *ngFor="let class of classes">
-  {{class.lecturer}}
+<div class="container-fluid mt-3">
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">Class Name</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Time</th>
+      <th scope="col">Days</th>
+      <th scope="col">Capacity</th>
+      <th scope="col">Start at</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let class of classes">
+      <td>
+        <span class="badge">{{class.name}}</span>
+      </td>
+      <td>
+        <span class="badge"> {{class.subject.name}}</span>
+      </td>
+      <td>
+        <span class="badge" [ngClass]="{
+          'badge-success': class.period.periodOrder === 'FIRST',
+          'badge-dark': class.period.periodOrder === 'SECOND',
+          'badge-secondary': class.period.periodOrder === 'THIRD',
+          'badge-warning text-white': class.period.periodOrder === 'FOURTH',
+          'badge-danger': class.period.periodOrder === 'FIFTH'}">
+          {{class.period.periodOrder | periodOrder}}
+        </span>
+      </td>
+      <td>
+        <span class="badge" [ngClass]="{
+          'badge-primary': class.period.sequenceType === 'ODD_DAYS',
+          'badge-info': class.period.sequenceType === 'EVEN_DAYS'}">
+          {{class.period.sequenceType | sequenceType}}
+        </span>
+      </td>
+      <td>
+        <span class="badge">{{class.capacity}}/{{class.capacity}}</span>
+      </td>
+      <td>
+        <span class="badge">{{class.startedAt | amDateFormat:'LL'}}</span>
+      </td>
+      <td>
+        <button class="btn btn-outline-primary btn-sm">
+          Register
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
