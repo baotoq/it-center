@@ -12,6 +12,7 @@ public class Class extends Bom {
     private LocalDateTime endedAt;
     private Subject subject;
     private Room room;
+    private Period period;
 
     public String getLecturer() {
         return lecturer;
@@ -75,5 +76,13 @@ public class Class extends Bom {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public Period getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Period period) {
+        this.period = period;
     }
 }

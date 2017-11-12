@@ -10,7 +10,7 @@ import java.util.List;
 @Stateless
 public class InvoiceService extends GenericService<InvoiceEntity, Invoice> {
     public InvoiceService() {
-        super(InvoiceEntity.class);
+        super(InvoiceEntity.class, Invoice.class);
     }
 
     public List<InvoiceEntity> findAll() {
@@ -31,7 +31,7 @@ public class InvoiceService extends GenericService<InvoiceEntity, Invoice> {
         entity.setId(bom.getId());
         entity.setCreatedAt(bom.getCreatedAt());
         entity.setUpdatedAt(bom.getUpdatedAt());
-        entity.setDeletedAt(bom.getDeleteAt());
+        entity.setDeletedAt(bom.getDeletedAt());
         return entity;
     }
 
@@ -43,7 +43,7 @@ public class InvoiceService extends GenericService<InvoiceEntity, Invoice> {
         bom.setId(entity.getId());
         bom.setCreatedAt(entity.getCreatedAt());
         bom.setUpdatedAt(entity.getUpdatedAt());
-        bom.setDeleteAt(entity.getDeletedAt());
+        bom.setDeletedAt(entity.getDeletedAt());
         return bom;
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 public class UserService extends GenericService<UserEntity, User> {
 
     public UserService() {
-        super(UserEntity.class);
+        super(UserEntity.class, User.class);
     }
 
     public List<UserEntity> findAll() {
@@ -51,15 +51,11 @@ public class UserService extends GenericService<UserEntity, User> {
     public UserEntity toEntity(User bom) {
         if (bom == null)
             return null;
-        UserEntity entity = new UserEntity();
-        entity.setId(bom.getId());
+        UserEntity entity = super.toEntity(bom);
         entity.setName(bom.getName());
         entity.setRole(bom.getRole());
         entity.setUsername(bom.getUsername());
         entity.setPassword(bom.getPassword());
-        entity.setCreatedAt(bom.getCreatedAt());
-        entity.setUpdatedAt(bom.getUpdatedAt());
-        entity.setDeletedAt(bom.getDeleteAt());
         return entity;
     }
 
@@ -67,15 +63,11 @@ public class UserService extends GenericService<UserEntity, User> {
     public User toBom(UserEntity entity) {
         if (entity == null)
             return null;
-        User bom = new User();
-        bom.setId(entity.getId());
+        User bom = super.toBom(entity);
         bom.setName(entity.getName());
         bom.setRole(entity.getRole());
         bom.setUsername(entity.getUsername());
         bom.setPassword(entity.getPassword());
-        bom.setCreatedAt(entity.getCreatedAt());
-        bom.setUpdatedAt(entity.getUpdatedAt());
-        bom.setDeleteAt(entity.getDeletedAt());
         return bom;
     }
 }

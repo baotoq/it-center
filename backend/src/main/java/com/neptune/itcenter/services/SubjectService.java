@@ -3,7 +3,6 @@ package com.neptune.itcenter.services;
 import com.neptune.itcenter.boms.Subject;
 import com.neptune.itcenter.entities.SubjectEntity;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -11,11 +10,8 @@ import java.util.List;
 @Stateless
 public class SubjectService extends GenericService<SubjectEntity, Subject> {
 
-    @EJB
-    private ClassService classService;
-
     public SubjectService() {
-        super(SubjectEntity.class);
+        super(SubjectEntity.class, Subject.class);
     }
 
     public List<SubjectEntity> findAll() {
@@ -34,15 +30,11 @@ public class SubjectService extends GenericService<SubjectEntity, Subject> {
     public SubjectEntity toEntity(Subject bom) {
         if (bom == null)
             return null;
-        SubjectEntity entity = new SubjectEntity();
-        entity.setId(bom.getId());
+        SubjectEntity entity = super.toEntity(bom);
         entity.setName(bom.getName());
         entity.setActive(bom.isActive());
         entity.setPrice(bom.getPrice());
         entity.setLevel(bom.getLevel());
-        entity.setCreatedAt(bom.getCreatedAt());
-        entity.setUpdatedAt(bom.getUpdatedAt());
-        entity.setDeletedAt(bom.getDeleteAt());
         return entity;
     }
 
@@ -50,15 +42,11 @@ public class SubjectService extends GenericService<SubjectEntity, Subject> {
     public Subject toBom(SubjectEntity entity) {
         if (entity == null)
             return null;
-        Subject bom = new Subject();
-        bom.setId(entity.getId());
+        Subject bom = super.toBom(entity);
         bom.setName(entity.getName());
         bom.setActive(entity.isActive());
         bom.setPrice(entity.getPrice());
         bom.setLevel(entity.getLevel());
-        bom.setCreatedAt(entity.getCreatedAt());
-        bom.setUpdatedAt(entity.getUpdatedAt());
-        bom.setDeleteAt(entity.getDeletedAt());
         return bom;
     }
 }

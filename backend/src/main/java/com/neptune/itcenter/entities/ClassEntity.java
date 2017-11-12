@@ -36,6 +36,10 @@ public class ClassEntity extends GenericEntity {
     @JoinColumn(name = "room_id")
     private RoomEntity room;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "period_id")
+    private PeriodEntity period;
+
     public String getLecturer() {
         return lecturer;
     }
@@ -98,5 +102,13 @@ public class ClassEntity extends GenericEntity {
 
     public void setRoom(RoomEntity room) {
         this.room = room;
+    }
+
+    public PeriodEntity getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(PeriodEntity period) {
+        this.period = period;
     }
 }

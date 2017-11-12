@@ -7,12 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserFactory extends GenericFactory<UserEntity> {
+    public UserFactory(int amount) {
+        super(amount);
+    }
 
     @Override
-    public List<UserEntity> createEntities(int amount) {
+    public List<UserEntity> createEntities() {
         List<UserEntity> entities = new ArrayList<>();
 
-        for (int i = 0; i < amount; i++) {
+        for (int i = 0; i < getAmount(); i++) {
             UserEntity entity = new UserEntity();
             entity.setName(faker.name().fullName());
             entity.setRole(generateRole());

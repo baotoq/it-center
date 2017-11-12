@@ -12,12 +12,14 @@ import java.util.List;
 public abstract class GenericService<E extends GenericEntity, B extends Bom> {
 
     private final Class<E> entityClass;
+    private final Class<B> bomClass;
 
     @PersistenceContext(name = "itcenterPU")
     private EntityManager entityManager;
 
-    public GenericService(Class<E> entityClass) {
+    public GenericService(Class<E> entityClass, Class<B> bomClass) {
         this.entityClass = entityClass;
+        this.bomClass = bomClass;
     }
 
     public EntityManager getEntityManager() {
@@ -65,23 +67,44 @@ public abstract class GenericService<E extends GenericEntity, B extends Bom> {
         }
     }
 
-    public abstract E toEntity(B bom);
+    private E createEntity() {
+        try {
+            return entityClass.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    public abstract B toBom(E entity);
+    private B createBom() {
+        try {
+            return bomClass.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    public List<E> toEntities(List<B> boms) {
-        if (boms == null) {
+    public B toBom(E entity) {
+        if (entity == null)
             return null;
-        }
-        List<E> entities = new ArrayList<>();
-        //Under testing
-        for (B b : boms) {
-            E entity = toEntity(b);
-            if (entity != null)
-                entities.add(entity);
-        }
+        B bom = createBom();
+        bom.setId(entity.getId());
+        bom.setCreatedAt(entity.getCreatedAt());
+        bom.setUpdatedAt(entity.getUpdatedAt());
+        bom.setDeletedAt(entity.getDeletedAt());
+        return bom;
+    }
 
-        return entities;
+    public E toEntity(B bom) {
+        if (bom == null)
+            return null;
+        E entity = createEntity();
+        entity.setId(bom.getId());
+        entity.setCreatedAt(bom.getCreatedAt());
+        entity.setUpdatedAt(bom.getUpdatedAt());
+        entity.setDeletedAt(bom.getDeletedAt());
+        return entity;
     }
 
     public List<B> toBoms(List<E> entities) {
@@ -97,5 +120,20 @@ public abstract class GenericService<E extends GenericEntity, B extends Bom> {
         }
 
         return boms;
+    }
+
+    public List<E> toEntities(List<B> boms) {
+        if (boms == null) {
+            return null;
+        }
+        List<E> entities = new ArrayList<>();
+        //Under testing
+        for (B b : boms) {
+            E entity = toEntity(b);
+            if (entity != null)
+                entities.add(entity);
+        }
+
+        return entities;
     }
 }

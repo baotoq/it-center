@@ -8,16 +8,16 @@ public abstract class Bom implements Serializable {
     private Integer id;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private LocalDateTime deleteAt;
+    private LocalDateTime deletedAt;
 
     public Bom() {
     }
 
-    public Bom(Integer id, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime deleteAt) {
+    public Bom(Integer id, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime deletedAt) {
         this.id = id;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.deleteAt = deleteAt;
+        this.deletedAt = deletedAt;
     }
 
     public Integer getId() {
@@ -44,11 +44,11 @@ public abstract class Bom implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public LocalDateTime getDeleteAt() {
-        return deleteAt;
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleteAt(LocalDateTime deleteAt) {
-        this.deleteAt = deleteAt;
+    public void setDeletedAt(LocalDateTime deleteAt) {
+        this.deletedAt = deleteAt;
     }
 }

@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SubjectFactory extends GenericFactory<SubjectEntity> {
+    public SubjectFactory(int amount) {
+        super(amount);
+    }
 
     @Override
-    public List<SubjectEntity> createEntities(int amount) {
+    public List<SubjectEntity> createEntities() {
         List<SubjectEntity> entities = new ArrayList<>();
 
-        for (int i = 0; i < amount; i++) {
+        for (int i = 0; i < getAmount(); i++) {
             SubjectEntity entity = new SubjectEntity();
             entity.setName(faker.educator().course());
             entity.setActive(faker.bool().bool());

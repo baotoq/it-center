@@ -16,7 +16,6 @@ export class ClassComponent implements OnInit {
   ngOnInit() {
     this.classService.get(1).subscribe(resp => {
       this.class = resp;
-      console.log(resp);
     });
   }
 

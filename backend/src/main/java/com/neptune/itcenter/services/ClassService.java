@@ -12,12 +12,14 @@ import java.util.List;
 public class ClassService extends GenericService<ClassEntity, Class> {
 
     @EJB
-    SubjectService subjectService;
+    private SubjectService subjectService;
     @EJB
-    RoomService roomService;
+    private RoomService roomService;
+    @EJB
+    private PeriodService periodService;
 
     public ClassService() {
-        super(ClassEntity.class);
+        super(ClassEntity.class, Class.class);
     }
 
     public List<ClassEntity> findAll() {
@@ -37,7 +39,7 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         entity.setEndedAt(bom.getEndedAt());
         entity.setCreatedAt(bom.getCreatedAt());
         entity.setUpdatedAt(bom.getUpdatedAt());
-        entity.setDeletedAt(bom.getDeleteAt());
+        entity.setDeletedAt(bom.getDeletedAt());
         return super.update(entity);
     }
 
@@ -45,8 +47,7 @@ public class ClassService extends GenericService<ClassEntity, Class> {
     public ClassEntity toEntity(Class bom) {
         if (bom == null)
             return null;
-        ClassEntity entity = new ClassEntity();
-        entity.setId(bom.getId());
+        ClassEntity entity = super.toEntity(bom);
         entity.setCapacity(bom.getCapacity());
         entity.setActive(bom.isActive());
         entity.setLecturer(bom.getLecturer());
@@ -54,9 +55,6 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         entity.setActive(bom.isActive());
         entity.setStartedAt(bom.getStartedAt());
         entity.setEndedAt(bom.getEndedAt());
-        entity.setCreatedAt(bom.getCreatedAt());
-        entity.setUpdatedAt(bom.getUpdatedAt());
-        entity.setDeletedAt(bom.getDeleteAt());
         return entity;
     }
 
@@ -64,8 +62,7 @@ public class ClassService extends GenericService<ClassEntity, Class> {
     public Class toBom(ClassEntity entity) {
         if (entity == null)
             return null;
-        Class bom = new Class();
-        bom.setId(entity.getId());
+        Class bom = super.toBom(entity);
         bom.setCapacity(entity.getCapacity());
         bom.setActive(entity.isActive());
         bom.setLecturer(entity.getLecturer());
@@ -73,11 +70,9 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         bom.setStartedAt(entity.getStartedAt());
         bom.setEndedAt(entity.getEndedAt());
         bom.setActive(entity.isActive());
-        bom.setCreatedAt(entity.getCreatedAt());
-        bom.setUpdatedAt(entity.getUpdatedAt());
-        bom.setDeleteAt(entity.getDeletedAt());
         bom.setSubject(subjectService.toBom(entity.getSubject()));
         bom.setRoom(roomService.toBom(entity.getRoom()));
+        bom.setPeriod(periodService.toBom(entity.getPeriod()));
         return bom;
     }
 }

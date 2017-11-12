@@ -15,7 +15,7 @@ public class RoomService extends GenericService<RoomEntity, Room> {
     private ClassService classService;
 
     public RoomService() {
-        super(RoomEntity.class);
+        super(RoomEntity.class, Room.class);
     }
 
     public List<RoomEntity> findAll() {
@@ -33,12 +33,8 @@ public class RoomService extends GenericService<RoomEntity, Room> {
     public RoomEntity toEntity(Room bom) {
         if (bom == null)
             return null;
-        RoomEntity entity = new RoomEntity();
-        entity.setId(bom.getId());
+        RoomEntity entity = super.toEntity(bom);
         entity.setActive(bom.isActive());
-        entity.setCreatedAt(bom.getCreatedAt());
-        entity.setUpdatedAt(bom.getUpdatedAt());
-        entity.setDeletedAt(bom.getDeleteAt());
         return entity;
     }
 
@@ -46,12 +42,8 @@ public class RoomService extends GenericService<RoomEntity, Room> {
     public Room toBom(RoomEntity entity) {
         if (entity == null)
             return null;
-        Room bom = new Room();
-        bom.setId(entity.getId());
+        Room bom = super.toBom(entity);
         bom.setActive(entity.isActive());
-        bom.setCreatedAt(entity.getCreatedAt());
-        bom.setUpdatedAt(entity.getUpdatedAt());
-        bom.setDeleteAt(entity.getDeletedAt());
         return bom;
     }
 }

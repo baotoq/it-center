@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoomFactory extends GenericFactory<RoomEntity> {
+    public RoomFactory(int amount) {
+        super(amount);
+    }
 
     @Override
-    public List<RoomEntity> createEntities(int amount) {
+    public List<RoomEntity> createEntities() {
         List<RoomEntity> entities = new ArrayList<>();
 
-        for (int i = 0; i < amount; i++) {
+        for (int i = 0; i < getAmount(); i++) {
             RoomEntity entity = new RoomEntity();
             entity.setActive(faker.bool().bool());
             entities.add(entity);
