@@ -3,12 +3,17 @@ package com.neptune.itcenter.services;
 import com.neptune.itcenter.boms.Registration;
 import com.neptune.itcenter.entities.RegistrationEntity;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Stateless
 public class RegistrationService extends GenericService<RegistrationEntity, Registration> {
+
+    @EJB
+    private ClassService classService;
+
     public RegistrationService() {
         super(RegistrationEntity.class, Registration.class);
     }
@@ -17,7 +22,6 @@ public class RegistrationService extends GenericService<RegistrationEntity, Regi
         TypedQuery<RegistrationEntity> query = getEntityManager().createNamedQuery(RegistrationEntity.FIND_ALL, RegistrationEntity.class);
         return query.getResultList();
     }
-
 
     public List<RegistrationEntity> findAllByStudentId(int id) {
         TypedQuery<RegistrationEntity> query = getEntityManager().createNamedQuery(RegistrationEntity.FIND_ALL_BY_STUDENT_ID, RegistrationEntity.class);
@@ -48,6 +52,7 @@ public class RegistrationService extends GenericService<RegistrationEntity, Regi
         bom.setAbsent(entity.getAbsent());
         bom.setLate(entity.getLate());
         bom.setGrade(entity.getGrade());
+        bom.setAttendedClass(classService.toBom(entity.getAttendedClass()));
         return bom;
     }
 }

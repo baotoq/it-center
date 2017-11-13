@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { JWT } from '../shared/common/constant';
 import { API } from '../shared/common/api';
 import { User } from '../../models/user';
@@ -24,7 +23,7 @@ export class AuthService {
   }
 
   setToken(token: string) {
-    localStorage.setItem(JWT.AUTH, token);
+    localStorage.setItem(JWT.AUTH, JSON.stringify(token));
   }
 
   logout() {
@@ -33,12 +32,14 @@ export class AuthService {
 
   currentUser(): User {
     if (!this.isAuthenticated()) return null;
-    const jwtHelper = new JwtHelper();
-    const rawData = jwtHelper.decodeToken(localStorage.getItem(JWT.AUTH));
+    //const jwtHelper = new JwtHelper();
+    //const rawData = jwtHelper.decodeToken(localStorage.getItem(JWT.AUTH));
+    const rawData = JSON.parse(localStorage.getItem(JWT.AUTH));
     return new User(rawData);
   }
 
   isAuthenticated(): boolean {
-    return tokenNotExpired(JWT.AUTH);
+    //return tokenNotExpired(JWT.AUTH);
+    return localStorage.getItem(JWT.AUTH) != null;
   }
 }

@@ -64,7 +64,8 @@ public class UserResource extends GenericResource {
     @Path("auth")
     public Response auth(User user) {
         if (userService.authenticate(user.getUsername(), user.getPassword())) {
-            return Response.ok().build();
+            UserEntity userEntity = userService.findByUsername(user.getUsername());
+            return Response.ok().entity(userService.toBom(userEntity)).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).build();
     }

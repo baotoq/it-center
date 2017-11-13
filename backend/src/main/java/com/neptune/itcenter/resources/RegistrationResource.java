@@ -36,6 +36,14 @@ public class RegistrationResource extends GenericResource {
         return registrationService.toBoms(registrationEntities);
     }
 
+    @GET
+    @Path("{studentId}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Registration> getAllByStudentId(@PathParam("studentId") Integer studentId) {
+        List<RegistrationEntity> registrationEntities = registrationService.findAllByStudentId(studentId);
+        return registrationService.toBoms(registrationEntities);
+    }
+
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
     public Response add(@Valid List<Registration> registrations) {

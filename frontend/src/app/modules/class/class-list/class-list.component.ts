@@ -3,6 +3,9 @@ import { ClassService } from '../class.service';
 import { Class } from '../../../models/class';
 import { LoadingService } from '../../../components/loading/loading.service';
 import { FilterByPipe } from 'ngx-pipes/esm';
+import { User } from '../../../models/user';
+import { AuthService } from '../../auth/auth.service';
+import { Registration } from '../../../models/registration';
 
 @Component({
   selector: 'app-class-list',
@@ -16,8 +19,10 @@ export class ClassListComponent implements OnInit {
   pageSize = 10;
   page = 1;
   searchString: string;
+  userRegistration: Registration[];
 
   constructor(private loadingService: LoadingService,
+              private authService: AuthService,
               private classService: ClassService,
               private filterByPipe: FilterByPipe) {
   }
@@ -25,10 +30,20 @@ export class ClassListComponent implements OnInit {
   ngOnInit() {
     this.loadingService.spinnerStart();
     this.classService.getAll()
-      .finally(() => this.loadingService.spinnerStop())
       .subscribe(resp => {
         this.classes = resp;
         this.paginate();
+        this.classService.getUserRegistration(this.currentUser.id)
+          .finally(() => this.loadingService.spinnerStop())
+          .subscribe(resp2 => {
+            this.userRegistration = resp2;
+            this.userRegistration.forEach(item => {
+              this.classes.forEach(item2 => {
+                if (item2.id == item.attendedClass.id)
+                  item2.registered = true;
+              });
+            });
+          });
       });
   }
 
@@ -49,7 +64,10 @@ export class ClassListComponent implements OnInit {
 
   onConfirm() {
     const selectedClasses = this.filterByPipe.transform(this.classes, ['selected'], true);
-    this.classService.createInvoice(selectedClasses).subscribe();
+    this.classService.createInvoice(selectedClasses)
+      .subscribe(() => {
+        this.ngOnInit();
+      });
   }
 
   register(selectedClass: Class) {
@@ -58,5 +76,9 @@ export class ClassListComponent implements OnInit {
 
   cancel(selectedClass: Class) {
     selectedClass.selected = false;
+  }
+
+  get currentUser(): User {
+    return this.authService.currentUser();
   }
 }

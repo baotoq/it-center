@@ -46,12 +46,15 @@
           }">{{class.numberOfStudents}}/{{class.capacity}}</span>
       </td>
       <td>
-        <button class="btn btn-outline-primary btn-sm" *ngIf="!class.selected" (click)="register(class)">
-          Register
-        </button>
-        <button class="btn btn-outline-danger btn-sm" *ngIf="class.selected" (click)="cancel(class)">
-          Cancel
-        </button>
+        <button class="btn btn-primary btn-sm" *ngIf="class.registered; else registrationButton">Registered</button>
+        <ng-template #registrationButton>
+          <button class="btn btn-outline-primary btn-sm" *ngIf="!class.selected" (click)="register(class)">
+            Register
+          </button>
+          <button class="btn btn-outline-danger btn-sm" *ngIf="class.selected" (click)="cancel(class)">
+            Cancel
+          </button>
+        </ng-template>
       </td>
     </tr>
     </tbody>

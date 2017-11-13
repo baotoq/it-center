@@ -7,13 +7,11 @@ public class User extends Bom {
     private String username;
     private String password;
 
-    public User() {
+    public String getPassword() {
+        return password;
     }
 
-    public User(String name, Role role, String username, String password) {
-        this.name = name;
-        this.role = role;
-        this.username = username;
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -39,23 +37,5 @@ public class User extends Bom {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                ", name='" + name + '\'' +
-                ", role=" + role +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 }
