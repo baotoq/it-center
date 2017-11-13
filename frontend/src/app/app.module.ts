@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { LoadingService } from './components/loading/loading.service';
 import { AuthConfig, AuthHttp } from 'angular2-jwt';
@@ -32,6 +33,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     BrowserAnimationsModule,
     HttpModule,
     SnotifyModule.forRoot(),
+    NgbModule.forRoot(),
     AppRoutingModule,
     AuthModule,
     CoreModule,

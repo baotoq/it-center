@@ -1,0 +1,22 @@
+<div class="position-relative">
+  <mat-toolbar *ngIf="!search" (click)="onSearchFocus()"
+               class="mat-toolbar-56 text-muted position-absolute">
+    <mat-icon class="mr-2">search</mat-icon>
+    <span *ngIf="!searchControl.value">
+        Search by class, subject
+      </span>
+    <mat-chip-list *ngIf="searchControl.value">
+      <mat-chip class="bg-primary text-white" (remove)="searchControl.setValue(''); onSearchOut()">
+        {{searchControl.value}}
+        <mat-icon matChipRemove class="text-white" clickStopPropagation>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </mat-toolbar>
+  <mat-toolbar [class.shadow]="search"
+               class="bg-white mat-toolbar-56" style="position: static">
+    <mat-icon class="mr-2">search</mat-icon>
+    <input class="w-100 border-0 search" #searchInput placeholder="Search by class, subject"
+           (focusout)="onSearchOut()" (keyup.enter)="onSearchOut()"
+           [formControl]="searchControl">
+  </mat-toolbar>
+</div>

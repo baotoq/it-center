@@ -1,4 +1,5 @@
-<div class="container-fluid mt-3">
+<div class="container-fluid mt-3" *ngIf="classes">
+  <app-class-search-input (searchOut)="onSearchOut($event)"></app-class-search-input>
   <table class="table table-bordered table-sm">
     <thead>
     <tr>
@@ -12,7 +13,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let class of classes">
+    <tr *ngFor="let class of pagedData; let i = index">
       <td>
         <span class="badge">
           <a href="#">{{class.name}}</a>
@@ -52,4 +53,14 @@
     </tr>
     </tbody>
   </table>
+  <ngb-pagination class="float-right"
+                  [(page)]="page"
+                  [collectionSize]="filteredData.length"
+                  (pageChange)="onPageChange($event)"
+                  [maxSize]="5"
+                  [pageSize]="pageSize"
+                  [rotate]="true"
+                  [ellipses]="false"
+                  [boundaryLinks]="true">
+  </ngb-pagination>
 </div>

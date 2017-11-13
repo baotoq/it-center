@@ -16,9 +16,9 @@ public class SeedService {
     private static final int USER_AMOUNT = 30;
     private static final int ROOM_AMOUNT = 20;
     private static final int SUBJECT_AMOUNT = 20;
-    private static final int CLASS_AMOUNT = 20;
+    private static final int CLASS_AMOUNT = 50;
     private static final int INVOICE_AMOUNT = 20;
-    private static final int REGISTRATION_AMOUNT = 200;
+    private static final int REGISTRATION_AMOUNT = 600;
 
     @EJB
     private UserService userService;

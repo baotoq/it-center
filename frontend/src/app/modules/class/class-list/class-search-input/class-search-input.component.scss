@@ -1,0 +1,11 @@
+@import "../../../../../assets/scss/variables";
+
+mat-toolbar {
+  cursor: pointer;
+}
+
+.search {
+  &:focus {
+    outline: none;
+  }
+}
