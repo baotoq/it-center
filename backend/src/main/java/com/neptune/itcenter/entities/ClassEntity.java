@@ -24,8 +24,6 @@ public class ClassEntity extends GenericEntity {
     @Column
     private int price;
     @Column
-    private boolean active;
-    @Column
     private LocalDateTime startedAt;
     @Column
     private LocalDateTime endedAt;
@@ -72,14 +70,6 @@ public class ClassEntity extends GenericEntity {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public LocalDateTime getStartedAt() {

@@ -4,10 +4,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "registration")
+@Table(name = "registrations")
 @NamedQueries({
         @NamedQuery(name = RegistrationEntity.FIND_ALL, query = "SELECT r FROM RegistrationEntity r"),
-        @NamedQuery(name = RegistrationEntity.FIND_ALL_BY_STUDENT_ID, query = "SELECT r FROM RegistrationEntity r WHERE r.student.id = :studentId"),
+        @NamedQuery(name = RegistrationEntity.FIND_ALL_BY_STUDENT_ID, query = "SELECT r FROM RegistrationEntity r WHERE r.invoice.student.id = :studentId"),
         @NamedQuery(name = RegistrationEntity.FIND_ALL_BY_CLASS_ID, query = "SELECT r FROM RegistrationEntity r where r.attendedClass.id = :classId"),
 })
 public class RegistrationEntity extends GenericEntity implements Serializable {
@@ -17,12 +17,8 @@ public class RegistrationEntity extends GenericEntity implements Serializable {
     public static final String FIND_ALL_BY_CLASS_ID = "RegistrationEntity.findAllByClassId";
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "class_id")
+    @JoinColumn(name = "class_id", referencedColumnName = "id")
     private ClassEntity attendedClass;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_id")
-    private UserEntity student;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "invoice_id")
@@ -43,14 +39,6 @@ public class RegistrationEntity extends GenericEntity implements Serializable {
 
     public void setAttendedClass(ClassEntity attendedClass) {
         this.attendedClass = attendedClass;
-    }
-
-    public UserEntity getStudent() {
-        return student;
-    }
-
-    public void setStudent(UserEntity student) {
-        this.student = student;
     }
 
     public InvoiceEntity getInvoice() {

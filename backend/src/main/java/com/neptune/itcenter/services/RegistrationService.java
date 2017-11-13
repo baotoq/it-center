@@ -3,9 +3,11 @@ package com.neptune.itcenter.services;
 import com.neptune.itcenter.boms.Registration;
 import com.neptune.itcenter.entities.RegistrationEntity;
 
+import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Stateless
 public class RegistrationService extends GenericService<RegistrationEntity, Registration> {
     public RegistrationService() {
         super(RegistrationEntity.class, Registration.class);
@@ -16,10 +18,23 @@ public class RegistrationService extends GenericService<RegistrationEntity, Regi
         return query.getResultList();
     }
 
+
+    public List<RegistrationEntity> findAllByStudentId(int id) {
+        TypedQuery<RegistrationEntity> query = getEntityManager().createNamedQuery(RegistrationEntity.FIND_ALL_BY_STUDENT_ID, RegistrationEntity.class);
+        query.setParameter("studentId", id);
+        return query.getResultList();
+    }
+
+    public List<RegistrationEntity> findAllByClassId(int id) {
+        TypedQuery<RegistrationEntity> query = getEntityManager().createNamedQuery(RegistrationEntity.FIND_ALL_BY_CLASS_ID, RegistrationEntity.class);
+        query.setParameter("classId", id);
+        return query.getResultList();
+    }
+
     @Override
     public RegistrationEntity toEntity(Registration bom) {
         if (bom == null) return null;
-        RegistrationEntity entity = new RegistrationEntity();
+        RegistrationEntity entity = super.toEntity(bom);
         entity.setAbsent(bom.getAbsent());
         entity.setLate(bom.getLate());
         entity.setGrade(bom.getGrade());
@@ -29,7 +44,7 @@ public class RegistrationService extends GenericService<RegistrationEntity, Regi
     @Override
     public Registration toBom(RegistrationEntity entity) {
         if (entity == null) return null;
-        Registration bom = new Registration();
+        Registration bom = super.toBom(entity);
         bom.setAbsent(entity.getAbsent());
         bom.setLate(entity.getLate());
         bom.setGrade(entity.getGrade());

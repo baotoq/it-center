@@ -7,8 +7,8 @@ public class Class extends Bom {
     private String name;
     private String lecturer;
     private int capacity;
+    private int numberOfStudents;
     private int price;
-    private boolean active;
     private LocalDateTime startedAt;
     private LocalDateTime endedAt;
     private Subject subject;
@@ -45,14 +45,6 @@ public class Class extends Bom {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public LocalDateTime getStartedAt() {
@@ -93,5 +85,13 @@ public class Class extends Bom {
 
     public void setPeriod(Period period) {
         this.period = period;
+    }
+
+    public int getNumberOfStudents() {
+        return numberOfStudents;
+    }
+
+    public void setNumberOfStudents(int numberOfStudents) {
+        this.numberOfStudents = numberOfStudents;
     }
 }

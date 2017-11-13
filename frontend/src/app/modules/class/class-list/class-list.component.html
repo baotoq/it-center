@@ -1,46 +1,48 @@
 <div class="container-fluid mt-3">
-  <table class="table table-bordered">
+  <table class="table table-bordered table-sm">
     <thead>
     <tr>
       <th scope="col">Class Name</th>
       <th scope="col">Subject</th>
       <th scope="col">Time</th>
       <th scope="col">Days</th>
-      <th scope="col">Capacity</th>
       <th scope="col">Start at</th>
+      <th scope="col">Capacity</th>
       <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let class of classes">
       <td>
-        <span class="badge">{{class.name}}</span>
+        <span class="badge">
+          <a href="#">{{class.name}}</a>
+        </span>
       </td>
       <td>
-        <span class="badge"> {{class.subject.name}}</span>
+        <span class="badge">
+          <a href="#">{{class.subject.name}}</a>
+        </span>
       </td>
       <td>
-        <span class="badge" [ngClass]="{
-          'badge-success': class.period.periodOrder === 'FIRST',
-          'badge-dark': class.period.periodOrder === 'SECOND',
-          'badge-secondary': class.period.periodOrder === 'THIRD',
-          'badge-warning text-white': class.period.periodOrder === 'FOURTH',
-          'badge-danger': class.period.periodOrder === 'FIFTH'}">
+        <span class="badge badge-dark">
           {{class.period.periodOrder | periodOrder}}
         </span>
       </td>
       <td>
-        <span class="badge" [ngClass]="{
-          'badge-primary': class.period.sequenceType === 'ODD_DAYS',
-          'badge-info': class.period.sequenceType === 'EVEN_DAYS'}">
+        <span class="badge badge-primary">
           {{class.period.sequenceType | sequenceType}}
         </span>
       </td>
       <td>
-        <span class="badge">{{class.capacity}}/{{class.capacity}}</span>
+        <span class="badge badge-secondary">{{class.startedAt | amDateFormat:'MM/DD/YYYY'}}</span>
       </td>
       <td>
-        <span class="badge">{{class.startedAt | amDateFormat:'LL'}}</span>
+        <span class="badge" [ngClass]="{
+          'badge-danger': (class.capacity - class.numberOfStudents) <= 3,
+          'badge-warning text-white': (class.capacity - class.numberOfStudents) <= 5,
+          'badge-info': (class.capacity - class.numberOfStudents) <= 10,
+          'badge-success': (class.capacity - class.numberOfStudents) > 10
+          }">{{class.numberOfStudents}}/{{class.capacity}}</span>
       </td>
       <td>
         <button class="btn btn-outline-primary btn-sm">

@@ -27,11 +27,7 @@ public class InvoiceService extends GenericService<InvoiceEntity, Invoice> {
     public InvoiceEntity toEntity(Invoice bom) {
         if (bom == null)
             return null;
-        InvoiceEntity entity = new InvoiceEntity();
-        entity.setId(bom.getId());
-        entity.setCreatedAt(bom.getCreatedAt());
-        entity.setUpdatedAt(bom.getUpdatedAt());
-        entity.setDeletedAt(bom.getDeletedAt());
+        InvoiceEntity entity = super.toEntity(bom);
         return entity;
     }
 
@@ -39,11 +35,7 @@ public class InvoiceService extends GenericService<InvoiceEntity, Invoice> {
     public Invoice toBom(InvoiceEntity entity) {
         if (entity == null)
             return null;
-        Invoice bom = new Invoice();
-        bom.setId(entity.getId());
-        bom.setCreatedAt(entity.getCreatedAt());
-        bom.setUpdatedAt(entity.getUpdatedAt());
-        bom.setDeletedAt(entity.getDeletedAt());
+        Invoice bom = super.toBom(entity);
         return bom;
     }
 }

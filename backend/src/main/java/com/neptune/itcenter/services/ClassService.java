@@ -17,6 +17,8 @@ public class ClassService extends GenericService<ClassEntity, Class> {
     private RoomService roomService;
     @EJB
     private PeriodService periodService;
+    @EJB
+    private RegistrationService registrationService;
 
     public ClassService() {
         super(ClassEntity.class, Class.class);
@@ -31,10 +33,8 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         ClassEntity entity = findById(bom.getId());
         entity.setId(bom.getId());
         entity.setCapacity(bom.getCapacity());
-        entity.setActive(bom.isActive());
         entity.setLecturer(bom.getLecturer());
         entity.setPrice(bom.getPrice());
-        entity.setActive(bom.isActive());
         entity.setStartedAt(bom.getStartedAt());
         entity.setEndedAt(bom.getEndedAt());
         return super.update(entity);
@@ -47,10 +47,8 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         ClassEntity entity = super.toEntity(bom);
         entity.setName(bom.getName());
         entity.setCapacity(bom.getCapacity());
-        entity.setActive(bom.isActive());
         entity.setLecturer(bom.getLecturer());
         entity.setPrice(bom.getPrice());
-        entity.setActive(bom.isActive());
         entity.setStartedAt(bom.getStartedAt());
         entity.setEndedAt(bom.getEndedAt());
         return entity;
@@ -63,15 +61,14 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         Class bom = super.toBom(entity);
         bom.setName(entity.getName());
         bom.setCapacity(entity.getCapacity());
-        bom.setActive(entity.isActive());
         bom.setLecturer(entity.getLecturer());
         bom.setPrice(entity.getPrice());
         bom.setStartedAt(entity.getStartedAt());
         bom.setEndedAt(entity.getEndedAt());
-        bom.setActive(entity.isActive());
         bom.setSubject(subjectService.toBom(entity.getSubject()));
         bom.setRoom(roomService.toBom(entity.getRoom()));
         bom.setPeriod(periodService.toBom(entity.getPeriod()));
+        bom.setNumberOfStudents(registrationService.findAllByClassId(entity.getId()).size());
         return bom;
     }
 }
