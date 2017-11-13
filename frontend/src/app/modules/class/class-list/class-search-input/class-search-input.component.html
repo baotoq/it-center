@@ -11,6 +11,9 @@
         <mat-icon matChipRemove class="text-white" clickStopPropagation>cancel</mat-icon>
       </mat-chip>
     </mat-chip-list>
+    <button mat-raised-button clickStopPropagation color="primary" class="ml-auto" (click)="confirm.emit()">
+      Confirm
+    </button>
   </mat-toolbar>
   <mat-toolbar [class.shadow]="search"
                class="bg-white mat-toolbar-56" style="position: static">

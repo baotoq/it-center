@@ -16,6 +16,7 @@ export class Class extends Timestamp {
   room: Room;
   subject: Subject;
   period: Period;
+  selected = false;
 
   constructor(obj?: Class) {
     super(obj);

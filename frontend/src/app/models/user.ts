@@ -8,7 +8,7 @@ export class User extends Timestamp {
   password: string;
   role: Role;
 
-  constructor(obj?: User) {
+  constructor(obj?) {
     super(obj);
     if (obj) {
       this.id = obj.id;

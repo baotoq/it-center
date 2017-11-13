@@ -10,4 +10,12 @@ export module API {
   export class CLASS {
     public static readonly URL = `${BASE_URL}/classes`;
   }
+
+  export class INVOICE {
+    public static readonly URL = `${BASE_URL}/invoices`;
+  }
+
+  export class REGISTRATION {
+    public static readonly URL = `${BASE_URL}/registrations`;
+  }
 }

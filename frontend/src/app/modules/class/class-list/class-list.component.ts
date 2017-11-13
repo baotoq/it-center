@@ -46,4 +46,17 @@ export class ClassListComponent implements OnInit {
     this.filteredData = this.filterByPipe.transform(this.classes, ['name', 'subject.name'], this.searchString);
     this.pagedData = this.filteredData.slice(startIndex, startIndex + this.pageSize);
   }
+
+  onConfirm() {
+    const selectedClasses = this.filterByPipe.transform(this.classes, ['selected'], true);
+    this.classService.createInvoice(selectedClasses).subscribe();
+  }
+
+  register(selectedClass: Class) {
+    selectedClass.selected = true;
+  }
+
+  cancel(selectedClass: Class) {
+    selectedClass.selected = false;
+  }
 }

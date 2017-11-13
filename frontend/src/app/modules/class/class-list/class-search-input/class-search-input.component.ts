@@ -12,6 +12,7 @@ export class ClassSearchInputComponent implements OnInit {
   @ViewChild('searchInput') searchInput: ElementRef;
 
   @Output() searchOut = new EventEmitter<any>();
+  @Output() confirm = new EventEmitter<any>();
 
   constructor() {
   }

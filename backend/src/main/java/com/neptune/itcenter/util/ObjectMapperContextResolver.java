@@ -24,6 +24,7 @@ public class ObjectMapperContextResolver implements ContextResolver<ObjectMapper
         MAPPER.setDateFormat(sdf);
         MAPPER.setTimeZone(TimeZone.getTimeZone("UTC"));
         MAPPER.findAndRegisterModules();
+        MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     @Override

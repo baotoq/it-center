@@ -2,8 +2,8 @@ package com.neptune.itcenter.boms;
 
 public class Registration extends Bom {
     private Class attendedClass;
-    private User student;
     private Invoice invoice;
+    private User student;
     private int absent;
     private int late;
     private int grade;
@@ -32,14 +32,6 @@ public class Registration extends Bom {
         this.attendedClass = attendedClass;
     }
 
-    public User getStudent() {
-        return student;
-    }
-
-    public void setStudent(User student) {
-        this.student = student;
-    }
-
     public Invoice getInvoice() {
         return invoice;
     }
@@ -54,5 +46,13 @@ public class Registration extends Bom {
 
     public void setGrade(int grade) {
         this.grade = grade;
+    }
+
+    public User getStudent() {
+        return student;
+    }
+
+    public void setStudent(User student) {
+        this.student = student;
     }
 }

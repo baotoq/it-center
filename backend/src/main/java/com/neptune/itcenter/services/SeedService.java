@@ -53,7 +53,7 @@ public class SeedService {
         classService.add(classEntities);
         List<InvoiceEntity> invoiceEntities = new InvoiceFactory(INVOICE_AMOUNT, staffsEntities, userEntities).createEntities();
         invoiceService.add(invoiceEntities);
-        List<RegistrationEntity> registrationEntities = new RegistrationFactory(REGISTRATION_AMOUNT, classEntities, invoiceEntities).createEntities();
-        registrationService.add(registrationEntities);
+        //List<RegistrationEntity> registrationEntities = new RegistrationFactory(REGISTRATION_AMOUNT, classEntities, invoiceEntities).createEntities();
+        //registrationService.add(registrationEntities);
     }
 }

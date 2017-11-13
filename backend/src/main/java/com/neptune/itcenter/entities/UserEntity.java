@@ -9,11 +9,13 @@ import java.io.Serializable;
 @Table(name = "users")
 @NamedQueries({
         @NamedQuery(name = UserEntity.FIND_ALL, query = "SELECT u FROM UserEntity u"),
+        @NamedQuery(name = UserEntity.FIND_BY_USER_ID, query = "SELECT u FROM UserEntity u WHERE u.id = :userId"),
         @NamedQuery(name = UserEntity.FIND_BY_USER_NAME, query = "SELECT u FROM UserEntity u WHERE u.username = :username"),
 })
 public class UserEntity extends GenericEntity implements Serializable {
 
     public static final String FIND_ALL = "UserEntity.findAll";
+    public static final String FIND_BY_USER_ID = "UserEntity.findByUserId";
     public static final String FIND_BY_USER_NAME = "UserEntity.findByUsername";
 
     @Column

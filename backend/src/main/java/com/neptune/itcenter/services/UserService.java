@@ -28,6 +28,15 @@ public class UserService extends GenericService<UserEntity, User> {
         else return results.get(0);
     }
 
+    public UserEntity findByUserId(Integer id) {
+        TypedQuery<UserEntity> query = getEntityManager().createNamedQuery(UserEntity.FIND_BY_USER_ID, UserEntity.class)
+                .setParameter("userId", id);
+        List<UserEntity> results = query.getResultList();
+        if (results.isEmpty())
+            return null;
+        else return results.get(0);
+    }
+
     public UserEntity update(User bom) {
         UserEntity entity = findById(bom.getId());
         entity.setId(bom.getId());
