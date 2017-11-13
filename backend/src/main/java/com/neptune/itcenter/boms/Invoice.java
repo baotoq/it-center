@@ -1,7 +1,5 @@
 package com.neptune.itcenter.boms;
 
-import java.util.List;
-
 public class Invoice extends Bom {
     private User student;
     private User staff;

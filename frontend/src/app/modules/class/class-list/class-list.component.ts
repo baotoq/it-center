@@ -62,12 +62,17 @@ export class ClassListComponent implements OnInit {
     this.pagedData = this.filteredData.slice(startIndex, startIndex + this.pageSize);
   }
 
+  get selectedClasses() {
+    return this.filterByPipe.transform(this.classes, ['selected'], true);
+  }
+
   onConfirm() {
-    const selectedClasses = this.filterByPipe.transform(this.classes, ['selected'], true);
-    this.classService.createInvoice(selectedClasses)
-      .subscribe(() => {
-        this.ngOnInit();
-      });
+    if (this.selectedClasses.length) {
+      this.classService.createInvoice(this.selectedClasses)
+        .subscribe(() => {
+          this.ngOnInit();
+        });
+    }
   }
 
   register(selectedClass: Class) {

@@ -8,7 +8,7 @@
       <th scope="col">Time</th>
       <th scope="col">Days</th>
       <th scope="col">Start at</th>
-      <th scope="col">Capacity</th>
+      <th scope="col">Quantity</th>
       <th scope="col">Action</th>
     </tr>
     </thead>
@@ -46,7 +46,9 @@
           }">{{class.numberOfStudents}}/{{class.capacity}}</span>
       </td>
       <td>
-        <button class="btn btn-primary btn-sm" *ngIf="class.registered; else registrationButton">Registered</button>
+        <button class="btn btn-info btn-sm" *ngIf="class.registered; else registrationButton">
+          Registered
+        </button>
         <ng-template #registrationButton>
           <button class="btn btn-outline-primary btn-sm" *ngIf="!class.selected" (click)="register(class)">
             Register
