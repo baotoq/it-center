@@ -17,7 +17,7 @@ export class Class extends Timestamp {
   subject: Subject;
   period: Period;
   selected = false;
-  registered = false;
+  state: State;
 
   constructor(obj?: Class) {
     super(obj);
@@ -28,4 +28,9 @@ export class Class extends Timestamp {
       this.endedAt = obj.endedAt;
     }
   }
+}
+
+export enum State {
+  CONFLICTED,
+  REGISTERED
 }

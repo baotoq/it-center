@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassService } from '../class.service';
-import { Class } from '../../../models/class';
+import { Class, State } from '../../../models/class';
 import { LoadingService } from '../../../components/loading/loading.service';
 import { FilterByPipe } from 'ngx-pipes/esm';
 import { User } from '../../../models/user';
@@ -20,6 +20,8 @@ export class ClassListComponent implements OnInit {
   page = 1;
   searchString: string;
   userRegistration: Registration[];
+  loading = false;
+  state = State;
 
   constructor(private loadingService: LoadingService,
               private authService: AuthService,
@@ -37,10 +39,11 @@ export class ClassListComponent implements OnInit {
           .finally(() => this.loadingService.spinnerStop())
           .subscribe(resp2 => {
             this.userRegistration = resp2;
-            this.userRegistration.forEach(item => {
-              this.classes.forEach(item2 => {
-                if (item2.id == item.attendedClass.id)
-                  item2.registered = true;
+            this.userRegistration.forEach(r => {
+              this.classes.forEach(c => {
+                if (c.id === r.attendedClass.id) {
+                  c.state = State.REGISTERED;
+                }
               });
             });
           });
@@ -67,8 +70,10 @@ export class ClassListComponent implements OnInit {
   }
 
   onConfirm() {
+    this.loading = true;
     if (this.selectedClasses.length) {
       this.classService.createInvoice(this.selectedClasses)
+        .finally(() => this.loading = false)
         .subscribe(() => {
           this.ngOnInit();
         });

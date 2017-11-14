@@ -9,10 +9,12 @@ import { MaterialSpinnerComponent } from './components/material-spinner/material
 import { RequestService } from './services/request.sevice';
 import { PeriodOrderPipe } from './pipes/period-order.pipe';
 import { SequenceTypePipe } from './pipes/sequence-type.pipe';
+import { HeaderComponent } from './components/header/header.component';
 
 const COMPONENTS = [
   FontAwesomeSpinnerComponent,
   MaterialSpinnerComponent,
+  HeaderComponent,
 ];
 
 const PIPES = [

@@ -11,7 +11,7 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
       </mat-sidenav>
       <app-spinner></app-spinner>
       <router-outlet></router-outlet>
-      <!--<div [style.height.px]="60"></div>-->
+      <div [style.height.px]="100"></div>
     </mat-sidenav-container>
     <ng-snotify></ng-snotify>
   `,

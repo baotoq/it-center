@@ -11,8 +11,10 @@
         <mat-icon matChipRemove class="text-white" clickStopPropagation>cancel</mat-icon>
       </mat-chip>
     </mat-chip-list>
-    <button mat-raised-button clickStopPropagation color="primary" class="ml-auto" (click)="confirm.emit()">
-      Confirm
+    <button mat-raised-button clickStopPropagation color="primary" class="ml-auto"
+            (click)="confirm.emit()" [disabled]="disabled">
+      <app-fa-spinner *ngIf="loading"></app-fa-spinner>
+      <span *ngIf="!loading">Confirm</span>
     </button>
   </mat-toolbar>
   <mat-toolbar [class.shadow]="search"

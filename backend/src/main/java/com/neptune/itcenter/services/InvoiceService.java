@@ -3,12 +3,16 @@ package com.neptune.itcenter.services;
 import com.neptune.itcenter.boms.Invoice;
 import com.neptune.itcenter.entities.InvoiceEntity;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Stateless
 public class InvoiceService extends GenericService<InvoiceEntity, Invoice> {
+    @EJB
+    private UserService userService;
+
     public InvoiceService() {
         super(InvoiceEntity.class, Invoice.class);
     }
@@ -28,6 +32,8 @@ public class InvoiceService extends GenericService<InvoiceEntity, Invoice> {
         if (bom == null)
             return null;
         InvoiceEntity entity = super.toEntity(bom);
+        entity.setStaff(userService.toEntity(bom.getStaff()));
+        entity.setStudent(userService.toEntity(bom.getStudent()));
         return entity;
     }
 
@@ -36,6 +42,8 @@ public class InvoiceService extends GenericService<InvoiceEntity, Invoice> {
         if (entity == null)
             return null;
         Invoice bom = super.toBom(entity);
+        bom.setStaff(userService.toBom(entity.getStaff()));
+        bom.setStudent(userService.toBom(entity.getStudent()));
         return bom;
     }
 }

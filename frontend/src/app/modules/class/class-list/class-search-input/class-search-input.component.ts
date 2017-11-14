@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -11,6 +11,8 @@ export class ClassSearchInputComponent implements OnInit {
   searchControl = new FormControl();
   @ViewChild('searchInput') searchInput: ElementRef;
 
+  @Input() loading = false;
+  @Input() disabled = false;
   @Output() searchOut = new EventEmitter<any>();
   @Output() confirm = new EventEmitter<any>();
 
