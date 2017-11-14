@@ -19,11 +19,18 @@ export class Class extends Timestamp {
   selected = false;
   state: State;
 
-  constructor(obj?: Class) {
+  constructor(obj?) {
     super(obj);
     if (obj) {
       this.id = obj.id;
+      this.name = obj.name;
       this.capacity = obj.capacity;
+      this.lecturer = obj.lecturer;
+      this.price = obj.price;
+      this.active = obj.active;
+      this.room = obj.room;
+      this.subject = obj.subject;
+      this.period = obj.period;
       this.startedAt = obj.startedAt;
       this.endedAt = obj.endedAt;
     }

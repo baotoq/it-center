@@ -19,6 +19,14 @@ export class ClassService {
     return this.requestService.get(`${API.CLASS.URL}/${id}`);
   }
 
+  create(c: Class): Observable<any> {
+    return this.requestService.post(API.CLASS.URL, c);
+  }
+
+  update(id: number, c: Class): Observable<any> {
+    return this.requestService.put(`${API.CLASS.URL}/${id}`, c);
+  }
+
   createInvoice(classes: Class[]): Observable<any> {
     let r = [];
     classes.forEach(item => r.push({attendedClass: item, student: this.authService.currentUser()}));

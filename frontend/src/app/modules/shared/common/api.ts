@@ -18,4 +18,8 @@ export module API {
   export class REGISTRATION {
     public static readonly URL = `${BASE_URL}/registrations`;
   }
+
+  export class ROOM {
+    public static readonly URL = `${BASE_URL}/rooms`;
+  }
 }

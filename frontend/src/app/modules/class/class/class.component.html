@@ -9,10 +9,10 @@
           <span class="fa fa-pencil"></span>
         </button>
         <ng-container *ngIf="edit">
-          <button type="button" class="btn btn-outline-danger btn-sm mr-1" (click)="edit = false">
+          <button type="button" class="btn btn-outline-danger btn-sm mr-1" (click)="edit = false; classForm.disable()">
             Cancel
           </button>
-          <button type="button" class="btn btn-outline-success btn-sm mr-1">
+          <button type="button" class="btn btn-outline-success btn-sm mr-1" (click)="onSave()">
             Save
           </button>
         </ng-container>
@@ -26,7 +26,7 @@
               <span class="input-group-addon">
                 <i class="fa fa-credit-card fa-fw"></i>
               </span>
-              <input [readonly]="!edit" formControlName="name" required class="form-control">
+              <input formControlName="name" required class="form-control">
             </div>
           </div>
 
@@ -36,7 +36,7 @@
               <span class="input-group-addon">
                 <i class="fa fa-book fa-fw"></i>
               </span>
-              <input [readonly]="!edit" formControlName="subject" required class="form-control">
+              <input formControlName="subject" required class="form-control">
             </div>
           </div>
 
@@ -46,7 +46,7 @@
               <span class="input-group-addon">
                 <i class="fa fa-play fa-fw" aria-hidden="true"></i>
               </span>
-              <input [readonly]="!edit" formControlName="startedAt" type="text" class="form-control">
+              <input formControlName="startedAt" type="text" class="form-control">
             </div>
           </div>
 
@@ -56,7 +56,7 @@
               <span class="input-group-addon">
                 <i class="fa fa-stop fa-fw"></i>
               </span>
-              <input [readonly]="!edit" formControlName="endedAt" class="form-control">
+              <input formControlName="endedAt" class="form-control">
             </div>
           </div>
 
@@ -66,7 +66,9 @@
               <span class="input-group-addon">
                 <i class="fa fa-th fa-fw"></i>
               </span>
-              <input [readonly]="!edit" formControlName="room" class="form-control">
+              <select formControlName="room" class="form-control">
+                <option *ngFor="let room of rooms" [value]="room.id">{{room.id}}</option>
+              </select>
             </div>
           </div>
 
@@ -86,7 +88,7 @@
               <span class="input-group-addon">
                 <i class="fa fa-users fa-fw"></i>
               </span>
-              <input [readonly]="!edit" formControlName="capacity" class="form-control">
+              <input formControlName="capacity" type="number" class="form-control">
             </div>
           </div>
 
@@ -96,7 +98,7 @@
               <span class="input-group-addon">
                 <i class="fa fa-user-md fa-fw"></i>
               </span>
-              <input [readonly]="!edit" formControlName="lecturer" class="form-control">
+              <input formControlName="lecturer" class="form-control">
             </div>
           </div>
 

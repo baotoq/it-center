@@ -32,6 +32,7 @@ public class ClassService extends GenericService<ClassEntity, Class> {
     public ClassEntity update(Class bom) {
         ClassEntity entity = findById(bom.getId());
         entity.setId(bom.getId());
+        entity.setName(bom.getName());
         entity.setCapacity(bom.getCapacity());
         entity.setLecturer(bom.getLecturer());
         entity.setPrice(bom.getPrice());

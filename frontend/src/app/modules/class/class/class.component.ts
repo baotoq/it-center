@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingService } from '../../../components/loading/loading.service';
 import { DatePipe } from '@angular/common';
 import { Room } from '../../../models/room';
+import { RoomService } from '../../room/room.service';
 
 @Component({
   selector: 'app-class',
@@ -22,6 +23,7 @@ export class ClassComponent implements OnInit {
               private formBuilder: FormBuilder,
               private loadingService: LoadingService,
               private classService: ClassService,
+              private roomService: RoomService,
               private datePipe: DatePipe) {
   }
 
@@ -33,6 +35,7 @@ export class ClassComponent implements OnInit {
         this.class = resp;
         this.createForm();
       });
+    this.roomService.getAll().subscribe(resp => this.rooms = resp);
   }
 
   private createForm() {
@@ -45,10 +48,30 @@ export class ClassComponent implements OnInit {
       capacity: [this.class.capacity, Validators.required],
       numberOfStudents: [this.class.numberOfStudents, Validators.required],
       lecturer: [this.class.lecturer, Validators.required],
+      periodOrder: [this.class.period.periodOrder, Validators.required],
+      sequenceType: [this.class.period.sequenceType, Validators.required],
     });
+    this.classForm.disable();
   }
 
   onEdit() {
     this.edit = true;
+    this.classForm.enable();
+  }
+
+  onSave() {
+    let c = new Class({
+      name: this.classForm.controls['name'].value,
+      startedAt: this.classForm.controls['startedAt'].value,
+      endedAt: this.classForm.controls['endedAt'].value,
+      capacity: this.classForm.controls['capacity'].value,
+      lecturer: this.classForm.controls['lecturer'].value,
+      room: {id: this.classForm.controls['room'].value},
+      period: {
+        periodOrder: this.classForm.controls['periodOrder'].value,
+        sequenceType: this.classForm.controls['sequenceType'].value,
+      },
+    });
+    this.classService.update(this.class.id, c).subscribe();
   }
 }
