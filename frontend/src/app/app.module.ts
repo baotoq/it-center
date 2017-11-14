@@ -17,6 +17,8 @@ import { ProgressBarComponent } from './components/loading/progress-bar/progress
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { ClassModule } from './modules/class/class.module';
+import { RoomModule } from './modules/room/room.module';
+import { SubjectModule } from './modules/subject/subject.module';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig(), http, options);
@@ -38,6 +40,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AuthModule,
     CoreModule,
     ClassModule,
+    RoomModule,
+    SubjectModule,
     SharedModule,
   ],
   providers: [

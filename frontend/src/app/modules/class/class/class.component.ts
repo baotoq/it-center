@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingService } from '../../../components/loading/loading.service';
 import { DatePipe } from '@angular/common';
+import { Room } from '../../../models/room';
 
 @Component({
   selector: 'app-class',
@@ -15,6 +16,7 @@ export class ClassComponent implements OnInit {
   class: Class;
   classForm: FormGroup;
   edit = false;
+  rooms: Room[];
 
   constructor(private route: ActivatedRoute,
               private formBuilder: FormBuilder,
