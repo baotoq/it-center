@@ -16,10 +16,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let class of pagedData; let i = index">
+    <tr *ngFor="let class of pagedData">
       <td>
         <span class="badge">
-          <a href="#">{{class.name}}</a>
+          <a [routerLink]="['/class', class.id]">{{class.name}}</a>
         </span>
       </td>
       <td>
@@ -38,7 +38,7 @@
         </span>
       </td>
       <td>
-        <span class="badge badge-secondary">{{class.startedAt | amDateFormat:'MM/DD/YYYY'}}</span>
+        <span class="badge badge-secondary">{{class.startedAt | date:'MM/dd/yyyy'}}</span>
       </td>
       <td>
         <span class="badge" [ngClass]="{

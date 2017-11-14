@@ -6,6 +6,7 @@ import { FilterByPipe } from 'ngx-pipes/esm';
 import { User } from '../../../models/user';
 import { AuthService } from '../../auth/auth.service';
 import { Registration } from '../../../models/registration';
+import { CoreService } from '../../core/core.service';
 
 @Component({
   selector: 'app-class-list',
@@ -24,6 +25,7 @@ export class ClassListComponent implements OnInit {
   state = State;
 
   constructor(private loadingService: LoadingService,
+              private coreService: CoreService,
               private authService: AuthService,
               private classService: ClassService,
               private filterByPipe: FilterByPipe) {
@@ -75,6 +77,7 @@ export class ClassListComponent implements OnInit {
       this.classService.createInvoice(this.selectedClasses)
         .finally(() => this.loading = false)
         .subscribe(() => {
+          this.coreService.notifySuccess();
           this.ngOnInit();
         });
     }

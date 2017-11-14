@@ -1,3 +1,125 @@
-<div *ngIf="class">
-  {{class.lecturer}}
+<app-header title="CLASS INFORMATION"></app-header>
+
+<div class="container">
+  <div *ngIf="class">
+    <mat-card>
+      <div class="d-flex align-items-center">
+        <h1 class="mr-2">Class Information</h1>
+        <button class="btn btn-outline-primary btn-sm" (click)="onEdit()" *ngIf="!edit">
+          <span class="fa fa-pencil"></span>
+        </button>
+        <ng-container *ngIf="edit">
+          <button type="button" class="btn btn-outline-danger btn-sm mr-1" (click)="edit = false">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-outline-success btn-sm mr-1">
+            Save
+          </button>
+        </ng-container>
+      </div>
+      <hr class="mt-0" style="margin-bottom: 16px">
+      <div class="row d-flex justify-content-center mb-3">
+        <form [formGroup]="classForm" (keyup.enter)="onSubmit()" class="col-12 col-sm-8 col-md-6">
+          <div class="form-group">
+            <label>Name:</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-credit-card fa-fw"></i>
+              </span>
+              <input readonly formControlName="name" required class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Subject:</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-book fa-fw"></i>
+              </span>
+              <input readonly formControlName="subject" required class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Start Date:</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-play fa-fw" aria-hidden="true"></i>
+              </span>
+              <input readonly formControlName="startedAt" type="text" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>End Date:</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-stop fa-fw"></i>
+              </span>
+              <input readonly formControlName="endedAt" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Room:</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-th fa-fw"></i>
+              </span>
+              <input readonly formControlName="room" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Current Student:</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-users fa-fw"></i>
+              </span>
+              <input readonly formControlName="numberOfStudents" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Capacity:</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-users fa-fw"></i>
+              </span>
+              <input readonly formControlName="capacity" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Lecturer:</label>
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-user-md fa-fw"></i>
+              </span>
+              <input readonly formControlName="lecturer" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="time-select">Time:</label>
+            <select disabled="" class="form-control" id="time-select">
+              <option>{{'FIRST' | periodOrder}}</option>
+              <option>{{'SECOND' | periodOrder}}</option>
+              <option>{{'THIRD' | periodOrder}}</option>
+              <option>{{'FOURTH' | periodOrder}}</option>
+              <option>{{'FIFTH' | periodOrder}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="days-select">Days:</label>
+            <select disabled="" class="form-control" id="days-select">
+              <option>2 - 4 - 6</option>
+              <option>3 - 5- 7</option>
+            </select>
+          </div>
+        </form>
+      </div>
+    </mat-card>
+  </div>
 </div>

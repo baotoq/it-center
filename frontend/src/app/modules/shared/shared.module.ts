@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MaterialModule } from './modules/material/material.module';
 import { FontAwesomeSpinnerComponent } from './components/font-awesome-spinner/font-awesome-spinner.component';
 import { HasErrorPipe } from './pipes/has-error.pipe';
@@ -38,6 +38,7 @@ const DIRECTIVES = [
     PIPES,
     OrderByPipe,
     FilterByPipe,
+    DatePipe,
     RequestService,
   ],
 })
