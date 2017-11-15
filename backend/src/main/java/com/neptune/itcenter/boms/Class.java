@@ -6,7 +6,6 @@ public class Class extends Bom {
 
     private String name;
     private String lecturer;
-    private int capacity;
     private int numberOfStudents;
     private int price;
     private LocalDateTime startedAt;
@@ -31,13 +30,6 @@ public class Class extends Bom {
         this.lecturer = lecturer;
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
 
     public int getPrice() {
         return price;

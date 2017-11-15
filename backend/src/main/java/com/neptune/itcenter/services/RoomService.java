@@ -25,6 +25,7 @@ public class RoomService extends GenericService<RoomEntity, Room> {
 
     public RoomEntity update(Room bom) {
         RoomEntity entity = findById(bom.getId());
+        entity.setCapacity(bom.getCapacity());
         entity.setActive(bom.isActive());
         return super.update(entity);
     }
@@ -34,6 +35,7 @@ public class RoomService extends GenericService<RoomEntity, Room> {
         if (bom == null)
             return null;
         RoomEntity entity = super.toEntity(bom);
+        entity.setCapacity(bom.getCapacity());
         entity.setActive(bom.isActive());
         return entity;
     }
@@ -43,6 +45,7 @@ public class RoomService extends GenericService<RoomEntity, Room> {
         if (entity == null)
             return null;
         Room bom = super.toBom(entity);
+        bom.setCapacity(entity.getCapacity());
         bom.setActive(entity.isActive());
         return bom;
     }

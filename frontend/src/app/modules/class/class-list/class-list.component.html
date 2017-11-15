@@ -8,6 +8,7 @@
     <tr>
       <th scope="col">Class Name</th>
       <th scope="col">Subject</th>
+      <th scope="col">Price</th>
       <th scope="col">Time</th>
       <th scope="col">Days</th>
       <th scope="col">Start at</th>
@@ -27,6 +28,7 @@
           <a href="#">{{class.subject.name}}</a>
         </span>
       </td>
+      <td>${{class.price}}</td>
       <td>
         <span class="badge badge-dark">
           {{class.period.periodOrder | periodOrder}}
@@ -38,31 +40,33 @@
         </span>
       </td>
       <td>
-        <span class="badge badge-secondary">{{class.startedAt | date:'MM/dd/yyyy'}}</span>
+        <span class="badge badge-secondary">{{class.startedAt | date:'yyyy-MM-dd'}}</span>
       </td>
       <td>
         <span class="badge" [ngClass]="{
-          'badge-danger': (class.capacity - class.numberOfStudents) <= 3,
-          'badge-warning text-white': (class.capacity - class.numberOfStudents) <= 5,
-          'badge-info': (class.capacity - class.numberOfStudents) <= 10,
-          'badge-success': (class.capacity - class.numberOfStudents) > 10
-          }">{{class.numberOfStudents}}/{{class.capacity}}</span>
+          'badge-danger': (class.room.capacity - class.numberOfStudents) <= 3,
+          'badge-warning text-white': (class.room.capacity - class.numberOfStudents) <= 5,
+          'badge-info': (class.room.capacity - class.numberOfStudents) <= 10,
+          'badge-success': (class.room.capacity - class.numberOfStudents) > 10
+          }">{{class.numberOfStudents}}/{{class.room.capacity}}</span>
       </td>
       <td>
-        <button class="btn btn-info btn-sm" *ngIf="class.state === state.REGISTERED">
+        <button class="btn btn-success btn-sm" *ngIf="class.state === state.REGISTERED; else a">
           Registered
         </button>
-        <button class="btn btn-warning text-white btn-sm" *ngIf="class.state === state.CONFLICTED">
-          Conflicted
-        </button>
-        <ng-container *ngIf="class.state !== state.REGISTERED">
-          <button class="btn btn-outline-primary btn-sm" *ngIf="!class.selected" (click)="register(class)">
-            Register
+        <ng-template #a>
+          <button class="btn btn-info btn-sm" *ngIf="class.numberOfStudents === class.room.capacity; else b">
+            FULL
           </button>
-          <button class="btn btn-outline-danger btn-sm" *ngIf="class.selected" (click)="cancel(class)">
-            Cancel
-          </button>
-        </ng-container>
+          <ng-template #b>
+            <button class="btn btn-outline-primary btn-sm" *ngIf="!class.selected" (click)="register(class)">
+              Register
+            </button>
+            <button class="btn btn-outline-danger btn-sm" *ngIf="class.selected" (click)="cancel(class)">
+              Cancel
+            </button>
+          </ng-template>
+        </ng-template>
       </td>
     </tr>
     </tbody>

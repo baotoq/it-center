@@ -12,7 +12,7 @@ import java.util.TimeZone;
 @Provider
 public class ObjectMapperContextResolver implements ContextResolver<ObjectMapper> {
 
-    private static final String DEFAULT_ISO8601_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSX";
+    private static final String DEFAULT_ISO8601_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
 
     private final ObjectMapper MAPPER;
 

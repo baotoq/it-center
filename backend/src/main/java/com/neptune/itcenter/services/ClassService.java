@@ -29,29 +29,19 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         return query.getResultList();
     }
 
-    public ClassEntity update(Class bom) {
-        ClassEntity entity = findById(bom.getId());
-        entity.setId(bom.getId());
-        entity.setName(bom.getName());
-        entity.setCapacity(bom.getCapacity());
-        entity.setLecturer(bom.getLecturer());
-        entity.setPrice(bom.getPrice());
-        entity.setStartedAt(bom.getStartedAt());
-        entity.setEndedAt(bom.getEndedAt());
-        return super.update(entity);
-    }
-
     @Override
     public ClassEntity toEntity(Class bom) {
         if (bom == null)
             return null;
-        ClassEntity entity = super.toEntity(bom);
+        ClassEntity entity = findById(bom.getId());
         entity.setName(bom.getName());
-        entity.setCapacity(bom.getCapacity());
         entity.setLecturer(bom.getLecturer());
         entity.setPrice(bom.getPrice());
         entity.setStartedAt(bom.getStartedAt());
         entity.setEndedAt(bom.getEndedAt());
+        entity.setPeriod(periodService.toEntity(bom.getPeriod()));
+        entity.setSubject(subjectService.findById(bom.getSubject().getId()));
+        entity.setRoom(roomService.findById(bom.getRoom().getId()));
         return entity;
     }
 
@@ -61,7 +51,6 @@ public class ClassService extends GenericService<ClassEntity, Class> {
             return null;
         Class bom = super.toBom(entity);
         bom.setName(entity.getName());
-        bom.setCapacity(entity.getCapacity());
         bom.setLecturer(entity.getLecturer());
         bom.setPrice(entity.getPrice());
         bom.setStartedAt(entity.getStartedAt());

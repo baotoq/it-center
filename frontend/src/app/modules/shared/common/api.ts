@@ -22,4 +22,8 @@ export module API {
   export class ROOM {
     public static readonly URL = `${BASE_URL}/rooms`;
   }
+
+  export class SUBJECT {
+    public static readonly URL = `${BASE_URL}/subjects`;
+  }
 }

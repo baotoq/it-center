@@ -47,7 +47,7 @@ public class SubjectResource extends GenericResource {
     @Consumes({MediaType.APPLICATION_JSON})
     public Response update(@PathParam("id") Integer id, @Valid Subject subject) {
         subject.setId(id);
-        subjectService.update(subject);
+        subjectService.update(subjectService.toEntity(subject));
         return Response.ok().build();
     }
 

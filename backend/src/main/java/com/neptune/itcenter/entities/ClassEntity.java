@@ -8,19 +8,15 @@ import java.time.LocalDateTime;
 @NamedQueries({
         @NamedQuery(name = ClassEntity.FIND_ALL, query = "SELECT c FROM ClassEntity c"),
         @NamedQuery(name = ClassEntity.FIND_BY_SUBJECT_ID, query = "SELECT c FROM ClassEntity c WHERE c.subject.id = :subjectId"),
-        @NamedQuery(name = ClassEntity.FIND_BY_SUBJECT_NAME, query = "SELECT c FROM ClassEntity c WHERE c.subject.name = :subjectName")
 })
 public class ClassEntity extends GenericEntity {
     public static final String FIND_ALL = "ClassEntity.findAll";
     public static final String FIND_BY_SUBJECT_ID = "ClassEntity.findBySubjectId";
-    public static final String FIND_BY_SUBJECT_NAME = "ClassEntity.findBySubjectName";
 
     @Column
     private String name;
     @Column
     private String lecturer;
-    @Column
-    private int capacity;
     @Column
     private int price;
     @Column
@@ -54,14 +50,6 @@ public class ClassEntity extends GenericEntity {
 
     public void setLecturer(String lecturer) {
         this.lecturer = lecturer;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
     }
 
     public int getPrice() {

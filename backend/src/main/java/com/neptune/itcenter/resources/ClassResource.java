@@ -48,7 +48,7 @@ public class ClassResource extends GenericResource {
     @Consumes({MediaType.APPLICATION_JSON})
     public Response update(@PathParam("id") Integer id, Class bom) {
         bom.setId(id);
-        classService.update(bom);
+        classService.update(classService.toEntity(bom));
         return Response.ok().build();
     }
 

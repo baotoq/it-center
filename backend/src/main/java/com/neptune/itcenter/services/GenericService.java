@@ -101,9 +101,6 @@ public abstract class GenericService<E extends GenericEntity, B extends Bom> {
             return null;
         E entity = createEntity();
         entity.setId(bom.getId());
-        entity.setCreatedAt(bom.getCreatedAt());
-        entity.setUpdatedAt(bom.getUpdatedAt());
-        entity.setDeletedAt(bom.getDeletedAt());
         return entity;
     }
 

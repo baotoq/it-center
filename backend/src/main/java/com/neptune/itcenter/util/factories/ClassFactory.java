@@ -28,7 +28,6 @@ public class ClassFactory extends GenericFactory<ClassEntity> {
             ClassEntity entity = new ClassEntity();
             entity.setName(faker.educator().course());
             entity.setLecturer(faker.name().fullName());
-            entity.setCapacity(faker.number().numberBetween(20, 40));
             entity.setLecturer(faker.name().fullName());
             entity.setPrice(faker.number().numberBetween(50000, 100000));
             entity.setSubject(subjects.get(faker.random().nextInt(subjects.size())));

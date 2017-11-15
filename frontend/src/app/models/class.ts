@@ -6,7 +6,6 @@ import { Period } from './period';
 export class Class extends Timestamp {
   id: number;
   name: string;
-  capacity: number;
   numberOfStudents: number;
   lecturer: string;
   price: number;
@@ -24,7 +23,6 @@ export class Class extends Timestamp {
     if (obj) {
       this.id = obj.id;
       this.name = obj.name;
-      this.capacity = obj.capacity;
       this.lecturer = obj.lecturer;
       this.price = obj.price;
       this.active = obj.active;

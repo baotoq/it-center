@@ -17,6 +17,7 @@ public class RoomFactory extends GenericFactory<RoomEntity> {
         for (int i = 0; i < getAmount(); i++) {
             RoomEntity entity = new RoomEntity();
             entity.setActive(faker.bool().bool());
+            entity.setCapacity(faker.number().numberBetween(20, 40));
             entities.add(entity);
         }
         return entities;

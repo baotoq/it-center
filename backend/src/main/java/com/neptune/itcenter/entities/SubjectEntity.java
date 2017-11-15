@@ -16,10 +16,6 @@ public class SubjectEntity extends GenericEntity implements Serializable {
     @Column
     private String name;
     @Column
-    private boolean active;
-    @Column
-    private int price;
-    @Column
     @Enumerated(EnumType.STRING)
     private Level level;
 
@@ -32,22 +28,6 @@ public class SubjectEntity extends GenericEntity implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public Level getLevel() {
