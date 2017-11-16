@@ -11,6 +11,7 @@ export class ClassSearchInputComponent implements OnInit {
   searchControl = new FormControl();
   @ViewChild('searchInput') searchInput: ElementRef;
 
+  @Input() showConfirm = false;
   @Input() loading = false;
   @Input() disabled = false;
   @Output() searchOut = new EventEmitter<any>();

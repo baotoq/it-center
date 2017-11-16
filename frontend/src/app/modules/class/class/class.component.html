@@ -5,9 +5,12 @@
     <mat-card>
       <div class="d-flex align-items-center">
         <h1 class="mr-2">Class Information</h1>
-        <button class="btn btn-outline-primary btn-sm" (click)="onEdit()" *ngIf="!edit">
-          <span class="fa fa-pencil"></span>
-        </button>
+        <div *ngIf="authenticated && currentUser.role !== role.USER">
+          <button class="btn btn-outline-primary btn-sm" (click)="onEdit()"
+                  *ngIf="!edit">
+            <span class="fa fa-pencil"></span>
+          </button>
+        </div>
         <ng-container *ngIf="edit">
           <button type="button" class="btn btn-outline-danger btn-sm mr-1" (click)="edit = false; classForm.disable()">
             Cancel
@@ -20,7 +23,7 @@
       </div>
       <hr class="mt-0" style="margin-bottom: 16px">
       <div class="row d-flex justify-content-center mb-3">
-        <form [formGroup]="classForm" (keyup.enter)="onSubmit()" class="col-12 col-sm-8 col-md-6">
+        <form [formGroup]="classForm" (keyup.enter)="onSubmit()" class="col-12 col-sm-10 col-md-8">
           <div class="form-group">
             <label>Name:</label>
             <div class="input-group">

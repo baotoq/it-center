@@ -10,6 +10,8 @@ import { RoomService } from '../../room/room.service';
 import { CoreService } from '../../core/core.service';
 import { Subject } from '../../../models/subject';
 import { SubjectService } from '../../subject/subject.service';
+import { AuthService } from '../../auth/auth.service';
+import { Role } from '../../../models/role';
 
 @Component({
   selector: 'app-class',
@@ -22,6 +24,7 @@ export class ClassComponent implements OnInit {
   edit = false;
   rooms: Room[];
   subjects: Subject[];
+  role = Role;
 
   private periodOrders = [
     {key: 'FIRST', value: '6:50 - 9:15'},
@@ -39,6 +42,7 @@ export class ClassComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private formBuilder: FormBuilder,
               private loadingService: LoadingService,
+              private authService: AuthService,
               private coreService: CoreService,
               private subjectService: SubjectService,
               private classService: ClassService,
@@ -110,5 +114,13 @@ export class ClassComponent implements OnInit {
 
   formatDate2(model) {
     return this.datePipe.transform(model, 'yyyy-MM-dd');
+  }
+
+  get authenticated() {
+    return this.authService.isAuthenticated();
+  }
+
+  get currentUser() {
+    return this.authService.currentUser();
   }
 }

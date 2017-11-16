@@ -7,6 +7,7 @@ import { User } from '../../../models/user';
 import { AuthService } from '../../auth/auth.service';
 import { Registration } from '../../../models/registration';
 import { CoreService } from '../../core/core.service';
+import { Role } from '../../../models/role';
 
 @Component({
   selector: 'app-class-list',
@@ -23,6 +24,7 @@ export class ClassListComponent implements OnInit {
   userRegistration: Registration[];
   loading = false;
   state = State;
+  role = Role;
 
   constructor(private loadingService: LoadingService,
               private coreService: CoreService,
@@ -37,18 +39,22 @@ export class ClassListComponent implements OnInit {
       .subscribe(resp => {
         this.classes = resp;
         this.paginate();
-        this.classService.getUserRegistration(this.currentUser.id)
-          .finally(() => this.loadingService.spinnerStop())
-          .subscribe(resp2 => {
-            this.userRegistration = resp2;
-            this.userRegistration.forEach(r => {
-              this.classes.forEach(c => {
-                if (c.id === r.attendedClass.id) {
-                  c.state = State.REGISTERED;
-                }
+        if (this.currentUser) {
+          this.classService.getUserRegistration(this.currentUser.id)
+            .finally(() => this.loadingService.spinnerStop())
+            .subscribe(resp2 => {
+              this.userRegistration = resp2;
+              this.userRegistration.forEach(r => {
+                this.classes.forEach(c => {
+                  if (c.id === r.attendedClass.id) {
+                    c.state = State.REGISTERED;
+                  }
+                });
               });
             });
-          });
+        } else {
+          this.loadingService.spinnerStop();
+        }
       });
   }
 
@@ -93,5 +99,9 @@ export class ClassListComponent implements OnInit {
 
   get currentUser(): User {
     return this.authService.currentUser();
+  }
+
+  get authenticated() {
+    return this.authService.isAuthenticated();
   }
 }

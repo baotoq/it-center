@@ -1,8 +1,8 @@
 <app-header title="IT CENTER"></app-header>
-
 <div class="container-fluid mt-3" *ngIf="classes">
   <app-class-search-input (searchOut)="onSearchOut($event)" (confirm)="onConfirm()"
-                          [loading]="loading" [disabled]="!selectedClasses.length || loading"></app-class-search-input>
+                          [loading]="loading" [disabled]="!selectedClasses.length || loading"
+                          [showConfirm]="authenticated && currentUser.role === role.USER"></app-class-search-input>
   <table class="table table-bordered table-sm">
     <thead>
     <tr>
@@ -13,7 +13,7 @@
       <th scope="col">Days</th>
       <th scope="col">Start at</th>
       <th scope="col">Quantity</th>
-      <th scope="col">Action</th>
+      <th scope="col" *ngIf="authenticated && currentUser.role == role.USER">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -50,7 +50,7 @@
           'badge-success': (class.room.capacity - class.numberOfStudents) > 10
           }">{{class.numberOfStudents}}/{{class.room.capacity}}</span>
       </td>
-      <td>
+      <td *ngIf="authenticated && currentUser.role === role.USER">
         <button class="btn btn-success btn-sm" *ngIf="class.state === state.REGISTERED; else a">
           Registered
         </button>
