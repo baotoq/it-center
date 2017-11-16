@@ -3,9 +3,8 @@ import { Timestamp } from './timestamp';
 export class Subject extends Timestamp {
   id: number;
   name: string;
-  price: number;
-  active: boolean;
   level: string;
+  numberOfRegistrations: number;
 
   constructor(obj?: Subject) {
     super(obj);

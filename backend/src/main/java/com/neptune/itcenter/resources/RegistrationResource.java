@@ -2,10 +2,7 @@ package com.neptune.itcenter.resources;
 
 import com.neptune.itcenter.boms.Registration;
 import com.neptune.itcenter.entities.RegistrationEntity;
-import com.neptune.itcenter.services.ClassService;
-import com.neptune.itcenter.services.InvoiceService;
 import com.neptune.itcenter.services.RegistrationService;
-import com.neptune.itcenter.services.UserService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -22,12 +19,6 @@ public class RegistrationResource extends GenericResource {
 
     @EJB
     private RegistrationService registrationService;
-    @EJB
-    private UserService userService;
-    @EJB
-    private ClassService classService;
-    @EJB
-    private InvoiceService invoiceService;
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})

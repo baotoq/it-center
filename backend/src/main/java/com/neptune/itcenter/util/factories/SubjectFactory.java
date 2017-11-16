@@ -16,7 +16,7 @@ public class SubjectFactory extends GenericFactory<SubjectEntity> {
 
         for (int i = 0; i < getAmount(); i++) {
             SubjectEntity entity = new SubjectEntity();
-            entity.setName(faker.name().name());
+            entity.setName(faker.name().firstName());
             entities.add(entity);
         }
         return entities;

@@ -29,5 +29,6 @@ export module API {
   export class SUBJECT {
     public static readonly URL = `${BASE_URL}/subjects`;
     public static readonly COUNT = `${SUBJECT.URL}/count`;
+    public static readonly CHART = `${SUBJECT.URL}/get-chart-data`;
   }
 }

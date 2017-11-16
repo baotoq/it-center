@@ -1,7 +1,10 @@
 package com.neptune.itcenter.resources;
 
 import com.neptune.itcenter.boms.Subject;
+import com.neptune.itcenter.entities.ClassEntity;
 import com.neptune.itcenter.entities.SubjectEntity;
+import com.neptune.itcenter.services.ClassService;
+import com.neptune.itcenter.services.RegistrationService;
 import com.neptune.itcenter.services.SubjectService;
 
 import javax.ejb.EJB;
@@ -18,6 +21,10 @@ import java.util.List;
 public class SubjectResource extends GenericResource {
     @EJB
     private SubjectService subjectService;
+    @EJB
+    private ClassService classService;
+    @EJB
+    private RegistrationService registrationService;
 
     @GET
     @Path("{id}")
@@ -64,5 +71,19 @@ public class SubjectResource extends GenericResource {
     @Produces({MediaType.APPLICATION_JSON})
     public int count() {
         return subjectService.findAll().size();
+    }
+
+    @GET
+    @Path("get-chart-data")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Subject> getChartData() {
+        List<Subject> subjects = subjectService.toBoms(subjectService.findAll());
+        for (Subject subject : subjects) {
+            List<ClassEntity> classes = classService.findBySubjectId(subject.getId());
+            for (ClassEntity c : classes) {
+                subject.setNumberOfRegistrations(registrationService.findAllByClassId(c.getId()).size());
+            }
+        }
+        return subjects;
     }
 }

@@ -3,4 +3,11 @@
               [numberOfClasses]="numberOfClasses | async"
               [numberOfSubjects]="numberOfSubjects | async"
               [numberOfRooms]="numberOfRooms | async"></app-widget>
+
+  <google-chart *ngIf="!loading" [data]="chartData" class="w-100"></google-chart>
+
+  <div class="row">
+    <div class="col-12 col-sm-6">
+    </div>
+  </div>
 </div>

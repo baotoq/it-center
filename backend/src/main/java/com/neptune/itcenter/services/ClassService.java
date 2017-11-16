@@ -29,6 +29,12 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         return query.getResultList();
     }
 
+    public List<ClassEntity> findBySubjectId(Integer id) {
+        TypedQuery<ClassEntity> query = getEntityManager().createNamedQuery(ClassEntity.FIND_BY_SUBJECT_ID, ClassEntity.class)
+                .setParameter("subjectId", id);
+        return query.getResultList();
+    }
+
     @Override
     public ClassEntity toEntity(Class bom) {
         if (bom == null)

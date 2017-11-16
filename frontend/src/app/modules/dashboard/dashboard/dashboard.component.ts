@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
+import { LoadingService } from '../../../components/loading/loading.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,15 +12,61 @@ export class DashboardComponent implements OnInit {
   numberOfClasses;
   numberOfSubjects;
   numberOfRooms;
+  loading = false;
 
-  constructor(private dashboardService: DashboardService) {
+  chartData = {
+    chartType: 'ColumnChart',
+    dataTable: [],
+    options: {
+      isStacked: true,
+      hAxis: {title: 'Registrations'},
+      height: '500',
+      chartArea: {
+        width: '90%',
+      },
+      animation: {
+        startup: true,
+        easing: 'inAndOut',
+        duration: 1000,
+      },
+      legend: {position: 'top', maxLines: 3},
+    },
+  };
+
+  constructor(private dashboardService: DashboardService,
+              private loadingService: LoadingService) {
   }
 
   ngOnInit() {
+    this.loadingService.spinnerStart();
     this.numberOfStudents = this.dashboardService.countStudents();
     this.numberOfClasses = this.dashboardService.countClasses();
     this.numberOfSubjects = this.dashboardService.countSubjects();
     this.numberOfRooms = this.dashboardService.countRooms();
+
+    this.loading = true;
+    this.dashboardService.getChartData()
+      .finally(() => this.loadingService.spinnerStop())
+      .subscribe(resp => {
+        this.chartData = Object.assign({}, this.chartData, {
+          dataTable: this.prepareDataTable(resp),
+        });
+        this.loading = false;
+      });
   }
 
+  private prepareDataTable(popularSubjects) {
+    const data = popularSubjects
+      .map(subject => [subject.name, subject.numberOfRegistrations])
+      .sort((r1: [string, number], r2: [string, number]) => r2[1] - r1[1]);
+    const exportData = [];
+    for (let i = 0; i < data.length && i < 15; i++) {
+      exportData.push(data[i]);
+    }
+
+    return [
+      ['Title', 'Number of registrations'],
+      ...exportData
+    ];
+  }
 }

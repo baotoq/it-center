@@ -105,6 +105,7 @@ export class ClassComponent implements OnInit {
         this.coreService.notifySuccess();
         this.classForm.disable();
         this.edit = false;
+        this.ngOnInit();
       }, () => this.coreService.notifyError());
   }
 

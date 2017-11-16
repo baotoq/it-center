@@ -3,6 +3,7 @@ import { RequestService } from '../shared/services/request.sevice';
 import { AuthService } from '../auth/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { API } from '../shared/common/api';
+import { Subject } from '../../models/subject';
 
 @Injectable()
 export class DashboardService {
@@ -23,5 +24,9 @@ export class DashboardService {
 
   countRooms(): Observable<number> {
     return this.requestService.get(API.ROOM.COUNT);
+  }
+
+  getChartData(): Observable<Subject> {
+    return this.requestService.get(API.SUBJECT.CHART);
   }
 }

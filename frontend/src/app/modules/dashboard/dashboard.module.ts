@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardService } from './dashboard.service';
 import { WidgetComponent } from './dashboard/widget/widget.component';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { WidgetComponent } from './dashboard/widget/widget.component';
     MomentModule,
     NgPipesModule,
     NgbModule,
+    Ng2GoogleChartsModule,
     SharedModule,
     DashboardRoutingModule,
   ],
