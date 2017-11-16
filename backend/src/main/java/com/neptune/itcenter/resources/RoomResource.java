@@ -58,4 +58,11 @@ public class RoomResource extends GenericResource {
         roomService.delete(roomEntity);
         return Response.noContent().build();
     }
+
+    @GET
+    @Path("count")
+    @Produces({MediaType.APPLICATION_JSON})
+    public int count() {
+        return roomService.findAll().size();
+    }
 }

@@ -55,7 +55,7 @@
           Registered
         </button>
         <ng-template #a>
-          <button class="btn btn-info btn-sm" *ngIf="class.numberOfStudents === class.room.capacity; else b">
+          <button class="btn btn-info btn-sm" *ngIf="class.numberOfStudents >= class.room.capacity; else b">
             FULL
           </button>
           <ng-template #b>

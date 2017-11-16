@@ -58,4 +58,11 @@ public class SubjectResource extends GenericResource {
         subjectService.delete(subjectEntity);
         return Response.noContent().build();
     }
+
+    @GET
+    @Path("count")
+    @Produces({MediaType.APPLICATION_JSON})
+    public int count() {
+        return subjectService.findAll().size();
+    }
 }

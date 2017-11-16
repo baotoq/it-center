@@ -59,4 +59,11 @@ public class ClassResource extends GenericResource {
         classService.delete(classEntity);
         return Response.noContent().build();
     }
+
+    @GET
+    @Path("count")
+    @Produces({MediaType.APPLICATION_JSON})
+    public int count() {
+        return classService.findAll().size();
+    }
 }

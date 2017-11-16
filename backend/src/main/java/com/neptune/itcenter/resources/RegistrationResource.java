@@ -1,7 +1,6 @@
 package com.neptune.itcenter.resources;
 
 import com.neptune.itcenter.boms.Registration;
-import com.neptune.itcenter.entities.InvoiceEntity;
 import com.neptune.itcenter.entities.RegistrationEntity;
 import com.neptune.itcenter.services.ClassService;
 import com.neptune.itcenter.services.InvoiceService;
@@ -10,10 +9,11 @@ import com.neptune.itcenter.services.UserService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.validation.Valid;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Stateless
@@ -42,20 +42,5 @@ public class RegistrationResource extends GenericResource {
     public List<Registration> getAllByStudentId(@PathParam("studentId") Integer studentId) {
         List<RegistrationEntity> registrationEntities = registrationService.findAllByStudentId(studentId);
         return registrationService.toBoms(registrationEntities);
-    }
-
-    @POST
-    @Consumes({MediaType.APPLICATION_JSON})
-    public Response add(@Valid List<Registration> registrations) {
-        InvoiceEntity invoiceEntity = new InvoiceEntity();
-        invoiceEntity.setStudent(userService.findByUserId(registrations.get(0).getStudent().getId()));
-        invoiceService.add(invoiceEntity);
-        for (Registration r : registrations) {
-            RegistrationEntity registrationEntity = new RegistrationEntity();
-            registrationEntity.setInvoice(invoiceEntity);
-            registrationEntity.setAttendedClass(classService.findById(r.getAttendedClass().getId()));
-            registrationService.add(registrationEntity);
-        }
-        return Response.ok().build();
     }
 }

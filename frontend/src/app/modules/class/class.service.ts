@@ -28,9 +28,7 @@ export class ClassService {
   }
 
   createInvoice(classes: Class[]): Observable<any> {
-    let r = [];
-    classes.forEach(item => r.push({attendedClass: item, student: this.authService.currentUser()}));
-    return this.requestService.post(API.REGISTRATION.URL, r);
+    return this.requestService.post(`${API.INVOICE.URL}/${this.authService.currentUser().id}`, classes);
   }
 
   getUserRegistration(id: number): Observable<Registration[]> {

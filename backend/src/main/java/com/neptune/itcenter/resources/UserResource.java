@@ -1,5 +1,6 @@
 package com.neptune.itcenter.resources;
 
+import com.neptune.itcenter.boms.Role;
 import com.neptune.itcenter.boms.User;
 import com.neptune.itcenter.entities.UserEntity;
 import com.neptune.itcenter.services.UserService;
@@ -68,5 +69,14 @@ public class UserResource extends GenericResource {
             return Response.ok().entity(userService.toBom(userEntity)).build();
         }
         return Response.status(Response.Status.UNAUTHORIZED).build();
+    }
+
+    @GET
+    @Path("count")
+    @Produces({MediaType.APPLICATION_JSON})
+    public int count() {
+        List<UserEntity> userEntities = userService.findAll();
+        userEntities.removeIf(u -> u.getRole() == Role.ADMIN);
+        return userEntities.size();
     }
 }
