@@ -2,6 +2,10 @@
   <a mat-button [routerLink]="['/']" routerLinkActive="active">
     <h1>IT CENTER</h1>
   </a>
+  <a mat-button [routerLink]="['/dashboard']" routerLinkActive="active"
+     *ngIf="authenticated && currentUser.role !== 'USER'">
+    Dashboard
+  </a>
 
   <div class="ml-auto">
     <ng-container *ngIf="!authenticated">

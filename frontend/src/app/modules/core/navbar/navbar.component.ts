@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-navbar',
@@ -26,5 +27,9 @@ export class NavbarComponent implements OnInit {
 
   get authenticated(): boolean {
     return this.authService.isAuthenticated();
+  }
+
+  get currentUser(): User {
+    return this.authService.currentUser();
   }
 }

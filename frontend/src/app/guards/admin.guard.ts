@@ -13,7 +13,7 @@ export class AdminGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     const currentUser = this.authService.currentUser();
-    if (currentUser.role == Role.ADMIN) {
+    if (currentUser.role !== Role.USER) {
       return true;
     }
     this.router.navigate(['/']);

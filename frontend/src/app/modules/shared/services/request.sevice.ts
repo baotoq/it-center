@@ -14,7 +14,7 @@ export class RequestService {
 
   public get(url: string, options?: RequestOptions): Observable<any> {
     return this.http.get(url, this.defaultRequestOptions().merge(options))
-      .map(this.extractData);
+      .map(this.extractData).delay(500);
   }
 
   public post(url: string, body?: object, options?: RequestOptions): Observable<any> {
