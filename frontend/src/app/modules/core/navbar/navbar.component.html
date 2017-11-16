@@ -3,7 +3,7 @@
     <h1>IT CENTER</h1>
   </a>
   <a mat-button [routerLink]="['/dashboard']" routerLinkActive="active"
-     *ngIf="authenticated && currentUser.role !== 'USER'">
+     *ngIf="authenticated && currentUser.role === 'ADMIN'">
     Dashboard
   </a>
 

@@ -27,13 +27,11 @@ public class UserFactory extends GenericFactory<UserEntity> {
     }
 
     private Role generateRole() {
-        int levelOrder = faker.random().nextInt(3);
+        int levelOrder = faker.random().nextInt(2);
         switch (levelOrder) {
             case 0:
                 return Role.ADMIN;
             case 1:
-                return Role.STAFF;
-            case 2:
                 return Role.USER;
             default:
                 return Role.USER;
