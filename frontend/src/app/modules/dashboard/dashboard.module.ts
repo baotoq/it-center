@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { DashboardService } from './dashboard.service';
 import { WidgetComponent } from './dashboard/widget/widget.component';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { ConfirmInvoiceComponent } from './confirm-invoice/confirm-invoice.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
     SharedModule,
     DashboardRoutingModule,
   ],
-  declarations: [DashboardComponent, WidgetComponent],
+  declarations: [DashboardComponent, WidgetComponent, ConfirmInvoiceComponent],
   providers: [DashboardService],
 })
 export class DashboardModule {

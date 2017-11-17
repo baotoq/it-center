@@ -51,14 +51,19 @@
           }">{{class.numberOfStudents}}/{{class.room.capacity}}</span>
       </td>
       <td *ngIf="authenticated && currentUser.role === role.USER">
-        <button class="btn btn-success btn-sm" *ngIf="class.state === state.REGISTERED; else a">
+        <button class="btn btn-primary btn-sm" *ngIf="class.state === state.REGISTERED; else a">
           Registered
         </button>
         <ng-template #a>
-          <button class="btn btn-info btn-sm" *ngIf="class.numberOfStudents >= class.room.capacity; else b">
+          <button class="btn btn-success btn-sm" *ngIf="class.state === state.CONFIRMED; else b">
+            Confirmed
+          </button>
+        </ng-template>
+        <ng-template #b>
+          <button class="btn btn-info btn-sm" *ngIf="class.numberOfStudents >= class.room.capacity; else c">
             FULL
           </button>
-          <ng-template #b>
+          <ng-template #c>
             <button class="btn btn-outline-primary btn-sm" *ngIf="!class.selected" (click)="register(class)">
               Register
             </button>

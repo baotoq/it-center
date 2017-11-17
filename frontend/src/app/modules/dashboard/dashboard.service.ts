@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { RequestService } from '../shared/services/request.sevice';
-import { AuthService } from '../auth/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { API } from '../shared/common/api';
 import { Subject } from '../../models/subject';
+import { Invoice } from '../../models/invoice';
 
 @Injectable()
 export class DashboardService {
-  constructor(private requestService: RequestService, private authService: AuthService) {
+  constructor(private requestService: RequestService) {
   }
 
   countStudents(): Observable<number> {
@@ -28,5 +28,14 @@ export class DashboardService {
 
   getChartData(): Observable<Subject> {
     return this.requestService.get(API.SUBJECT.CHART);
+  }
+
+  getAllInvoice(): Observable<Invoice[]> {
+    return this.requestService.get(API.INVOICE.URL);
+  }
+
+  confirmInvoice(invoice: Invoice) {
+    invoice.confirmed = true;
+    return this.requestService.put(`${API.INVOICE.URL}/${invoice.id}`, invoice);
   }
 }

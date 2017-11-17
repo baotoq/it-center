@@ -2,7 +2,16 @@ package com.neptune.itcenter.boms;
 
 public class Invoice extends Bom {
     private User student;
-    private User staff;
+    private Integer total;
+    private boolean confirmed;
+
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
 
     public User getStudent() {
         return student;
@@ -12,11 +21,11 @@ public class Invoice extends Bom {
         this.student = student;
     }
 
-    public User getStaff() {
-        return staff;
+    public boolean isConfirmed() {
+        return confirmed;
     }
 
-    public void setStaff(User staff) {
-        this.staff = staff;
+    public void setConfirmed(boolean confirmed) {
+        this.confirmed = confirmed;
     }
 }

@@ -23,7 +23,7 @@ public class SubjectService extends GenericService<SubjectEntity, Subject> {
     public SubjectEntity toEntity(Subject bom) {
         if (bom == null)
             return null;
-        SubjectEntity entity = super.toEntity(bom);
+        SubjectEntity entity = findById(bom.getId());
         entity.setName(bom.getName());
         entity.setLevel(bom.getLevel());
         return entity;

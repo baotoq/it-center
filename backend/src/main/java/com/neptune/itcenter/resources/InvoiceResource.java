@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.net.URI;
 import java.util.List;
 
 @Stateless
@@ -45,19 +46,31 @@ public class InvoiceResource extends GenericResource {
         return invoiceService.toBoms(invoiceEntities);
     }
 
+    @PUT
+    @Path("{id}")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response update(@PathParam("id") Integer id, Invoice invoice) {
+        invoiceService.update(invoiceService.toEntity(invoice));
+        return Response.ok().build();
+    }
+
     @POST
     @Path("{studentId}")
     @Consumes({MediaType.APPLICATION_JSON})
     public Response add(@PathParam("studentId") Integer studentId, @Valid List<Class> classes) {
         InvoiceEntity invoiceEntity = new InvoiceEntity();
         invoiceEntity.setStudent(userService.findByUserId(studentId));
-        for (Class r : classes) {
+        int total = 0;
+        for (Class c : classes) {
             RegistrationEntity registrationEntity = new RegistrationEntity();
             registrationEntity.setInvoice(invoiceEntity);
-            registrationEntity.setAttendedClass(classService.findById(r.getId()));
+            registrationEntity.setAttendedClass(classService.findById(c.getId()));
             registrationService.add(registrationEntity);
+            total += c.getPrice();
         }
+        invoiceEntity.setTotal(total);
         invoiceService.add(invoiceEntity);
-        return Response.ok().build();
+        URI createdUri = appendCurrentUriWith(String.valueOf(invoiceEntity.getId()));
+        return Response.created(createdUri).type(MediaType.APPLICATION_JSON).location(createdUri).build();
     }
 }

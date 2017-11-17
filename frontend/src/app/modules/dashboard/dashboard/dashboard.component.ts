@@ -48,9 +48,7 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.getChartData()
       .finally(() => this.loadingService.spinnerStop())
       .subscribe(resp => {
-        this.chartData = Object.assign({}, this.chartData, {
-          dataTable: this.prepareDataTable(resp),
-        });
+        this.chartData.dataTable = this.prepareDataTable(resp);
         this.loading = false;
       });
   }
@@ -59,14 +57,10 @@ export class DashboardComponent implements OnInit {
     const data = popularSubjects
       .map(subject => [subject.name, subject.numberOfRegistrations])
       .sort((r1: [string, number], r2: [string, number]) => r2[1] - r1[1]);
-    const exportData = [];
-    for (let i = 0; i < data.length && i < 15; i++) {
-      exportData.push(data[i]);
-    }
 
     return [
       ['Title', 'Number of registrations'],
-      ...exportData
+      ...data.slice(0, 12)
     ];
   }
 }

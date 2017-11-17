@@ -13,6 +13,8 @@ public class RegistrationService extends GenericService<RegistrationEntity, Regi
 
     @EJB
     private ClassService classService;
+    @EJB
+    private InvoiceService invoiceService;
 
     public RegistrationService() {
         super(RegistrationEntity.class, Registration.class);
@@ -35,10 +37,16 @@ public class RegistrationService extends GenericService<RegistrationEntity, Regi
         return query.getResultList();
     }
 
+    public List<RegistrationEntity> findConfirmedByClassId(int id) {
+        TypedQuery<RegistrationEntity> query = getEntityManager().createNamedQuery(RegistrationEntity.FIND_CONFIRMED_BY_CLASS_ID, RegistrationEntity.class);
+        query.setParameter("classId", id);
+        return query.getResultList();
+    }
+
     @Override
     public RegistrationEntity toEntity(Registration bom) {
         if (bom == null) return null;
-        RegistrationEntity entity = super.toEntity(bom);
+        RegistrationEntity entity = findById(bom.getId());
         entity.setAbsent(bom.getAbsent());
         entity.setLate(bom.getLate());
         entity.setGrade(bom.getGrade());
@@ -53,6 +61,7 @@ public class RegistrationService extends GenericService<RegistrationEntity, Regi
         bom.setLate(entity.getLate());
         bom.setGrade(entity.getGrade());
         bom.setAttendedClass(classService.toBom(entity.getAttendedClass()));
+        bom.setInvoice(invoiceService.toBom(entity.getInvoice()));
         return bom;
     }
 }

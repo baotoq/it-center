@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <app-progress-bar></app-progress-bar>
     <app-navbar></app-navbar>
-    <div class="app position-relative" style="height: 800px">
+    <div class="app position-relative">
       <app-spinner></app-spinner>
       <router-outlet></router-outlet>
       <div style="height: 100px"></div>

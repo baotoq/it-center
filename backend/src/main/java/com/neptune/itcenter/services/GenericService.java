@@ -67,15 +67,6 @@ public abstract class GenericService<E extends GenericEntity, B extends Bom> {
         }
     }
 
-    private E createEntity() {
-        try {
-            return entityClass.newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     private B createBom() {
         try {
             return bomClass.newInstance();
@@ -96,13 +87,7 @@ public abstract class GenericService<E extends GenericEntity, B extends Bom> {
         return bom;
     }
 
-    public E toEntity(B bom) {
-        if (bom == null)
-            return null;
-        E entity = createEntity();
-        entity.setId(bom.getId());
-        return entity;
-    }
+    public abstract E toEntity(B bom);
 
     public List<B> toBoms(List<E> entities) {
         if (entities == null) {

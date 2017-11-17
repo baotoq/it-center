@@ -37,5 +37,6 @@ export class Class extends Timestamp {
 
 export enum State {
   CONFLICTED,
-  REGISTERED
+  REGISTERED,
+  CONFIRMED
 }

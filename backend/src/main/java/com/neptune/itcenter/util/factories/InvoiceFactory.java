@@ -9,11 +9,8 @@ import java.util.List;
 public class InvoiceFactory extends GenericFactory<InvoiceEntity> {
     private List<UserEntity> students;
 
-    private List<UserEntity> staffs;
-
-    public InvoiceFactory(int amount, List<UserEntity> staffs, List<UserEntity> students) {
+    public InvoiceFactory(int amount, List<UserEntity> students) {
         super(amount);
-        this.staffs = staffs;
         this.students = students;
     }
 
@@ -23,7 +20,8 @@ public class InvoiceFactory extends GenericFactory<InvoiceEntity> {
 
         for (int i = 0; i < getAmount(); i++) {
             InvoiceEntity entity = new InvoiceEntity();
-            entity.setStaff(staffs.get(faker.random().nextInt(staffs.size())));
+            entity.setTotal(faker.number().numberBetween(500000, 1000000));
+            entity.setConfirmed(faker.bool().bool());
             entity.setStudent(students.get(faker.random().nextInt(students.size())));
             invoiceEntities.add(entity);
         }

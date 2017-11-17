@@ -1,11 +1,11 @@
 import { Timestamp } from './timestamp';
 import { Class } from './class';
-import { User } from './user';
+import { Invoice } from './invoice';
 
 export class Registration extends Timestamp {
   id: number;
   attendedClass: Class;
-  student: User;
+  invoice: Invoice;
 
   constructor(obj?) {
     super(obj);

@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       .subscribe(resp => {
         this.authService.setToken(resp);
         this.coreService.notifySuccess('Login successful!');
-        this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl'] || '/');
+        this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl'] || '/dashboard');
       }, error => {
         if (error.status === 401) {
           this.coreService.notifyError('Invalid email or password!');

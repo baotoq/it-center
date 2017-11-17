@@ -1,0 +1,38 @@
+<div>
+  <table class="table table-bordered table-sm">
+    <thead>
+    <tr>
+      <th>Invoice ID</th>
+      <th>Student name</th>
+      <th>Account</th>
+      <th>Total</th>
+      <th>Created date</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let invoice of invoices">
+      <td>
+        <span class="badge" style="color: #1565C0">#{{invoice.id}}</span>
+      </td>
+      <td>
+        <span class="badge" style="color: #1565C0">{{invoice.student.name}}</span>
+      </td>
+      <td>
+        <span class="badge" style="color: #1565C0">{{invoice.student.username}}</span>
+      </td>
+      <td>
+        <span class="badge badge-primary">${{invoice.total}}</span>
+      </td>
+      <td>
+        <span class="badge badge-secondary">{{invoice.createdAt | date: 'yyyy-MM-dd'}}</span>
+      </td>
+      <td>
+        <button class="btn btn-outline-primary btn-sm" (click)="onConfirm(invoice)">
+          Confirm
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

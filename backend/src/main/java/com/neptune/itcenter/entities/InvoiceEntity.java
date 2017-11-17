@@ -12,20 +12,14 @@ public class InvoiceEntity extends GenericEntity implements Serializable {
     public static final String FIND_ALL = "InvoiceEntity.findAll";
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "staff_id")
-    private UserEntity staff;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id")
     private UserEntity student;
 
-    public UserEntity getStaff() {
-        return staff;
-    }
+    @Column
+    private boolean confirmed;
 
-    public void setStaff(UserEntity staff) {
-        this.staff = staff;
-    }
+    @Column
+    private Integer total;
 
     public UserEntity getStudent() {
         return student;
@@ -33,5 +27,21 @@ public class InvoiceEntity extends GenericEntity implements Serializable {
 
     public void setStudent(UserEntity student) {
         this.student = student;
+    }
+
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
+
+    public boolean isConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(boolean confirmed) {
+        this.confirmed = confirmed;
     }
 }

@@ -51,7 +51,7 @@ public class SeedService {
         periodService.add(periodEntities);
         List<ClassEntity> classEntities = new ClassFactory(CLASS_AMOUNT, periodEntities, roomEntities, subjectEntities).createEntities();
         classService.add(classEntities);
-        List<InvoiceEntity> invoiceEntities = new InvoiceFactory(INVOICE_AMOUNT, staffsEntities, userEntities).createEntities();
+        List<InvoiceEntity> invoiceEntities = new InvoiceFactory(INVOICE_AMOUNT, userEntities).createEntities();
         invoiceService.add(invoiceEntities);
         List<RegistrationEntity> registrationEntities = new RegistrationFactory(REGISTRATION_AMOUNT, classEntities, invoiceEntities).createEntities();
         registrationService.add(registrationEntities);

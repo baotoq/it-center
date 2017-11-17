@@ -22,8 +22,11 @@ public class InvoiceService extends GenericService<InvoiceEntity, Invoice> {
         return query.getResultList();
     }
 
-    public InvoiceEntity update(Invoice bom) {
+    @Override
+    public InvoiceEntity update(InvoiceEntity bom) {
         InvoiceEntity entity = findById(bom.getId());
+        entity.setTotal(bom.getTotal());
+        entity.setStudent(bom.getStudent());
         return super.update(entity);
     }
 
@@ -31,8 +34,9 @@ public class InvoiceService extends GenericService<InvoiceEntity, Invoice> {
     public InvoiceEntity toEntity(Invoice bom) {
         if (bom == null)
             return null;
-        InvoiceEntity entity = super.toEntity(bom);
-        entity.setStaff(userService.toEntity(bom.getStaff()));
+        InvoiceEntity entity = findById(bom.getId());
+        entity.setTotal(bom.getTotal());
+        entity.setConfirmed(bom.isConfirmed());
         entity.setStudent(userService.toEntity(bom.getStudent()));
         return entity;
     }
@@ -42,7 +46,8 @@ public class InvoiceService extends GenericService<InvoiceEntity, Invoice> {
         if (entity == null)
             return null;
         Invoice bom = super.toBom(entity);
-        bom.setStaff(userService.toBom(entity.getStaff()));
+        bom.setTotal(entity.getTotal());
+        bom.setConfirmed(entity.isConfirmed());
         bom.setStudent(userService.toBom(entity.getStudent()));
         return bom;
     }

@@ -47,7 +47,8 @@ export class ClassListComponent implements OnInit {
               this.userRegistration.forEach(r => {
                 this.classes.forEach(c => {
                   if (c.id === r.attendedClass.id) {
-                    c.state = State.REGISTERED;
+                    if (r.invoice.confirmed) c.state = State.CONFIRMED;
+                    else c.state = State.REGISTERED;
                   }
                 });
               });
