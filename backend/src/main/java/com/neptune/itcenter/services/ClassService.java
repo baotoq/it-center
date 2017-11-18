@@ -64,7 +64,7 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         bom.setSubject(subjectService.toBom(entity.getSubject()));
         bom.setRoom(roomService.toBom(entity.getRoom()));
         bom.setPeriod(periodService.toBom(entity.getPeriod()));
-        bom.setNumberOfStudents(registrationService.findConfirmedByClassId(entity.getId()).size());
+        bom.setNumberOfStudents(registrationService.findAllByClassId(entity.getId()).size());
         return bom;
     }
 }

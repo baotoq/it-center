@@ -54,6 +54,13 @@ public class InvoiceResource extends GenericResource {
         return Response.ok().build();
     }
 
+    @DELETE
+    @Path("{id}")
+    public Response delete(@PathParam("id") Integer id) {
+        invoiceService.delete(invoiceService.findById(id));
+        return Response.noContent().build();
+    }
+
     @POST
     @Path("{studentId}")
     @Consumes({MediaType.APPLICATION_JSON})

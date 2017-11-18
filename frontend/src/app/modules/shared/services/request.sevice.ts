@@ -27,6 +27,11 @@ export class RequestService {
       .map(this.extractData);
   }
 
+  public delete(url: string, options?: RequestOptions): Observable<any> {
+    return this.http.delete(url, this.defaultRequestOptions().merge(options))
+      .map(this.extractData);
+  }
+
   public authGet(url: string, options?: RequestOptions): Observable<any> {
     return this.authHttp.get(url, this.defaultRequestOptions().merge(options))
       .map(this.extractData);

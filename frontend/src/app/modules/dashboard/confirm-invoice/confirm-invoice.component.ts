@@ -30,4 +30,11 @@ export class ConfirmInvoiceComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+  onCancel(invoice) {
+    this.loadingService.spinnerStart();
+    this.dashboardService.cancelInvoice(invoice).subscribe(() => {
+      this.ngOnInit();
+    });
+  }
 }

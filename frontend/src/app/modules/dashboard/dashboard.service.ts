@@ -38,4 +38,8 @@ export class DashboardService {
     invoice.confirmed = true;
     return this.requestService.put(`${API.INVOICE.URL}/${invoice.id}`, invoice);
   }
+
+  cancelInvoice(invoice: Invoice) {
+    return this.requestService.delete(`${API.INVOICE.URL}/${invoice.id}`);
+  }
 }

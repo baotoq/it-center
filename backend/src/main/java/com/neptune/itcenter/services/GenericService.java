@@ -5,7 +5,6 @@ import com.neptune.itcenter.entities.GenericEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,9 +55,7 @@ public abstract class GenericService<E extends GenericEntity, B extends Bom> {
     }
 
     public void delete(E entity) {
-        entity.setDeletedAt(LocalDateTime.now());
-        update(entity);
-        //this.entityManager.remove(entity);
+        this.entityManager.remove(entity);
     }
 
     public void delete(List<E> entities) {
