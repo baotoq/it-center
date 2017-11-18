@@ -30,7 +30,8 @@ public class UserFactory extends GenericFactory<UserEntity> {
         int levelOrder = faker.random().nextInt(2);
         switch (levelOrder) {
             case 0:
-                return Role.ADMIN;
+                //return Role.ADMIN;
+                return Role.USER;
             case 1:
                 return Role.USER;
             default:

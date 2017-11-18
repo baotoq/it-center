@@ -31,6 +31,12 @@ public class RegistrationService extends GenericService<RegistrationEntity, Regi
         return query.getResultList();
     }
 
+    public List<RegistrationEntity> findAllByInvoiceId(int id) {
+        TypedQuery<RegistrationEntity> query = getEntityManager().createNamedQuery(RegistrationEntity.FIND_ALL_BY_INVOICE_ID, RegistrationEntity.class);
+        query.setParameter("invoiceId", id);
+        return query.getResultList();
+    }
+
     public List<RegistrationEntity> findAllByClassId(int id) {
         TypedQuery<RegistrationEntity> query = getEntityManager().createNamedQuery(RegistrationEntity.FIND_ALL_BY_CLASS_ID, RegistrationEntity.class);
         query.setParameter("classId", id);

@@ -57,7 +57,9 @@ public class InvoiceResource extends GenericResource {
     @DELETE
     @Path("{id}")
     public Response delete(@PathParam("id") Integer id) {
-        invoiceService.delete(invoiceService.findById(id));
+        InvoiceEntity invoiceEntity = invoiceService.findById(id);
+        registrationService.delete(registrationService.findAllByInvoiceId(invoiceEntity.getId()));
+        invoiceService.delete(invoiceEntity);
         return Response.noContent().build();
     }
 

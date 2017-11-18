@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class InvoiceEntity extends GenericEntity implements Serializable {
     public static final String FIND_ALL = "InvoiceEntity.findAll";
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "student_id")
     private UserEntity student;
 

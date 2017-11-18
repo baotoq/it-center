@@ -8,6 +8,7 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = RegistrationEntity.FIND_ALL, query = "SELECT r FROM RegistrationEntity r"),
         @NamedQuery(name = RegistrationEntity.FIND_ALL_BY_STUDENT_ID, query = "SELECT r FROM RegistrationEntity r WHERE r.invoice.student.id = :studentId"),
+        @NamedQuery(name = RegistrationEntity.FIND_ALL_BY_INVOICE_ID, query = "SELECT r FROM RegistrationEntity r WHERE r.invoice.id = :invoiceId"),
         @NamedQuery(name = RegistrationEntity.FIND_ALL_BY_CLASS_ID, query = "SELECT r FROM RegistrationEntity r where r.attendedClass.id = :classId"),
         @NamedQuery(name = RegistrationEntity.FIND_CONFIRMED_BY_CLASS_ID, query = "SELECT r FROM RegistrationEntity r where r.attendedClass.id = :classId and r.invoice.confirmed = true"),
 })
@@ -15,14 +16,15 @@ public class RegistrationEntity extends GenericEntity implements Serializable {
 
     public static final String FIND_ALL = "RegistrationEntity.findAll";
     public static final String FIND_ALL_BY_STUDENT_ID = "RegistrationEntity.findAllByStudentId";
+    public static final String FIND_ALL_BY_INVOICE_ID = "RegistrationEntity.findAllByInvoiceId";
     public static final String FIND_ALL_BY_CLASS_ID = "RegistrationEntity.findAllByClassId";
     public static final String FIND_CONFIRMED_BY_CLASS_ID = "RegistrationEntity.findConfirmedByClassId";
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "class_id", referencedColumnName = "id")
     private ClassEntity attendedClass;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "invoice_id")
     private InvoiceEntity invoice;
 
