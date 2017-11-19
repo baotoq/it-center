@@ -19,17 +19,17 @@ export class RequestService {
 
   public post(url: string, body?: object, options?: RequestOptions): Observable<any> {
     return this.http.post(url, body, this.defaultRequestOptions().merge(options))
-      .map(this.extractData);
+      .map(this.extractData).delay(500);
   }
 
   public put(url: string, body?: object, options?: RequestOptions): Observable<any> {
     return this.http.put(url, body, this.defaultRequestOptions().merge(options))
-      .map(this.extractData);
+      .map(this.extractData).delay(500);
   }
 
   public delete(url: string, options?: RequestOptions): Observable<any> {
     return this.http.delete(url, this.defaultRequestOptions().merge(options))
-      .map(this.extractData);
+      .map(this.extractData).delay(500);
   }
 
   public authGet(url: string, options?: RequestOptions): Observable<any> {

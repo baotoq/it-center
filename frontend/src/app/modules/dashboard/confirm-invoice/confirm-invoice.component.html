@@ -28,11 +28,13 @@
         <span class="badge badge-secondary">{{invoice.createdAt | date: 'yyyy-MM-dd'}}</span>
       </td>
       <td>
-        <button class="btn btn-outline-primary btn-sm" (click)="onConfirm(invoice)">
-          Confirm
+        <button class="btn btn-outline-primary btn-sm" (click)="onConfirm(invoice)" [disabled]="invoice.loading" *ngIf="!invoice.cancelLoading">
+          <app-fa-spinner *ngIf="invoice.loading"></app-fa-spinner>
+          <span *ngIf="!invoice.loading">Confirm</span>
         </button>
-        <button class="btn btn-outline-danger btn-sm" (click)="onCancel(invoice)">
-          Cancel
+        <button class="btn btn-outline-danger btn-sm" (click)="onCancel(invoice)" *ngIf="!invoice.loading" [disabled]="invoice.cancelLoading">
+          <app-fa-spinner *ngIf="invoice.cancelLoading"></app-fa-spinner>
+          <span *ngIf="!invoice.cancelLoading">Cancel</span>
         </button>
       </td>
     </tr>

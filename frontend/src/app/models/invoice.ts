@@ -6,6 +6,8 @@ export class Invoice extends Timestamp {
   total: number;
   student: User;
   confirmed: boolean;
+  loading = false;
+  cancelLoading = false;
 
   constructor(obj?) {
     super(obj);

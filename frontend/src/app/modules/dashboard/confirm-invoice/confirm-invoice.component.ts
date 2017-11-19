@@ -25,16 +25,20 @@ export class ConfirmInvoiceComponent implements OnInit {
   }
 
   onConfirm(invoice) {
-    this.loadingService.spinnerStart();
-    this.dashboardService.confirmInvoice(invoice).subscribe(() => {
-      this.ngOnInit();
+    invoice.loading = true;
+    this.dashboardService.confirmInvoice(invoice)
+      .finally(() => invoice.loading = false)
+      .subscribe(() => {
+      this.invoices = this.invoices.filter(i => i.id !== invoice.id);
     });
   }
 
   onCancel(invoice) {
-    this.loadingService.spinnerStart();
-    this.dashboardService.cancelInvoice(invoice).subscribe(() => {
-      this.ngOnInit();
+    invoice.cancelLoading = true;
+    this.dashboardService.cancelInvoice(invoice)
+      .finally(() => invoice.cancelLoading = false)
+      .subscribe(() => {
+      this.invoices = this.invoices.filter(i => i.id !== invoice.id);
     });
   }
 }

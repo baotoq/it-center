@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { LoadingService } from '../../../components/loading/loading.service';
-
+import { OrderByPipe } from 'ngx-pipes/esm';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -34,7 +34,8 @@ export class DashboardComponent implements OnInit {
   };
 
   constructor(private dashboardService: DashboardService,
-              private loadingService: LoadingService) {
+              private loadingService: LoadingService,
+              private orderByPipe: OrderByPipe) {
   }
 
   ngOnInit() {
@@ -54,9 +55,8 @@ export class DashboardComponent implements OnInit {
   }
 
   private prepareDataTable(popularSubjects) {
-    const data = popularSubjects
-      .map(subject => [subject.name, subject.numberOfRegistrations])
-      .sort((r1: [string, number], r2: [string, number]) => r2[1] - r1[1]);
+    let data = this.orderByPipe.transform(popularSubjects, ['-numberOfRegistrations']);
+    data = data.map(subject => [subject.name, subject.numberOfRegistrations]);
 
     return [
       ['Title', 'Number of registrations'],
