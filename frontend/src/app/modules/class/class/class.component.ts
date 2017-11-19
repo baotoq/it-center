@@ -94,6 +94,7 @@ export class ClassComponent implements OnInit {
       room: {id: this.classForm.controls['room'].value},
       subject: {id: this.classForm.controls['subject'].value},
       period: {
+        id: this.class.period.id,
         periodOrder: this.classForm.controls['periodOrder'].value,
         sequenceType: this.classForm.controls['sequenceType'].value,
       },

@@ -1994,7 +1994,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFfkZ+yf+pEuAo="
 							},
-							"name": "start_date",
+							"name": "start_at",
 							"type": "date",
 							"length": 0,
 							"primaryKey": false,
@@ -2008,7 +2008,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFfkZ+yf+pEuAo="
 							},
-							"name": "end_date",
+							"name": "end_at",
 							"type": "date",
 							"length": 0,
 							"primaryKey": false,
@@ -2078,7 +2078,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFfkaSg2eqRLHg="
 							},
-							"name": "created_date",
+							"name": "created_at",
 							"type": "date",
 							"length": 0,
 							"primaryKey": false,

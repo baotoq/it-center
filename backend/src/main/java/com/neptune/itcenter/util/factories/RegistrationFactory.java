@@ -23,6 +23,9 @@ public class RegistrationFactory extends GenericFactory<RegistrationEntity> {
 
         for (int i = 0; i < getAmount(); i++) {
             RegistrationEntity entity = new RegistrationEntity();
+            entity.setAbsent(faker.number().numberBetween(1, 10));
+            entity.setLate(faker.number().numberBetween(1, 10));
+            entity.setGrade(faker.number().numberBetween(1, 10));
             entity.setAttendedClass(classes.get(faker.random().nextInt(classes.size())));
             entity.setInvoice(invoices.get(faker.random().nextInt(invoices.size())));
             registrationEntities.add(entity);

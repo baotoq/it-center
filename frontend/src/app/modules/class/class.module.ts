@@ -11,6 +11,7 @@ import { ClassComponent } from './class/class.component';
 import { ClassService } from './class.service';
 import { ClassListComponent } from './class-list/class-list.component';
 import { ClassSearchInputComponent } from './class-list/class-search-input/class-search-input.component';
+import { ClassDetailComponent } from './class-detail/class-detail.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { ClassSearchInputComponent } from './class-list/class-search-input/class
     SharedModule,
     ClassRoutingModule,
   ],
-  declarations: [ClassComponent, ClassListComponent, ClassSearchInputComponent],
+  declarations: [ClassComponent, ClassListComponent, ClassSearchInputComponent, ClassDetailComponent],
   providers: [ClassService],
 })
 export class ClassModule {

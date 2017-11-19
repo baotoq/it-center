@@ -42,6 +42,8 @@ public class SeedService {
         staffsEntities.get(0).setRole(Role.ADMIN);
         userService.add(staffsEntities);
         List<UserEntity> userEntities = new UserFactory(USER_AMOUNT).createEntities();
+        userEntities.get(0).setUsername("user");
+        userEntities.get(0).setRole(Role.USER);
         userService.add(userEntities);
         List<RoomEntity> roomEntities = new RoomFactory(ROOM_AMOUNT).createEntities();
         roomService.add(roomEntities);

@@ -4,18 +4,18 @@
   <div *ngIf="class">
     <mat-card>
       <div class="d-flex align-items-center">
-        <h1 class="mr-2">Class Information</h1>
+        <h1 class="mr-2">{{class.name}}</h1>
         <div *ngIf="authenticated && currentUser.role === role.ADMIN">
           <button class="btn btn-outline-primary btn-sm" (click)="onEdit()"
                   *ngIf="!edit">
-            <span class="fa fa-pencil"></span>
+            <i class="fa fa-pencil"></i>
           </button>
         </div>
         <ng-container *ngIf="edit">
           <button type="button" class="btn btn-outline-danger btn-sm mr-1" (click)="edit = false; classForm.disable()">
             Cancel
           </button>
-          <button type="button" class="btn btn-outline-success btn-sm mr-1" (click)="onSave()"
+          <button type="button" class="btn btn-outline-success btn-sm" (click)="onSave()"
                   [disabled]="classForm.invalid">
             Save
           </button>

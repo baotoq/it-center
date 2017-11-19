@@ -1,0 +1,63 @@
+<app-header title="CLASS DETAILS"></app-header>
+<div class="container" *ngIf="class">
+  <mat-card>
+    <div class="d-flex align-items-center">
+      <h1 class="mr-2">Class Details</h1>
+      <div *ngIf="authenticated && currentUser.role === role.ADMIN">
+        <button class="btn btn-outline-primary btn-sm" (click)="edit = !edit"
+                *ngIf="!edit">
+          <span class="fa fa-pencil"></span>
+        </button>
+        <ng-container *ngIf="edit">
+          <button type="button" class="btn btn-outline-danger btn-sm mr-1" (click)="edit = false">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-outline-success btn-sm mr-1" (click)="onSave()">
+            Save
+          </button>
+        </ng-container>
+      </div>
+    </div>
+    <hr class="mt-0" style="margin-bottom: 16px">
+    <table class="table table-bordered table-sm">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Student name</th>
+        <th>Student username</th>
+        <th>Absent</th>
+        <th>Late</th>
+        <th>Grade</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let r of registrations | orderBy: ['invoice.student.name']; let i = index">
+        <td>
+        <span class="badge text-primary" [class.text-danger]="!r.invoice.confirmed">
+          {{i + 1}}
+        </span>
+        </td>
+        <td>
+        <span class="badge text-primary" [class.text-danger]="!r.invoice.confirmed">
+          {{r.invoice.student.name}}
+        </span>
+        </td>
+        <td>
+         <span class="badge text-primary" [class.text-danger]="!r.invoice.confirmed">
+          {{r.invoice.student.username}}
+        </span>
+        </td>
+        <td style="width: 65px">
+          <input class="form-control" [(ngModel)]="r.absent" [maxlength]="2" [readonly]="!edit">
+        </td>
+        <td style="width: 65px">
+          <input class="form-control" [(ngModel)]="r.late" [maxlength]="2" [readonly]="!edit">
+        </td>
+        <td style="width: 65px">
+          <input class="form-control" [(ngModel)]="r.grade" [maxlength]="2" [readonly]="!edit">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</div>

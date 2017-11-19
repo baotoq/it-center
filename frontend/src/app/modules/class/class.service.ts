@@ -32,6 +32,10 @@ export class ClassService {
   }
 
   getUserRegistration(id: number): Observable<Registration[]> {
-    return this.requestService.get(`${API.REGISTRATION.URL}/${id}`);
+    return this.requestService.get(`${API.REGISTRATION.URL}/user/${id}`);
+  }
+
+  getClassRegistration(id: number): Observable<Registration[]> {
+    return this.requestService.get(`${API.REGISTRATION.URL}/class/${id}`);
   }
 }

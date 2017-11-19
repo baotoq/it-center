@@ -2,6 +2,7 @@ import { Timestamp } from './timestamp';
 import { Room } from './room';
 import { Subject } from './subject';
 import { Period } from './period';
+import { User } from './user';
 
 export class Class extends Timestamp {
   id: number;
@@ -16,6 +17,7 @@ export class Class extends Timestamp {
   subject: Subject;
   period: Period;
   selected = false;
+  student: User[];
   state: State;
 
   constructor(obj?) {

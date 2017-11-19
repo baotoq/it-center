@@ -4,6 +4,9 @@ import { Invoice } from './invoice';
 
 export class Registration extends Timestamp {
   id: number;
+  absent: number;
+  late: number;
+  grade: number;
   attendedClass: Class;
   invoice: Invoice;
 

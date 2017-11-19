@@ -28,10 +28,18 @@ public class RegistrationResource extends GenericResource {
     }
 
     @GET
-    @Path("{studentId}")
+    @Path("user/{studentId}")
     @Produces({MediaType.APPLICATION_JSON})
     public List<Registration> getAllByStudentId(@PathParam("studentId") Integer studentId) {
         List<RegistrationEntity> registrationEntities = registrationService.findAllByStudentId(studentId);
+        return registrationService.toBoms(registrationEntities);
+    }
+
+    @GET
+    @Path("class/{classId}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Registration> getAllByClassId(@PathParam("classId") Integer classId) {
+        List<RegistrationEntity> registrationEntities = registrationService.findAllByClassId(classId);
         return registrationService.toBoms(registrationEntities);
     }
 }
