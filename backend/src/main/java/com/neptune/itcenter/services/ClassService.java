@@ -42,10 +42,10 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         ClassEntity entity = findById(bom.getId());
         entity.setName(bom.getName());
         entity.setLecturer(bom.getLecturer());
-        entity.setPrice(bom.getPrice());
+        entity.setTuition(bom.getTuition());
         entity.setStartedAt(bom.getStartedAt());
         entity.setEndedAt(bom.getEndedAt());
-        entity.setPeriod(periodService.toEntity(bom.getPeriod()));
+        entity.setPeriod(periodService.findByPeriodOrderAndSequenceType(bom.getPeriod().getPeriodOrder(), bom.getPeriod().getSequenceType()));
         entity.setSubject(subjectService.findById(bom.getSubject().getId()));
         entity.setRoom(roomService.findById(bom.getRoom().getId()));
         return entity;
@@ -58,7 +58,7 @@ public class ClassService extends GenericService<ClassEntity, Class> {
         Class bom = super.toBom(entity);
         bom.setName(entity.getName());
         bom.setLecturer(entity.getLecturer());
-        bom.setPrice(entity.getPrice());
+        bom.setTuition(entity.getTuition());
         bom.setStartedAt(entity.getStartedAt());
         bom.setEndedAt(entity.getEndedAt());
         bom.setSubject(subjectService.toBom(entity.getSubject()));

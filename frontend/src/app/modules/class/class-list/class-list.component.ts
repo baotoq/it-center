@@ -39,7 +39,7 @@ export class ClassListComponent implements OnInit {
       .subscribe(resp => {
         this.classes = resp;
         this.paginate();
-        if (this.authenticated && this.currentUser.role === this.role.USER) {
+        if (this.authenticated) {
           this.classService.getUserRegistration(this.currentUser.id)
             .finally(() => this.loadingService.spinnerStop())
             .subscribe(resp2 => {

@@ -7,7 +7,7 @@ public class Class extends Bom {
     private String name;
     private String lecturer;
     private int numberOfStudents;
-    private int price;
+    private int tuition;
     private LocalDateTime startedAt;
     private LocalDateTime endedAt;
     private Subject subject;
@@ -31,12 +31,12 @@ public class Class extends Bom {
     }
 
 
-    public int getPrice() {
-        return price;
+    public int getTuition() {
+        return tuition;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setTuition(int tuition) {
+        this.tuition = tuition;
     }
 
     public LocalDateTime getStartedAt() {

@@ -26,7 +26,7 @@ public class PeriodService extends GenericService<PeriodEntity, Period> {
     @Override
     public PeriodEntity toEntity(Period bom) {
         if (bom == null) return null;
-        PeriodEntity entity = new PeriodEntity();
+        PeriodEntity entity = findById(bom.getId());
         entity.setSequenceType(bom.getSequenceType());
         entity.setPeriodOrder(bom.getPeriodOrder());
         return entity;

@@ -75,7 +75,7 @@ public class InvoiceResource extends GenericResource {
             registrationEntity.setInvoice(invoiceEntity);
             registrationEntity.setAttendedClass(classService.findById(c.getId()));
             registrationService.add(registrationEntity);
-            total += c.getPrice();
+            total += c.getTuition();
         }
         invoiceEntity.setTotal(total);
         invoiceService.add(invoiceEntity);

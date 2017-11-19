@@ -9,7 +9,7 @@ export class Class extends Timestamp {
   name: string;
   numberOfStudents: number;
   lecturer: string;
-  price: number;
+  tuition: number;
   active: boolean;
   startedAt: Date;
   endedAt: Date;
@@ -26,7 +26,7 @@ export class Class extends Timestamp {
       this.id = obj.id;
       this.name = obj.name;
       this.lecturer = obj.lecturer;
-      this.price = obj.price;
+      this.tuition = obj.tuition;
       this.active = obj.active;
       this.room = obj.room;
       this.subject = obj.subject;

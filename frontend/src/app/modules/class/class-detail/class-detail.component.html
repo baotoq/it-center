@@ -2,7 +2,7 @@
 <div class="container" *ngIf="class">
   <mat-card>
     <div class="d-flex align-items-center">
-      <h1 class="mr-2">Class Details</h1>
+      <h1 class="mr-2 text-primary">{{class.name}}</h1>
       <div *ngIf="authenticated && currentUser.role === role.ADMIN">
         <button class="btn btn-outline-primary btn-sm" (click)="edit = !edit"
                 *ngIf="!edit">
@@ -24,7 +24,7 @@
       <tr>
         <th>#</th>
         <th>Student name</th>
-        <th>Student username</th>
+        <th>Account</th>
         <th>Absent</th>
         <th>Late</th>
         <th>Grade</th>

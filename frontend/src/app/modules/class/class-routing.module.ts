@@ -10,7 +10,7 @@ const routes: Routes = [
     component: ClassListComponent,
   },
   {
-    path: 'detail/:classId',
+    path: 'details/:classId',
     component: ClassDetailComponent,
   },
   {

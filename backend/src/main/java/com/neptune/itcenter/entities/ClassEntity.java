@@ -18,7 +18,7 @@ public class ClassEntity extends GenericEntity {
     @Column
     private String lecturer;
     @Column
-    private int price;
+    private int tuition;
     @Column
     private LocalDateTime startedAt;
     @Column
@@ -52,12 +52,12 @@ public class ClassEntity extends GenericEntity {
         this.lecturer = lecturer;
     }
 
-    public int getPrice() {
-        return price;
+    public int getTuition() {
+        return tuition;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setTuition(int tuition) {
+        this.tuition = tuition;
     }
 
     public LocalDateTime getStartedAt() {

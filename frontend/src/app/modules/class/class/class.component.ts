@@ -67,7 +67,7 @@ export class ClassComponent implements OnInit {
       name: [this.class.name, [Validators.required]],
       subject: [this.class.subject.id, Validators.required],
       room: [this.class.room.id, Validators.required],
-      price: [this.class.price, Validators.required],
+      tuition: [this.class.tuition, Validators.required],
       startedAt: [this.formatDate2(this.class.startedAt), [Validators.required, Validators.pattern(/\d{4}-\d{2}-\d{2}/)]],
       endedAt: [this.formatDate2(this.class.endedAt), [Validators.required, Validators.pattern(/\d{4}-\d{2}-\d{2}/)]],
       capacity: [this.class.room.capacity, Validators.required],
@@ -89,12 +89,11 @@ export class ClassComponent implements OnInit {
       name: this.classForm.controls['name'].value,
       startedAt: this.formatDate(this.classForm.controls['startedAt'].value),
       endedAt: this.formatDate(this.classForm.controls['endedAt'].value),
-      price: this.classForm.controls['price'].value,
+      tuition: this.classForm.controls['tuition'].value,
       lecturer: this.classForm.controls['lecturer'].value,
       room: {id: this.classForm.controls['room'].value},
       subject: {id: this.classForm.controls['subject'].value},
       period: {
-        id: this.class.period.id,
         periodOrder: this.classForm.controls['periodOrder'].value,
         sequenceType: this.classForm.controls['sequenceType'].value,
       },
@@ -108,6 +107,24 @@ export class ClassComponent implements OnInit {
         this.edit = false;
         this.ngOnInit();
       }, () => this.coreService.notifyError());
+  }
+
+  onCancel() {
+    this.edit = false;
+    this.classForm.reset({
+      name: this.class.name,
+      subject: this.class.subject.id,
+      room: this.class.room.id,
+      tuition: this.class.tuition,
+      startedAt: this.formatDate2(this.class.startedAt),
+      endedAt: this.formatDate2(this.class.endedAt),
+      capacity: this.class.room.capacity,
+      numberOfStudents: this.class.numberOfStudents,
+      lecturer: this.class.lecturer,
+      periodOrder: this.class.period.periodOrder,
+      sequenceType: this.class.period.sequenceType,
+    });
+    this.classForm.disable();
   }
 
   formatDate(model) {
