@@ -29,8 +29,8 @@ export class ConfirmInvoiceComponent implements OnInit {
     this.dashboardService.confirmInvoice(invoice)
       .finally(() => invoice.loading = false)
       .subscribe(() => {
-      this.invoices = this.invoices.filter(i => i.id !== invoice.id);
-    });
+        this.invoices = this.invoices.filter(i => i.id !== invoice.id);
+      });
   }
 
   onCancel(invoice) {
@@ -38,7 +38,7 @@ export class ConfirmInvoiceComponent implements OnInit {
     this.dashboardService.cancelInvoice(invoice)
       .finally(() => invoice.cancelLoading = false)
       .subscribe(() => {
-      this.invoices = this.invoices.filter(i => i.id !== invoice.id);
-    });
+        this.invoices = this.invoices.filter(i => i.id !== invoice.id);
+      });
   }
 }

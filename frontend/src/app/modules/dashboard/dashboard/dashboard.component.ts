@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { LoadingService } from '../../../components/loading/loading.service';
 import { OrderByPipe } from 'ngx-pipes/esm';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

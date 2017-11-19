@@ -7,7 +7,7 @@
         </mat-toolbar>
         <div class="card-body">
           <form [formGroup]="loginForm" (keyup.enter)="onSubmit()">
-            <div class="row">
+            <div class="row mb-2">
               <mat-form-field class="col-md-12">
                 <input matInput placeholder="Username" formControlName="username" required>
                 <mat-error *ngIf="username.errors | hasError: 'required'">
