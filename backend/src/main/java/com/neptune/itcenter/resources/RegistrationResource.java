@@ -1,6 +1,5 @@
 package com.neptune.itcenter.resources;
 
-import com.neptune.itcenter.boms.Invoice;
 import com.neptune.itcenter.boms.Registration;
 import com.neptune.itcenter.entities.RegistrationEntity;
 import com.neptune.itcenter.services.RegistrationService;
@@ -47,7 +46,7 @@ public class RegistrationResource extends GenericResource {
     @Consumes({MediaType.APPLICATION_JSON})
     public Response update(List<Registration> registrations) {
         List<RegistrationEntity> registrationEntities = registrationService.toEntities(registrations);
-        for (RegistrationEntity r: registrationEntities) {
+        for (RegistrationEntity r : registrationEntities) {
             registrationService.update(r);
         }
         return Response.ok().build();

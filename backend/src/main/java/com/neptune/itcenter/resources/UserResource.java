@@ -1,6 +1,5 @@
 package com.neptune.itcenter.resources;
 
-import com.neptune.itcenter.boms.Role;
 import com.neptune.itcenter.boms.User;
 import com.neptune.itcenter.entities.UserEntity;
 import com.neptune.itcenter.services.UserService;
