@@ -6,11 +6,15 @@
 
 ## HOW TO RUN
 #### 1. FRONT END
-+ Run Frontend Application:
 + `cd` (change directory) to `frontend` directory then execute the command:
+```
+npm install
+```
++ Then execute the command:
 ```
 npm start
 ```
++ Frontend Application will be available at: `localhost:4200`.
 #### 2. BACK END
 + Download and Deploy PostgresSQL JDBC driver (Since we use PostgreSQL as our DBMS). The driver can be download [here](https://jdbc.postgresql.org/download.html).
 + Add new Datasource: 
@@ -20,11 +24,11 @@ npm start
     + Step 2/3: Navigate to `Detected Driver` tab, choose postgresql driver which we deployed in first step.
     + Step 3/3: Change `Connection URL` to: `jdbc:postgresql://localhost:5432/[Your Database For Application]`, then fill `username` and `password` field.
 
-+ Deploy Backend Application:
++ Deploy Backend service:
 + `cd` (change directory) to `backend` directory then execute the command:
 ```
 mvn clean install
 ```
 + Compiled code will be available at `backend/target`.
-+ After building backend application with Maven, access Wildfly Management UI, deploy `.war` file located in the path `backend/target/itcenter.war`.
-+ Backend Application will be available at: `localhost:8080/itcenter`.
++ After building backend service with Maven, access Wildfly Management UI, deploy `.war` file located in the path `backend/target/itcenter.war`.
++ Backend service will be available at: `localhost:8080/itcenter/api/<resource>`.
