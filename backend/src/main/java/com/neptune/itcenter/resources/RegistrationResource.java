@@ -1,16 +1,15 @@
 package com.neptune.itcenter.resources;
 
+import com.neptune.itcenter.boms.Invoice;
 import com.neptune.itcenter.boms.Registration;
 import com.neptune.itcenter.entities.RegistrationEntity;
 import com.neptune.itcenter.services.RegistrationService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Stateless
@@ -41,5 +40,16 @@ public class RegistrationResource extends GenericResource {
     public List<Registration> getAllByClassId(@PathParam("classId") Integer classId) {
         List<RegistrationEntity> registrationEntities = registrationService.findAllByClassId(classId);
         return registrationService.toBoms(registrationEntities);
+    }
+
+    @PUT
+    @Path("update-point")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response update(List<Registration> registrations) {
+        List<RegistrationEntity> registrationEntities = registrationService.toEntities(registrations);
+        for (RegistrationEntity r: registrationEntities) {
+            registrationService.update(r);
+        }
+        return Response.ok().build();
     }
 }

@@ -30,6 +30,14 @@ export class AuthService {
     localStorage.removeItem(JWT.AUTH);
   }
 
+  create(user: User): Observable<any> {
+    return this.requestService.post(API.USER.URL, user);
+  }
+
+  hasUsername(username: string): Observable<boolean> {
+    return this.requestService.post(`${API.USER.URL}/check/${username}`);
+  }
+
   currentUser(): User {
     if (!this.isAuthenticated()) return null;
     //const jwtHelper = new JwtHelper();

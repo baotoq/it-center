@@ -2,17 +2,17 @@
 <div class="container" *ngIf="class">
   <mat-card>
     <div class="d-flex align-items-center">
-      <h1 class="mr-2 text-primary">{{class.name}}</h1>
+      <h2 class="mr-2 text-primary">{{class.name}}</h2>
       <div *ngIf="authenticated && currentUser.role === role.ADMIN">
         <button class="btn btn-outline-primary btn-sm" (click)="edit = !edit"
                 *ngIf="!edit">
           <span class="fa fa-pencil"></span>
         </button>
         <ng-container *ngIf="edit">
-          <button type="button" class="btn btn-outline-danger btn-sm mr-1" (click)="edit = false">
+          <button type="button" class="btn btn-outline-danger btn-sm mr-1" (click)="onCancel()">
             Cancel
           </button>
-          <button type="button" class="btn btn-outline-success btn-sm mr-1" (click)="onSave()">
+          <button type="button" class="btn btn-outline-success btn-sm mr-1" (click)="onSave()" [disabled]="!isValid()">
             Save
           </button>
         </ng-container>
@@ -48,13 +48,13 @@
         </span>
         </td>
         <td style="width: 65px">
-          <input class="form-control" [(ngModel)]="r.absent" [maxlength]="2" [readonly]="!edit">
+          <input class="form-control" [(ngModel)]="r.absent" [maxlength]="2" [readonly]="!edit" [pattern]="pattern">
         </td>
         <td style="width: 65px">
-          <input class="form-control" [(ngModel)]="r.late" [maxlength]="2" [readonly]="!edit">
+          <input class="form-control" [(ngModel)]="r.late" [maxlength]="2" [readonly]="!edit" [pattern]="pattern">
         </td>
         <td style="width: 65px">
-          <input class="form-control" [(ngModel)]="r.grade" [maxlength]="2" [readonly]="!edit">
+          <input class="form-control" [(ngModel)]="r.grade" [maxlength]="2" [readonly]="!edit" [pattern]="pattern">
         </td>
       </tr>
       </tbody>

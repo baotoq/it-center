@@ -13,12 +13,12 @@ import java.util.List;
 @Singleton
 @Startup
 public class SeedService {
-    private static final int USER_AMOUNT = 30;
+    private static final int USER_AMOUNT = 100;
     private static final int ROOM_AMOUNT = 20;
     private static final int SUBJECT_AMOUNT = 20;
     private static final int CLASS_AMOUNT = 50;
     private static final int INVOICE_AMOUNT = 40;
-    private static final int REGISTRATION_AMOUNT = 900;
+    private static final int REGISTRATION_AMOUNT = 1000;
 
     @EJB
     private UserService userService;

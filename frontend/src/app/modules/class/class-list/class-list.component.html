@@ -55,16 +55,21 @@
           }">{{class.numberOfStudents}}/{{class.room.capacity}}</span>
       </td>
       <td *ngIf="authenticated">
-        <button class="btn btn-primary btn-sm" *ngIf="class.state === state.REGISTERED; else a">
-          Registered
+        <button class="btn btn-secondary btn-sm" *ngIf="class.state === state.ENDED; else f">
+          Ended
         </button>
+        <ng-template #f>
+          <button class="btn btn-primary btn-sm" *ngIf="class.state === state.REGISTERED; else a">
+            Registered
+          </button>
+        </ng-template>
         <ng-template #a>
           <button class="btn btn-success btn-sm" *ngIf="class.state === state.CONFIRMED; else b">
             Confirmed
           </button>
         </ng-template>
         <ng-template #b>
-          <button class="btn btn-info btn-sm" *ngIf="class.numberOfStudents >= class.room.capacity; else c">
+          <button class="btn btn-info btn-sm" *ngIf="class.state === state.FULL; else c">
             FULL
           </button>
           <ng-template #c>
@@ -80,6 +85,17 @@
     </tr>
     </tbody>
   </table>
+  <div class="btn-group" ngbRadioGroup name="radioBasic" [formControl]="filter">
+    <label ngbButtonLabel class="btn-outline-primary">
+      <input ngbButton type="radio" [value]="0"> All
+    </label>
+    <label ngbButtonLabel class="btn-outline-primary">
+      <input ngbButton type="radio" [value]="1"> Available
+    </label>
+    <label ngbButtonLabel class="btn-outline-primary">
+      <input ngbButton type="radio" [value]="2"> Registered
+    </label>
+  </div>
   <ngb-pagination class="float-right"
                   [(page)]="page"
                   [collectionSize]="filteredData.length"

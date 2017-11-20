@@ -1,3 +1,68 @@
-<p>
-  register works!
-</p>
+<div class="container-fluid">
+  <div class="row justify-content-center mt-2">
+    <div class="col-md-6 col-lg-5">
+      <div class="card card-outline-primary">
+        <mat-toolbar color="primary">
+          <h2 class="m-auto">Register</h2>
+        </mat-toolbar>
+        <div class="card-body">
+          <form [formGroup]="registerForm" (keyup.enter)="onSubmit()">
+            <h5>Account Information</h5>
+            <hr>
+            <div class="row">
+              <mat-form-field class="col-md-12">
+                <input matInput placeholder="Name" formControlName="name" required>
+                <mat-error *ngIf="name.errors | hasError: 'required'">
+                  Name is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col-md-12">
+                <input matInput placeholder="Username" formControlName="username" required>
+                <mat-error *ngIf="username.errors | hasError: 'required'">
+                  Username is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="username.errors | hasError: 'unique'">
+                  Username has already been taken
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col-md-12">
+                <input matInput placeholder="Password" formControlName="password" type="password" required>
+                <mat-error *ngIf="password.errors | hasError: 'required'">
+                  Password is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col-md-12">
+                <input matInput placeholder="Password confirm" formControlName="passwordConfirm" type="password"
+                       required>
+                <mat-error *ngIf="passwordConfirm.errors | hasError: 'required'">
+                  Password confirm is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="passwordConfirm.errors | hasError: 'unmatched'">
+                  Password confirm is <strong>unmatched</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <div class="float-right">
+            <button mat-raised-button color="warn" (click)="registerForm.reset()">Clear</button>
+            <button mat-raised-button color="primary"
+                    (click)="onSubmit()"
+                    [disabled]="registerForm.invalid || loading">
+              <app-fa-spinner *ngIf="loading"></app-fa-spinner>
+              <span *ngIf="!loading">Register</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

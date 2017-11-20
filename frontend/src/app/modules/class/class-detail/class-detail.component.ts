@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LoadingService } from '../../../components/loading/loading.service';
 import { AuthService } from '../../auth/auth.service';
 import { Role } from '../../../models/role';
+import { CoreService } from '../../core/core.service';
 
 @Component({
   selector: 'app-class-detail',
@@ -17,11 +18,13 @@ export class ClassDetailComponent implements OnInit {
   registrations: Registration[];
   role = Role;
   edit = false;
+  pattern = '^(10|[0-9]$)';
 
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
               private loadingService: LoadingService,
-              private classService: ClassService) {
+              private classService: ClassService,
+              private coreService: CoreService) {
   }
 
   ngOnInit() {
@@ -39,7 +42,29 @@ export class ClassDetailComponent implements OnInit {
   }
 
   onSave() {
+    this.loadingService.spinnerStart();
+    this.classService.updatePoint(this.registrations)
+      .subscribe(() => {
+        this.coreService.notifySuccess();
+        this.ngOnInit();
+      });
+    this.edit = false;
+  }
 
+  onCancel() {
+    this.edit = false;
+    this.ngOnInit();
+  }
+
+  isValid() {
+    const pattern = new RegExp(this.pattern);
+    let result = true;
+    this.registrations.forEach(item => {
+      if (!pattern.test(item.absent.toString())) result = false;
+      if (!pattern.test(item.late.toString())) result = false;
+      if (!pattern.test(item.grade.toString())) result = false;
+    });
+    return result;
   }
 
   get authenticated() {

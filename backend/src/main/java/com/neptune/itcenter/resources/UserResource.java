@@ -71,12 +71,18 @@ public class UserResource extends GenericResource {
         return Response.status(Response.Status.UNAUTHORIZED).build();
     }
 
+    @POST
+    @Path("check/{username}")
+    public boolean check(@PathParam("username") String username) {
+        return userService.findByUsername(username) != null;
+    }
+
     @GET
     @Path("count")
     @Produces({MediaType.APPLICATION_JSON})
     public int count() {
         List<UserEntity> userEntities = userService.findAll();
-        userEntities.removeIf(u -> u.getRole() == Role.ADMIN);
+        //userEntities.removeIf(u -> u.getRole() == Role.ADMIN);
         return userEntities.size();
     }
 }

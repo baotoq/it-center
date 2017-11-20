@@ -38,4 +38,8 @@ export class ClassService {
   getClassRegistration(id: number): Observable<Registration[]> {
     return this.requestService.get(`${API.REGISTRATION.URL}/class/${id}`);
   }
+
+  updatePoint(registrations: Registration[]): Observable<any> {
+    return this.requestService.put(`${API.REGISTRATION.URL}/update-point`, registrations);
+  }
 }

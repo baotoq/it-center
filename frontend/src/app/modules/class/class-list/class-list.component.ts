@@ -8,6 +8,7 @@ import { AuthService } from '../../auth/auth.service';
 import { Registration } from '../../../models/registration';
 import { CoreService } from '../../core/core.service';
 import { Role } from '../../../models/role';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-class-list',
@@ -25,6 +26,7 @@ export class ClassListComponent implements OnInit {
   loading = false;
   state = State;
   role = Role;
+  filter = new FormControl(0);
 
   constructor(private loadingService: LoadingService,
               private coreService: CoreService,
@@ -34,11 +36,19 @@ export class ClassListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.filter = new FormControl(0);
+    this.filter.valueChanges.subscribe(() => {
+      this.paginate();
+    });
     this.loadingService.spinnerStart();
     this.classService.getAll()
       .subscribe(resp => {
         this.classes = resp;
         this.paginate();
+        this.classes.forEach(c => {
+          if (new Date(c.startedAt) <= new Date()) c.state = State.ENDED;
+          if (c.numberOfStudents >= c.room.capacity) c.state = State.FULL;
+        });
         if (this.authenticated) {
           this.classService.getUserRegistration(this.currentUser.id)
             .finally(() => this.loadingService.spinnerStop())
@@ -70,7 +80,12 @@ export class ClassListComponent implements OnInit {
 
   paginate() {
     const startIndex = (this.page - 1) * this.pageSize;
-    this.filteredData = this.filterByPipe.transform(this.classes, ['name', 'subject.name'], this.searchString);
+    if (!this.filter.value) this.filteredData = this.classes;
+    else {
+      if (this.filter.value === 1) this.filteredData = this.classes.filter(i => i.state !== State.ENDED && i.state !== State.FULL && i.state !== State.CONFIRMED && i.state !== State.REGISTERED);
+      if (this.filter.value === 2) this.filteredData = this.classes.filter(i => i.state === State.CONFIRMED || i.state === State.REGISTERED);
+    }
+    this.filteredData = this.filterByPipe.transform(this.filteredData, ['name', 'subject.name'], this.searchString);
     this.pagedData = this.filteredData.slice(startIndex, startIndex + this.pageSize);
   }
 

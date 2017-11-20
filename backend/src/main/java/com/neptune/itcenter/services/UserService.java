@@ -60,7 +60,10 @@ public class UserService extends GenericService<UserEntity, User> {
     public UserEntity toEntity(User bom) {
         if (bom == null)
             return null;
-        UserEntity entity = findById(bom.getId());
+        UserEntity entity;
+        if (bom.getId() != null)
+            entity = findById(bom.getId());
+        else entity = new UserEntity();
         entity.setName(bom.getName());
         entity.setRole(bom.getRole());
         entity.setUsername(bom.getUsername());
